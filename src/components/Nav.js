@@ -4,21 +4,21 @@ import { NavLink } from 'react-router-dom';
 const handleActiveTab = navData =>
 	navData.isActive ? 'navlink-active' : 'navlink-unactive';
 
+const navigationItems = [
+	{ text: 'HOME', route: '/' },
+	{ text: 'ABOUT', route: '/about' },
+	{ text: 'CONTACT', route: '/contact' },
+	{ text: 'NEWS', route: '/news' },
+];
+
 const Nav = () => {
 	return (
 		<nav className="Nav">
-			<NavLink to="/" className={handleActiveTab}>
-				HOME
-			</NavLink>
-			<NavLink to="/about" className={handleActiveTab}>
-				ABOUT
-			</NavLink>
-			<NavLink to="/contact" className={handleActiveTab}>
-				CONTACT
-			</NavLink>
-			<NavLink to="/news" className={handleActiveTab}>
-				NEWS
-			</NavLink>
+			{navigationItems.map(({ text, route }, i) => (
+				<NavLink to={route} className={handleActiveTab}>
+					{text}
+				</NavLink>
+			))}
 		</nav>
 	);
 };
