@@ -1,9 +1,18 @@
 import React from 'react';
 
+import Slider from '../components/Slider';
+
+const sliderContents = [
+	{ imageUrl: '/images/blog-img-01.jpg', text: 'Awesome slide description' },
+	{ imageUrl: '/images/blog-img-02.jpg', text: 'Awesome slide description' },
+	{ imageUrl: '/images/blog-img-03.jpg', text: 'Awesome slide description' },
+];
+
 const News = () => {
 	return (
 		<main>
 			<h1>News</h1>
+			<Slider slides={sliderContents} />
 			<section>
 				<h2>This is the News section</h2>
 				<p>

@@ -20,6 +20,10 @@ a:visited {
 	color: inherit;
 }
 
+figure {
+	margin: 0;
+}
+
 /* LAYOUT */
 
 #root {
@@ -54,4 +58,13 @@ a:visited {
 	margin: auto;
 	padding: 4rem;
 	max-width: 1000px;
+}
+
+/* NEWS */
+
+/* => SLIDER */
+
+.legend {
+	bottom: 20px !important;
+	border-radius: 0 !important;
 }
