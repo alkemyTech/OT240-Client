@@ -9,17 +9,19 @@ import News from './pages/News';
 
 function App() {
 	return (
-		<main className="App">
-			<Router>
-				<Nav></Nav>
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/about" element={<About />} />
-					<Route path="/contact" element={<Contact />} />
-					<Route path="/news" element={<News />} />
-				</Routes>
-			</Router>
-		</main>
+		<Router>
+			<div className="App">
+				<Nav />
+				<div className="page-content">
+					<Routes>
+						<Route path="/" element={<Home />} />
+						<Route path="/about" element={<About />} />
+						<Route path="/contact" element={<Contact />} />
+						<Route path="/news" element={<News />} />
+					</Routes>
+				</div>
+			</div>
+		</Router>
 	);
 }
 
