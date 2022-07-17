@@ -5,7 +5,7 @@ const About = () => {
 		<main>
 			<h1>About</h1>
 			<section>
-				<h2>This is the about section</h2>+
+				<h2>This is the about section</h2>
 				<p>
 					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore amet
 					deleniti id unde. Expedita deleniti quia sit aspernatur magni
