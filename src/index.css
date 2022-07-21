@@ -68,3 +68,36 @@ figure {
 	bottom: 20px !important;
 	border-radius: 0 !important;
 }
+
+/* REGISTER - LOGIN Form */
+.register-login-form{
+	display: flex;
+	flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+	margin: auto;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	border-radius: 10px 10px 10px 10px;
+	background: #fff;
+	padding: 5rem;
+	width: 50%;
+	height: 50%;
+	max-width: 450px;
+	position: center;
+	-webkit-box-shadow: 0 0 15px 0 rgba(0,0,0,0.3);
+	box-shadow: 0 0 15px 0 rgba(0,0,0,0.3);
+	
+  }
+  .register-login-form .form-group{
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	margin: auto;
+  }
+  .register-login-form .btn{
+	padding: 2%;
+	margin: auto;
+	background-color: #6e9aa5c4;
+	border: #1986a1c4;
+  }

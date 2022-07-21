@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 //import { useDispatch, useSelector } from 'react-redux';
-import Nav from '../components/Nav.js';
+import Slider from '../components/Slider';
+//import loginLogo from '../../public/images/favicon.png';
+
+const sliderContents = [
+	{ imageUrl: '/images/blog-img-01.jpg', text: 'Awesome slide description' },
+	{ imageUrl: '/images/blog-img-02.jpg', text: 'Awesome slide description' },
+	{ imageUrl: '/images/blog-img-03.jpg', text: 'Awesome slide description' },
+];
+const loginLogo = '/images/favicon.png';
+const banner = '/images/cart.jpg';
 
 const Login = () => {
 
@@ -36,10 +45,15 @@ const Login = () => {
 
     return (
         <>
-            <Nav/>
-                <form onSubmit={handleLogin}>
+           <Slider slides={sliderContents}/>
+            <div className='register-login-form'>
+            <form onSubmit={handleLogin}>
+                    <div className=''>
+                        <img src={loginLogo} alt='login logo'/>
+                        <h2>SOMOS MÁS +</h2>
+                    </div>
                     <div className="form-group">
-                        <label htmlFor="emailInput">Correo electrónico</label>
+                        <label htmlFor="emailInput" className='p-5'>Correo electrónico:</label>
                         <input 
                             type="email" 
                             className="form-control" 
@@ -49,7 +63,7 @@ const Login = () => {
                             placeholder="Ingrese su correo electrónico"/>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="passwordInput">Contraseña</label>
+                        <label htmlFor="passwordInput" className='p-5'>Contraseña:</label>
                         <input 
                             type="password" 
                             className="form-control" 
@@ -64,8 +78,10 @@ const Login = () => {
                             id="rememberUser"/>
                         <label className="form-check-label" htmlFor="rememberUser">Recordar usuario</label>
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary mt-3">Iniciar sesión</button>
                 </form> 
+            </div>
+                
         </>
     )
 };
