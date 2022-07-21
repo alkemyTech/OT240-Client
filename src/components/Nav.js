@@ -9,6 +9,8 @@ const navigationItems = [
 	{ text: 'ABOUT', route: '/about' },
 	{ text: 'CONTACT', route: '/contact' },
 	{ text: 'NEWS', route: '/news' },
+	{ text: 'REGISTER', route: '/register' },
+	{ text: 'LOGIN', route: '/login' },
 ];
 
 const Nav = () => {
