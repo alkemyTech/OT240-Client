@@ -15,6 +15,23 @@ const Login = () => {
         fetch/axios
         authentication
         */
+       try {
+                setIsLoading(true);
+                let info = {
+                    email,
+                    password
+                };
+                const response = await fetch('/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(info)
+                });
+                await response.json();
+       } catch (error) {
+        console.log(error);
+       }
     };
 
     return (
