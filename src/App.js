@@ -20,6 +20,10 @@ function App() {
 						<Route path="/contact" element={<Contact />} />
 						<Route path="/news" element={<News />} />
 						<Route path="/my-profile" element={<Profile />} />
+						{/* The following routes should be protected with some auth Higher Order Component */}
+						<Route path="/backoffice">
+							<Route path="contacts" element={<h1>Contacts page</h1>} />
+						</Route>
 					</Routes>
 				</div>
 			</div>
