@@ -7,28 +7,29 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import News from './pages/News';
 import Profile from './pages/Profile';
+import Contacts from './pages/Backoffice/Contacts';
 
 function App() {
-	return (
-		<Router>
-			<div className="App">
-				<Nav />
-				<div className="page-content">
-					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route path="/about" element={<About />} />
-						<Route path="/contact" element={<Contact />} />
-						<Route path="/news" element={<News />} />
-						<Route path="/my-profile" element={<Profile />} />
-						{/* The following routes should be protected with some auth Higher Order Component */}
-						<Route path="/backoffice">
-							<Route path="contacts" element={<h1>Contacts page</h1>} />
-						</Route>
-					</Routes>
-				</div>
-			</div>
-		</Router>
-	);
+  return (
+    <Router>
+      <div className='App'>
+        <Nav />
+        <div className='page-content'>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/contact' element={<Contact />} />
+            <Route path='/news' element={<News />} />
+            <Route path='/my-profile' element={<Profile />} />
+            {/* The following routes should be protected with some auth Higher Order Component */}
+            <Route path='/backoffice'>
+              <Route path='contacts' element={<Contacts />} />
+            </Route>
+          </Routes>
+        </div>
+      </div>
+    </Router>
+  );
 }
 
 export default App;
