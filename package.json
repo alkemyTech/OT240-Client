@@ -18,7 +18,8 @@
 		"react-scripts": "3.4.3"
 	},
 	"scripts": {
-		"start-legacy": "react-scripts --openssl-legacy-provider start start",
+		"start-legacy": "react-scripts --openssl-legacy-provider start",
+		"server": "npx json-server --watch db.json --port 5000",
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
@@ -38,5 +39,8 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
+	},
+	"devDependencies": {
+		"json-server": "^0.17.0"
 	}
 }

@@ -1,0 +1,16 @@
+{
+  "news": [
+    {
+      "name": "Novedad n1",
+      "image": "/images/journal-01.jpg"
+    },
+    {
+      "name": "Novedad n2",
+      "image": "/images/journal-03.jpg"
+    },
+    {
+      "name": "Novedad n3",
+      "image": "/images/latest-02.jpg"
+    }
+  ]
+}
