@@ -1,0 +1,19 @@
+.footer {
+  background-color: #c0c0c0;
+  padding-bottom: 100px;
+  padding-top: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  flex-wrap: nowrap;
+
+  p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: -0.015em;
+  }
+}
