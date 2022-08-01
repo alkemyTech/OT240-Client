@@ -1,20 +1,47 @@
 import React from 'react';
 
+import api from '../axios/main';
+
 const News = () => {
-	return (
-		<main>
-			<h1>News</h1>
-			<section>
-				<h2>This is the News section</h2>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Error at
-					consectetur voluptatum repellendus magnam ab fugiat dolorum, nulla
-					saepe eveniet mollitia voluptatibus dolore ut. Doloribus tempora nam
-					nihil ad labore?
-				</p>
-			</section>
-		</main>
-	);
+  const [news, setNews] = React.useState([]);
+  const [error, setError] = React.useState([]);
+
+  React.useEffect(() => {
+    let isMounted = true;
+
+    const fetchNews = async () => {
+      try {
+        const { data } = await api.get('/news');
+        isMounted && setNews(data);
+      } catch (err) {
+        isMounted && setError(err.message);
+      }
+    };
+
+    fetchNews();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  return (
+    <main>
+      <h1>News</h1>
+      {news.length && (
+        <ul>
+          {news.map(({ name, image }) => (
+            <li key={name}>
+              <h1>{name}</h1>
+              <div>
+                <img src={image} alt='' />
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </main>
+  );
 };
 
 export default News;
