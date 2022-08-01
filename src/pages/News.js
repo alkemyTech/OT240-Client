@@ -1,8 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import api from '../axios/main';
 
-const News = () => {
+const NewsList = () => {
+  const navigate = useNavigate();
+
   const [news, setNews] = React.useState([]);
   const [error, setError] = React.useState([]);
 
@@ -26,12 +29,11 @@ const News = () => {
   }, []);
 
   return (
-    <main>
-      <h1>News</h1>
+    <>
       {news.length && (
         <ul>
-          {news.map(({ name, image }) => (
-            <li key={name}>
+          {news.map(({ name, image, id }) => (
+            <li key={id} onClick={() => navigate(`${id}`)}>
               <h1>{name}</h1>
               <div>
                 <img src={image} alt='' />
@@ -40,8 +42,8 @@ const News = () => {
           ))}
         </ul>
       )}
-    </main>
+    </>
   );
 };
 
-export default News;
+export default NewsList;

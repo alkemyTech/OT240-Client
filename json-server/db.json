@@ -1,14 +1,17 @@
 {
   "news": [
     {
+      "id": 1,
       "name": "Novedad n1",
       "image": "/images/journal-01.jpg"
     },
     {
+      "id": 2,
       "name": "Novedad n2",
       "image": "/images/journal-03.jpg"
     },
     {
+      "id": 3,
       "name": "Novedad n3",
       "image": "/images/latest-02.jpg"
     }
