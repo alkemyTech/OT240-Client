@@ -3,8 +3,6 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
-		"@fontsource/mulish": "^4.5.11",
-		"@fontsource/poppins": "^4.5.8",
 		"@popperjs/core": "^2.11.5",
 		"@reduxjs/toolkit": "^1.1.0",
 		"@testing-library/jest-dom": "^4.2.4",

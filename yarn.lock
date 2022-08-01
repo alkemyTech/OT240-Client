@@ -961,16 +961,6 @@
   "resolved" "https://registry.npmjs.org/@csstools/normalize.css/-/normalize.css-10.1.0.tgz"
   "version" "10.1.0"
 
-"@fontsource/mulish@^4.5.11":
-  "integrity" "sha512-7oywPzRLjxT0j746/AWo5HQrmJmt9Sn2IUiSuOq2lkfpVQY9nUBqbNGjVH9QSdx5E9LkxX3g7Y0R9zl+s2SGgg=="
-  "resolved" "https://registry.npmjs.org/@fontsource/mulish/-/mulish-4.5.11.tgz"
-  "version" "4.5.11"
-
-"@fontsource/poppins@^4.5.8":
-  "integrity" "sha512-HE9yLDxYJEcxooVrYvvEhtyxaYU32hQIx1+npKegVefceE0l0zi0ePqKWWxYxkFpyy6WuZSQ+9rai3INnYKEJA=="
-  "resolved" "https://registry.npmjs.org/@fontsource/poppins/-/poppins-4.5.8.tgz"
-  "version" "4.5.8"
-
 "@hapi/address@2.x.x":
   "integrity" "sha512-QD1PhQk+s31P1ixsX0H0Suoupp3VMXzIVMSwobR3F3MSUO2YCV0B7xqLcUw/Bh8yuvd3LhpyqLQWTNcRmp6IdQ=="
   "resolved" "https://registry.npmjs.org/@hapi/address/-/address-2.1.4.tgz"
