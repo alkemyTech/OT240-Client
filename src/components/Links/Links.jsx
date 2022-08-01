@@ -17,16 +17,16 @@ const Links = () => {
       { text: 'Contacto', route: '/contact' },
       { text: 'Contribuye', route: '/contrib' },
     ]);
-  }, [navigationItems]);
+  }, []);
 
   const handleActiveTab = (navData) =>
     navData.isActive ? `${style.link} ${style.activeNavlink}` : `${style.link} `;
 
   return (
     <div className={style.links}>
-      {navigationItems.map(({ text, route }) => {
+      {navigationItems.map(({ text, route }, index) => {
         return (
-          <NavLink to={route} className={handleActiveTab}>
+          <NavLink key={index} to={route} className={handleActiveTab}>
             {text}
           </NavLink>
         );
