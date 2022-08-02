@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './Contacts.module.scss';
 
 function Contacts() {
   //This should be replaced with Redux state logic once it is available
@@ -9,31 +10,36 @@ function Contacts() {
   }
 
   return (
-    <div>
+    <div className={styles.layout}>
       <h1>Contactos</h1>
-      <table className='table'>
+      <table className={styles.table}>
         <thead>
-          <th>Nombre</th>
-          <th>Telefono</th>
-          <th>Email</th>
-          <th>Acciones</th>
+          <tr>
+            <th>Nombre</th>
+            <th>Telefono</th>
+            <th>Email</th>
+            <th>Acciones</th>
+          </tr>
         </thead>
         <tbody>
-          {contacts.length &&
+          {contacts.length > 0 ? (
             contacts.map(({ name, phone, email, message, id }) => (
               //Pending: add expandable message section
-              <tr>
+              <tr key={id}>
                 <td>{name}</td>
                 <td>{phone}</td>
                 <td>{email}</td>
                 <td>
-                  <button className='btn btn-outline-primary'>Ver Mensaje</button>
-                  <button onClick={() => deleteContact(id)} className='btn btn-outline-danger'>
+                  <button className={styles.messageBtn}>Ver Mensaje</button>
+                  <button onClick={() => deleteContact(id)} className={styles.deleteBtn}>
                     Eliminar
                   </button>
                 </td>
               </tr>
-            ))}
+            ))
+          ) : (
+            <p>No hay contactos guardados aún.</p>
+          )}
         </tbody>
       </table>
     </div>
