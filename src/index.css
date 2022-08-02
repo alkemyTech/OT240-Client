@@ -19,13 +19,10 @@ code {
 }
 
 /* GRAL OVERRIDES */
+
 a {
   text-decoration: none;
   color: inherit;
-}
-
-figure {
-  margin: 0;
 }
 
 /* LAYOUT */
@@ -33,14 +30,4 @@ figure {
 #root {
   min-height: 100vh;
   width: 100vw;
-  background-color: rgb(230, 231, 251);
-}
-
-/* NEWS */
-
-/* => SLIDER */
-
-.legend {
-  bottom: 20px !important;
-  border-radius: 0 !important;
 }

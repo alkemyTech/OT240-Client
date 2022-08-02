@@ -1,19 +1,22 @@
 {
   "news": [
     {
-      "id": 1,
+      "id": 123,
       "name": "Novedad n1",
-      "image": "/images/journal-01.jpg"
+      "image": "/images/blog-img-01.jpg",
+      "content": "Esta novedad es la NUMERO 1"
     },
     {
-      "id": 2,
+      "id": 456,
       "name": "Novedad n2",
-      "image": "/images/journal-03.jpg"
+      "image": "/images/blog-img-02.jpg",
+      "content": "Esta novedad es la NUMERO 2"
     },
     {
-      "id": 3,
+      "id": 789,
       "name": "Novedad n3",
-      "image": "/images/latest-02.jpg"
+      "image": "/images/blog-img-03.jpg",
+      "content": "Esta novedad es la NUMERO 3"
     }
   ]
 }
