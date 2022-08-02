@@ -1,0 +1,90 @@
+.container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+    
+    img {
+        // width: 708px;
+        height: 900px;
+    }
+}
+.formContainer {
+    padding-top: 294px;
+    // padding-left: 142px;
+    padding-right: 139px;
+    h4 {
+        margin: 0;
+        padding-bottom: 24px;
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 48px;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        input {
+            width: 451px;
+            height: 56px;
+            margin-bottom: 24px;
+            border: 1px solid #B0B0B0;
+            border-radius: 8px;
+            padding-left: 16px;
+        }
+    }
+    button {
+        padding: 10px;
+        width: 448px;
+        height: 56px;
+        font-size: 24px;
+        border-radius: 8px;
+        background: #FF0000;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border: 0;
+        color: #FFFFFF;
+    }
+}
+.bienvenido {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+.registro {
+    display: flex;
+    justify-content: center;
+    padding-top: 225px;
+    font-weight: 400;
+    font-size: 24px;
+    a {
+        padding-left: 4px;
+        color: #FF0000;
+        text-decoration: none;
+    }
+}
+@media (max-width: 1370px) {
+    .container{
+        justify-content: center;
+        img{
+            
+            display: none;
+        }
+    }
+    .formContainer{
+        padding-right: 0px;
+    }
+}
+@media (max-width: 473px) {
+    .formContainer {
+        h4{
+            width: 80vw;
+        }
+        form {
+            input {
+                width: 80vw;
+            }
+        }
+        button{
+            width: 80vw;
+        }
+    }
+}
