@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import NewsListBackoffice from '../../components/Backoffice/NewsListBackoffice/NewsListBackoffice';
+import NewsListBackoffice from './NewsListBackoffice/NewsListBackoffice';
 
 const Backoffice = () => {
   return (

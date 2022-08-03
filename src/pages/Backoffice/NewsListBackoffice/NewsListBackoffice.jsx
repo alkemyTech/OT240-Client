@@ -25,7 +25,7 @@ const NewsListBackoffice = () => {
   };
 
   return (
-    <section>
+    <section className={style.container}>
       <h1>Administrar Novedades</h1>
       <table>
         <thead>
@@ -40,7 +40,7 @@ const NewsListBackoffice = () => {
         <tbody>
           {news.length &&
             news.map(({ name, image, createdAt, id }, i) => (
-              <tr>
+              <tr key={i}>
                 <td>{name}</td>
                 <td>{image}</td>
                 <td>{createdAt.split('.')[0].replace('T', ' ')}</td>
