@@ -25,7 +25,7 @@ const useFetchNews = (id) => {
     };
   }, []);
 
-  return { news, error };
+  return { news, setNews, error };
 };
 
 export default useFetchNews;
