@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -7,12 +7,12 @@ import InputField from '../InputField/InputField';
 
 const Login = () => {
 
-  let submitt = {};
+  let formData = {};
 
   const validate = Yup.object({
     loginEmail: Yup.string().required('El email es requerido').email('El email es invalido'),
     loginPassword: Yup.string().required('La contraseña es requerida').min(6, 'La contraseña tiene que ser de al menos 6 caracteres')
-  })
+  });
 
   return (
     <div className={login.container}>
@@ -28,8 +28,8 @@ const Login = () => {
             onSubmit={values => {
               // IMPORTANT
               // Handle API submission
-              submitt = values;
-              console.log(submitt); 
+              formData = values;
+              console.log(formData); 
             }}
           >
             {formik => (
