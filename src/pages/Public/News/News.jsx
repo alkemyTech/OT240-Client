@@ -3,34 +3,15 @@ import React from 'react';
 import style from './styles/News.component.scss';
 import api from '../../../axios/main';
 
-const NewsList = () => {
-  const [news, setNews] = React.useState([]);
-  const [error, setError] = React.useState([]);
+import NewsList from '../../../components/NewsList/NewsList';
 
-  React.useEffect(() => {
-    let isMounted = true;
-
-    const fetchNews = async () => {
-      try {
-        const { data } = await api.get('/news');
-        isMounted && setNews(data);
-      } catch (err) {
-        isMounted && setError(err.message);
-      }
-    };
-
-    fetchNews();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
+const News = () => {
   return (
     <>
       <h1>Novedades</h1>
+      <NewsList />
     </>
   );
 };
 
-export default NewsList;
+export default News;
