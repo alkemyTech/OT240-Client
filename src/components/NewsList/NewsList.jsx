@@ -13,11 +13,13 @@ const NewsList = ({ quantity }) => {
     <ul className={style.cardList}>
       {news.length ? (
         news.slice(0, quantity).map(({ name, image, id, content }) => (
-          <li className={style.card} key={id} onClick={() => navigate(`${id}`)}>
+          <li className={style.card} key={id}>
             <img src={image} alt='' />
             <div>
               <p>{content.slice(0, 100)}...</p>
-              <button className={style.buttonLink}>Ver Novedad</button>
+              <button className={style.buttonLink} onClick={() => navigate(`${id}`)}>
+                Ver Novedad
+              </button>
             </div>
           </li>
         ))
