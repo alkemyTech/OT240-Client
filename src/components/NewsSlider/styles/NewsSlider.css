@@ -1,0 +1,44 @@
+.carousel {
+  overflow: visible !important;
+  margin-bottom: 40px !important;
+}
+
+.legend {
+  position: absolute !important;
+  border-radius: 0px !important;
+  bottom: 0 !important;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgb(40, 40, 40) 24% 76%,
+    transparent
+  ) !important;
+  color: white !important;
+}
+
+.control-dots {
+  bottom: -40px !important;
+}
+
+button {
+  margin: auto 0;
+  background: none !important;
+  opacity: 1 !important;
+}
+
+figure {
+  margin: 0;
+  max-height: 400px;
+}
+
+button {
+  margin: auto 0;
+  background: none !important;
+  opacity: 1 !important;
+}
+
+@media all and (max-width: 400px) {
+  .legend {
+    opacity: 0 !important;
+  }
+}
