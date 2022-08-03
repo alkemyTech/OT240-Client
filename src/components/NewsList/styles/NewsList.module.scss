@@ -1,54 +1,63 @@
-.cardList {
+.container {
+  --mod: 10px;
+
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
   justify-content: center;
+  min-width: 360px;
+
+  .card {
+    display: flex;
+    width: calc(50 * var(--mod));
+    height: calc(23 * var(--mod));
+    border-radius: 20px;
+    background-color: #7e9afd;
+    border: 1px solid #0038ff;
+    padding: calc(2 * var(--mod));
+    margin: calc(2 * var(--mod));
+
+    h1 {
+      font-size: calc(1.2 * var(--mod));
+    }
+
+    img {
+      height: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+      padding-left: calc(2 * var(--mod));
+      width: 100%;
+      height: 100%;
+
+      p {
+        margin-bottom: auto;
+        font-size: calc(2 * var(--mod));
+      }
+
+      .buttonLink {
+        background-color: #0038ff;
+        border-radius: 8px;
+        padding: var(--mod);
+        color: white;
+        width: 100%;
+        font-size: calc(1.6 * var(--mod));
+        font-family: inherit;
+        border: none;
+        box-shadow: 0 10px 10px -5px rgba(12, 12, 12, 0.276);
+        cursor: pointer;
+      }
+    }
+  }
 }
 
-.card {
-  display: flex;
-  width: 500px;
-  height: 233px;
-  border-radius: 20px;
-  background-color: #7e9afd;
-  border: 1px solid #0038ff;
-  padding: 20px;
-  margin: 10px;
-
-  h1 {
-    font-size: 12px;
-  }
-
-  img {
-    height: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 20px;
-  }
-
-  div {
-    display: flex;
-    flex-direction: column;
-    padding-left: 20px;
-    width: 100%;
-    height: 100%;
-
-    p {
-      margin-bottom: auto;
-    }
-
-    .buttonLink {
-      background-color: #0038ff;
-      border-radius: 8px;
-      padding: 15px;
-      color: white;
-      padding: 10px auto;
-      width: 100%;
-      font-size: 16px;
-      font-family: inherit;
-      border: none;
-      box-shadow: 0 10px 10px -5px rgba(12, 12, 12, 0.276);
-      cursor: pointer;
-    }
+@media all and (max-width: 600px) {
+  .container {
+    --mod: 6px;
   }
 }

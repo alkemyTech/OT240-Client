@@ -10,7 +10,7 @@ const NewsList = ({ quantity }) => {
   const { news } = useFetchNews();
 
   return (
-    <ul className={style.cardList}>
+    <ul className={style.container}>
       {news.length ? (
         news.slice(0, quantity).map(({ name, image, id, content }) => (
           <li className={style.card} key={id}>
