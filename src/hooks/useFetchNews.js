@@ -2,7 +2,7 @@ import React from 'react';
 
 import api from '../axios/main';
 
-const useFetchNews = () => {
+const useFetchNews = (id) => {
   const [news, setNews] = React.useState([]);
   const [error, setError] = React.useState();
 
@@ -11,7 +11,7 @@ const useFetchNews = () => {
 
     const fetchNews = async () => {
       try {
-        const { data } = await api.get('/news');
+        const { data } = await api.get(`/news/${id || ''}`);
         isMounted && setNews(data);
       } catch (err) {
         isMounted && setError(err.message);
