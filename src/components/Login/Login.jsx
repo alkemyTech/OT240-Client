@@ -10,8 +10,8 @@ const Login = () => {
   let submitt = {};
 
   const validate = Yup.object({
-    loginEmail: Yup.string().required('Email is required').email('Email is invalid'),
-    loginPassword: Yup.string().required('Password is required').min(6, 'Password must be at least 6 character')
+    loginEmail: Yup.string().required('El email es requerido').email('El email es invalido'),
+    loginPassword: Yup.string().required('La contraseña es requerida').min(6, 'La contraseña tiene que ser de al menos 6 caracteres')
   })
 
   return (
@@ -35,7 +35,7 @@ const Login = () => {
             {formik => (
               <Form onSubmit={formik.handleSubmit}>
                   <InputField label='Email' name='loginEmail' type='text' />
-                  <InputField label='Password' name='loginPassword' type='Password' />
+                  <InputField label='Contraseña' name='loginPassword' type='Password' />
                   <button type='submit'> Inicia sesión </button>
               </Form>
             )}
