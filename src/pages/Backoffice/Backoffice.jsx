@@ -1,15 +1,16 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+
+import NewsListBackoffice from '../../components/Backoffice/NewsListBackoffice/NewsListBackoffice';
 
 const Backoffice = () => {
   return (
     // LayoutBackoffice
-    <Router>
-      <Routes>
-        {/* <Route path='/' element={<Backoffice />} />
+    <Routes>
+      {/* <Route path='/' element={<Backoffice />} />
         <Route path='/backoffice' element={<Backoffice />} /> */}
-      </Routes>
-    </Router>
+      <Route path='news' element={<NewsListBackoffice />} />
+    </Routes>
   );
 };
 
