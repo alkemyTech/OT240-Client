@@ -6,6 +6,7 @@ import Login from '../../components/Login/Login.jsx';
 import Register from '../../components/Register/Register.jsx';
 import News from './News/News';
 import NewsDetail from './NewsDetail/NewsDetail';
+// import NewsSlider from '../../components/NewsSlider/NewsSlider.jsx';
 
 const Public = () => {
   return (
@@ -24,6 +25,7 @@ const Public = () => {
           <Route path='/contribuye' element={<News />} />
           <Route path='/staff' element={<News />} /> */}
       </Routes>
+      {/* <NewsSlider /> */}
       <Footer />
     </>
   );
