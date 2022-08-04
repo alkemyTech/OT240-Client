@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Navigate, useNavigate } from 'react-router';
+import { useParams } from 'react-router';
 import styles from "./styles/activity.module.scss"
 
 
@@ -34,10 +34,10 @@ export const Activity = () => {
             (actividad!=undefined) ? 
                 <>
                     <img src={actividad.image} alt='actividad' className={styles.image} /> 
-                    <h2>{actividad.name}</h2> 
-                    <p>{actividad.content}</p> 
+                    <h2 className={styles.name}>{actividad.name}</h2> 
+                    <p className={styles.content}>{actividad.content}</p> 
                 </>
-                : <p>`Error: no se encontró la actividad`</p>                
+                : <p className={styles.error}>Error: no se encontró la actividad</p>                
             }             
     </div>
   )
