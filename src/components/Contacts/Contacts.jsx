@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './Contacts.module.scss';
+import styles from './styles/Contacts.module.scss';
 
 function Contacts() {
   //This should be replaced with Redux state logic once it is available

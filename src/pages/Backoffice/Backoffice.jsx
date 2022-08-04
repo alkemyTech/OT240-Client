@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Contacts from './Contacts';
+import Contacts from '../../components/Contacts/Contacts';
 import Header from '../../components/Header/Header';
 
 const Backoffice = () => {
