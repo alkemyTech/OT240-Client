@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
  *    icon: 'success' | 'error'	| 'warning'	| 'info' | 'question'
  *  }} config -
 
- * @param {object} extraParams - Any valid sweetalert2 fire() arguments.
+ * @param {object} extraConfig - Object with any valid sweetalert2 fire() arguments.
  */
 
 const showAlert = ({ title, text, icon }, extraParams = {}) => {
