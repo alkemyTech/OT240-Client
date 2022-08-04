@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
 import Login from '../../components/Login/Login.jsx';
 import Register from '../../components/Register/Register.jsx';
+import { Activities } from '../../components/activities/Activities.jsx';
 
 const Public = () => {
   return (
@@ -12,6 +13,7 @@ const Public = () => {
       <Routes>
           <Route path='/login' element={<Login />} />
           <Route path='/registro' element={<Register />} />
+          <Route path='/actividades' element={<Activities />} />
           {/* <Route path='/' element={<Home />} />
           <Route path='/testimonios' element={<Testimonials />} />
           <Route path='/nosotros' element={<News />} />
