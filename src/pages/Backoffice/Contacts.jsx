@@ -65,6 +65,24 @@ const mockContacts = [
     email: 'rominaa@yahoo.com.ar',
     id: 3,
   },
+  {
+    name: 'Matias Gomez',
+    phone: '+543394564585',
+    email: 'matiasg@outlook.com',
+    id: 4,
+  },
+  {
+    name: 'Juan Bautista',
+    phone: '+543542854885',
+    email: 'jbmautista@hotmail.com',
+    id: 5,
+  },
+  {
+    name: 'Romina Alarcon',
+    phone: '+543395854885',
+    email: 'romiAaa@yahoo.com.ar',
+    id: 6,
+  },
 ];
 
 export default Contacts;
