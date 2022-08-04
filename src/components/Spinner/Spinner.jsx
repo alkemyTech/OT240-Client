@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { TailSpin } from 'react-loader-spinner';
 
 function Spinner() {
-  return (
-    <div>Spinner</div>
-  )
+  return <TailSpin />;
 }
 
-export default Spinner
+export default Spinner;
