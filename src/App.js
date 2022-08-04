@@ -7,8 +7,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Public />} />
-        <Route path='/backoffice' element={<Backoffice />} />
+        <Route path='/*' element={<Public />} />
+        <Route path='/backoffice/*' element={<Backoffice />} />
       </Routes>
     </Router>
   );
