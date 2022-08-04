@@ -5,10 +5,6 @@ import App from './App';
 import store from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
-import * as bootstrap from 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "bootswatch/dist/lumen/bootstrap.min.css";
-// TODO: Note: Replace ^[theme]^ (examples: darkly, slate, cosmo, spacelab, and superhero. See https://bootswatch.com for current theme names.)
 
 ReactDOM.render(
   <React.StrictMode>
