@@ -76,9 +76,9 @@
 }
 
 .deleteBtn {
-  background-color: #ff0000;
+  background-color: var(--btnPrimaryColor);
   color: white;
-  border: 1px solid #ff0000;
+  border: 1px solid var(--btnPrimaryColor);
 }
 
 .messageBtn {
