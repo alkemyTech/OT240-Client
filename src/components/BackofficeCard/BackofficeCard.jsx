@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
 import style from './styles/BackofficeCard.module.scss';
 
 const BackofficeCard = ({ item }) => {
