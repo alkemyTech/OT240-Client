@@ -10,7 +10,7 @@
   background: linear-gradient(
     to right,
     transparent,
-    rgb(40, 40, 40) 24% 76%,
+    rgb(39, 38, 38) 24% 76%,
     transparent
   ) !important;
   color: white !important;
@@ -28,7 +28,12 @@ button {
 
 figure {
   margin: 0;
-  max-height: 400px;
+  max-height: 700px;
+  background-color: rgb(39, 38, 38);
+}
+
+figure img {
+  max-width: 1000px;
 }
 
 button {
