@@ -1,28 +1,14 @@
 import React from 'react';
 import style from './styles/Links.module.scss';
 import { NavLink } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useState } from 'react';
 
-const Links = () => {
-  const [navigationItems, setNavigationItems] = useState([]);
-
-  useEffect(() => {
-    //obtener links desde endpoint de datos públicos
-    setNavigationItems([
-      { text: 'Inicio', route: '/' },
-      { text: 'Nosotros', route: '/about' },
-      { text: 'Novedades', route: '/news' },
-      { text: 'Testimonios', route: '/testimonials' },
-      { text: 'Contacto', route: '/contact' },
-      { text: 'Contribuye', route: '/contrib' },
-    ]);
-  }, []);
-
+const Links = ({ navigationItems }) => {
   const handleActiveTab = (navData) =>
     navData.isActive ? `${style.link} ${style.activeNavlink}` : `${style.link} `;
 
-  return (
+  return !navigationItems ? (
+    <div>Loading...</div>
+  ) : (
     <div className={style.links}>
       {navigationItems.map(({ text, route }, index) => {
         return (
