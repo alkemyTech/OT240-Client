@@ -51,6 +51,8 @@
       margin: 10px 0;
       td {
         padding: 2px;
+        border-top: 1px solid rgb(207, 207, 207);
+        border-collapse: collapse;
       }
       button {
         padding: 7px 15px;
@@ -84,9 +86,4 @@
   color: black;
   font-weight: bold;
   border: 1px solid black;
-}
-
-td {
-  border-top: 1px solid rgb(207, 207, 207);
-  border-collapse: collapse;
 }
