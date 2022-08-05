@@ -12,9 +12,12 @@ const Header = () => {
 
   const [navigationItems, setNavigationItems] = useState([]);
 
+  const onClickHanddler = () => {
+    setMenuIsOpen(!menuIsOpen);
+  };
+
   useEffect(() => {
     //obtener links desde endpoint de datos públicos o de algun store de redux y que se cargue al principio
-
     location.pathname.includes('backoffice')
       ? setNavigationItems([
           { text: 'Novedades', route: '/backoffice/news' },
@@ -34,7 +37,7 @@ const Header = () => {
           { text: 'Contacto', route: '/contact' },
           { text: 'Contribuye', route: '/contrib' },
         ]);
-  }, []);
+  }, [location.pathname]);
 
   return (
     <>
@@ -53,10 +56,11 @@ const Header = () => {
         </div>
 
         <div
-          className={menuIsOpen ? `${style.lateralBar} ${style.extended}` : `${style.lateralBar} `}>
+          className={menuIsOpen ? `${style.lateralBar} ${style.extended}` : `${style.lateralBar} `}
+          onClick={onClickHanddler}>
           <img src={logo} alt='somos_mas_logo' />
           <Links navigationItems={navigationItems} />
-          <Buttons />
+          <Buttons menuIsOpen={menuIsOpen} setMenuIsOpen={setMenuIsOpen} />
         </div>
       </header>
     </>

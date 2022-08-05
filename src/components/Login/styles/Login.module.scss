@@ -1,89 +1,89 @@
 .container {
-    display: flex;
-    justify-content: flex-end;
-    padding: 0;
-    img {
-        height: 900px;
-    }
+  display: flex;
+  justify-content: flex-end;
+  padding: 0;
+  img {
+    height: 900px;
+  }
 }
 .formContainer {
-    padding-right: 139px;
-    padding-top: 294px;
-    h4 {
-        font-size: 32px;
-        font-weight: 500;
-        line-height: 48px;
-        margin: 0;
-        padding-bottom: 24px;
+  padding-right: 139px;
+  padding-top: 294px;
+  h4 {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 48px;
+    margin: 0;
+    padding-bottom: 24px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    input {
+      border: 1px solid #b0b0b0;
+      border-radius: 8px;
+      height: 56px;
+      margin-bottom: 12px;
+      margin-top: 12px;
+      padding-left: 16px;
+      width: 451px;
     }
-    form{
-        display: flex;
-        flex-direction: column;
-        input {
-            border: 1px solid #B0B0B0;
-            border-radius: 8px;
-            height: 56px;
-            margin-bottom: 12px;
-            margin-top: 12px;
-            padding-left: 16px;
-            width: 451px;
-        }
-    }
-    button {
-        color: #FFFFFF;
-        background: #FF0000;
-        border: 0;
-        border-radius: 8px;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        font-size: 24px;
-        height: 56px;
-        margin-top: 12px;
-        padding: 10px;
-        width: 470px;
-    }
+  }
+  button {
+    cursor: pointer;
+    color: #ffffff;
+    background: #ff0000;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 24px;
+    height: 56px;
+    margin-top: 12px;
+    padding: 10px;
+    width: 470px;
+  }
 }
 .bienvenido {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0;
 }
 .registro {
-    display: flex;
-    font-size: 24px;
-    font-weight: 400;
-    justify-content: center;
-    padding-top: 225px;
-    a {
-        color: #FF0000;
-        padding-left: 4px;
-        text-decoration: none;
-    }
+  display: flex;
+  font-size: 24px;
+  font-weight: 400;
+  justify-content: center;
+  padding-top: 225px;
+  a {
+    color: #ff0000;
+    padding-left: 4px;
+    text-decoration: none;
+  }
 }
 @media (max-width: 1370px) {
-    .container{
-        justify-content: center;
-        img{
-            
-            display: none;
-        }
+  .container {
+    justify-content: center;
+    img {
+      display: none;
     }
-    .formContainer{
-        padding-right: 0px;
-    }
+  }
+  .formContainer {
+    padding-right: 0px;
+  }
 }
 @media (max-width: 473px) {
-    .formContainer {
-        h4{
-            width: 80vw;
-        }
-        form {
-            input {
-                width: 80vw;
-            }
-        }
-        button{
-            width: 80vw;
-        }
+  .formContainer {
+    h4 {
+      width: 80vw;
     }
+    form {
+      input {
+        width: 80vw;
+      }
+    }
+    button {
+      width: 80vw;
+    }
+  }
 }
