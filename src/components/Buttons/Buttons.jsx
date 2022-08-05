@@ -1,11 +1,8 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import style from './styles/Buttons.module.scss';
 import { Link } from 'react-router-dom';
 
 const Buttons = () => {
-  const location = useLocation();
-
   //estos se tomaran desde el state o local storage!!!
   const isAdmin = true;
   const isAuth = true;
@@ -22,7 +19,7 @@ const Buttons = () => {
           </div>
         </>
       )}
-      {isAdmin && !location.pathname.includes('backoffice') && (
+      {isAdmin && (
         <div className={style.btn}>
           <Link to={'/backoffice'}>Backoffice</Link>
         </div>
