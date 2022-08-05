@@ -7,6 +7,7 @@ import Register from '../../components/Register/Register.jsx';
 import News from './News/News';
 import NewsDetail from './NewsDetail/NewsDetail';
 // import NewsSlider from '../../components/NewsSlider/NewsSlider.jsx';
+import { Activity } from '../../components/activities/Activity.jsx';
 
 const Public = () => {
   return (
@@ -24,6 +25,7 @@ const Public = () => {
           <Route path='/contacto' element={<News />} />
           <Route path='/contribuye' element={<News />} />
           <Route path='/staff' element={<News />} /> */}
+        <Route path='/actividades/:id' element={<Activity />} />
       </Routes>
       {/* <NewsSlider /> */}
       <Footer />
