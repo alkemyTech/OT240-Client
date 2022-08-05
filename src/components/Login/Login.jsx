@@ -42,7 +42,7 @@ const Login = () => {
           </Formik>
           <p className={login.registro}>No tienes una cuenta? <a href='/registro'>Registrate </a></p>
       </div>
-        <img src="/images/Login-image.png" alt='login'/>
+      <div className={login.imageContainer}></div>
     </div>
   );
 };

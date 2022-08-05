@@ -3,10 +3,6 @@
   min-height: inherit;
   margin: auto;
 
-  @media screen and (min-width: 769px) {
-    margin: auto 50px;
-  }
-
   table {
     font-size: calc(3 * var(--mod));
     font-family: Mulish;
@@ -58,16 +54,16 @@
     line-height: 1;
     font-size: calc(5 * var(--mod));
   }
+}
 
-  @media all and (max-width: 600px) {
-    .container {
-      --mod: 4px;
-    }
+@media all and (max-width: 600px) {
+  .container {
+    --mod: 4px;
   }
+}
 
-  @media all and (min-width: 900px) {
-    .container {
-      --mod: 8px;
-    }
+@media all and (min-width: 900px) {
+  .container {
+    --mod: 8px;
   }
 }
