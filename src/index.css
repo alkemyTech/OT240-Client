@@ -43,14 +43,4 @@ figure {
 #root {
   min-height: 100vh;
   width: 100%;
-  background-color: rgb(230, 231, 251);
-}
-
-/* NEWS */
-
-/* => SLIDER */
-
-.legend {
-  bottom: 20px !important;
-  border-radius: 0 !important;
 }

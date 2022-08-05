@@ -12,29 +12,32 @@ const Header = () => {
 
   const [navigationItems, setNavigationItems] = useState([]);
 
+  const onClickHanddler = () => {
+    setMenuIsOpen(!menuIsOpen);
+  };
+
   useEffect(() => {
     //obtener links desde endpoint de datos públicos o de algun store de redux y que se cargue al principio
-
     location.pathname.includes('backoffice')
       ? setNavigationItems([
-          { text: 'Novedades', route: '/backoffice/news' },
-          { text: 'Actividades', route: '/backoffice/activities' },
-          { text: 'Categorias', route: '/backoffice/categories' },
-          { text: 'Testimonios', route: '/backoffice/testimonies' },
-          { text: 'Organización', route: '/backoffice/organization' },
+          { text: 'Novedades', route: '/backoffice/novedades' },
+          { text: 'Actividades', route: '/backoffice/actividades' },
+          { text: 'Categorias', route: '/backoffice/categorias' },
+          { text: 'Testimonios', route: '/backoffice/testimonios' },
+          { text: 'Organización', route: '/backoffice/organizacion' },
           { text: 'Slides', route: '/backoffice/slides' },
-          { text: 'Usuarios', route: '/backoffice/users' },
-          { text: 'Miembros', route: '/backoffice/members' },
+          { text: 'Usuarios', route: '/backoffice/usuarios' },
+          { text: 'Miembros', route: '/backoffice/miembros' },
         ])
       : setNavigationItems([
           { text: 'Inicio', route: '/' },
-          { text: 'Nosotros', route: '/about' },
-          { text: 'Novedades', route: '/news' },
-          { text: 'Testimonios', route: '/testimonials' },
-          { text: 'Contacto', route: '/contact' },
-          { text: 'Contribuye', route: '/contrib' },
+          { text: 'Nosotros', route: '/nosotros' },
+          { text: 'Novedades', route: '/novedades' },
+          { text: 'Testimonios', route: '/testimonios' },
+          { text: 'Contacto', route: '/contacto' },
+          { text: 'Contribuye', route: '/contribuye' },
         ]);
-  }, []);
+  }, [location.pathname]);
 
   return (
     <>
@@ -53,10 +56,11 @@ const Header = () => {
         </div>
 
         <div
-          className={menuIsOpen ? `${style.lateralBar} ${style.extended}` : `${style.lateralBar} `}>
+          className={menuIsOpen ? `${style.lateralBar} ${style.extended}` : `${style.lateralBar} `}
+          onClick={onClickHanddler}>
           <img src={logo} alt='somos_mas_logo' />
           <Links navigationItems={navigationItems} />
-          <Buttons />
+          <Buttons menuIsOpen={menuIsOpen} setMenuIsOpen={setMenuIsOpen} />
         </div>
       </header>
     </>
