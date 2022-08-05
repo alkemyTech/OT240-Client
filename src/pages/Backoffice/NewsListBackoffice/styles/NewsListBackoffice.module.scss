@@ -1,0 +1,69 @@
+.container {
+  --mod: 5px;
+  min-height: inherit;
+  margin: auto;
+
+  table {
+    font-size: calc(3 * var(--mod));
+    font-family: Mulish;
+    border-collapse: collapse;
+    height: 100%;
+    margin: auto;
+
+    td,
+    th {
+      padding: calc(1 * var(--mod)) calc(2 * var(--mod));
+    }
+
+    thead {
+      background-color: black;
+      color: white;
+
+      th {
+        text-align: left;
+
+        &:first-child {
+          padding-left: calc(4 * var(--mod));
+        }
+      }
+    }
+
+    tbody {
+      td {
+        border-bottom: 1px solid gray;
+
+        button {
+          cursor: pointer;
+          background-color: orange;
+          font-size: calc(3 * var(--mod));
+          border-radius: 5px;
+          border: none;
+          padding: calc(1 * var(--mod)) calc(4 * var(--mod));
+        }
+
+        &:last-child button {
+          background-color: rgb(242, 65, 65);
+        }
+      }
+    }
+  }
+
+  h1 {
+    margin: calc(4 * var(--mod)) auto;
+    width: fit-content;
+    line-height: 1;
+    font-size: calc(5 * var(--mod));
+  }
+}
+
+@media all and (max-width: 600px) {
+  .container {
+    --mod: 4px;
+  }
+}
+
+@media all and (min-width: 900px) {
+  .container {
+    --mod: 8px;
+  }
+}
