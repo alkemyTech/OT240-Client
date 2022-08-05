@@ -1,14 +1,21 @@
 .container {
     display: flex;
+    height:44vw;
     justify-content: flex-end;
     padding: 0;
-    img {
-        height: 900px;
+    .imageContainer {
+        background: url(/images/Login-image.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 50%;
     }
 }
 .formContainer {
-    padding-right: 139px;
-    padding-top: 294px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 7%;
     h4 {
         font-size: 32px;
         font-weight: 500;
@@ -53,7 +60,6 @@
     font-size: 24px;
     font-weight: 400;
     justify-content: center;
-    padding-top: 225px;
     a {
         color: #FF0000;
         padding-left: 4px;
@@ -63,8 +69,7 @@
 @media (max-width: 1370px) {
     .container{
         justify-content: center;
-        img{
-            
+        .imageContainer{
             display: none;
         }
     }
@@ -72,18 +77,27 @@
         padding-right: 0px;
     }
 }
-@media (max-width: 473px) {
+@media (max-width: 950px) {
+    .container{
+        height: 100%;
+        margin-top: 10px;
+    }
+}
+@media (max-width: 490px) {
     .formContainer {
         h4{
             width: 80vw;
         }
-        form {
+        Form {
             input {
                 width: 80vw;
             }
         }
         button{
-            width: 80vw;
+            width: 84vw;
         }
+    }
+    .registro {
+        font-size: 18px;
     }
 }
