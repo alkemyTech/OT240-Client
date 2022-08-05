@@ -1,0 +1,49 @@
+.container {
+  --mod: 10px;
+  text-align: center;
+  font-family: Mulish;
+  max-width: 600px;
+  margin: calc(6 * var(--mod)) auto;
+
+  div {
+    margin: calc(6 * var(--mod)) auto;
+  }
+
+  h1 {
+    font-size: calc(4 * var(--mod));
+    font-weight: 700;
+    margin: calc(2 * var(--mod)) auto;
+  }
+
+  p {
+    text-align: left;
+    font-size: calc(2 * var(--mod));
+    font-weight: 400;
+    padding: 0 calc(3 * var(--mod));
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+
+  button {
+    font-weight: 600;
+    font-size: calc(3 * var(--mod));
+    background-color: #ff0000;
+    border-radius: 20px;
+    color: white;
+    padding: var(--mod) calc(2.5 * var(--mod));
+    border: none;
+    align-self: left;
+    cursor: pointer;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .container {
+    --mod: 8px;
+  }
+}
