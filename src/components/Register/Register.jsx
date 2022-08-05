@@ -48,7 +48,7 @@ const Register = () => {
           </Formik>
           <p className={register.registro}>Ya tienes una cuenta? <a href='/registro'>Inicia sesión </a></p>
       </div>
-        <img src="/images/Login-image.png" alt='login'/>
+      <div className={register.imageContainer}></div>
     </div>
   );
 };
