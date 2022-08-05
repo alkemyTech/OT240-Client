@@ -14,7 +14,7 @@ const Backoffice = () => {
         {/* <Route path='/' element={<Backoffice />} />
         <Route path='/backoffice' element={<Backoffice />} /> */}
         <Route path='/' element={<BackofficeCards />} />
-        <Route path='/categories' element={<Categories />} />
+        <Route path='/categorias' element={<Categories />} />
         <Route path='/contactos' element={<Contacts />} />
         {/*<Route path='/backoffice' element={<Backoffice />} /> */}
         <Route path='/testimonios' element={<TestimonialBackoffice />} />

@@ -11,11 +11,11 @@ const Footer = () => {
     //obtener links desde endpoint de datos públicos o de algun store de redux y que se cargue al principio
     setNavigationItems([
       { text: 'Inicio', route: '/' },
-      { text: 'Nosotros', route: '/about' },
+      { text: 'Nosotros', route: '/nosotros' },
       { text: 'Novedades', route: '/news' },
-      { text: 'Testimonios', route: '/testimonials' },
-      { text: 'Contacto', route: '/contact' },
-      { text: 'Contribuye', route: '/contrib' },
+      { text: 'Testimonios', route: '/testimonios' },
+      { text: 'Contacto', route: '/contacto' },
+      { text: 'Contribuye', route: '/contribuye' },
     ]);
   }, []);
 
