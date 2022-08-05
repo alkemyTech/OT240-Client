@@ -5,6 +5,7 @@ import Header from '../../components/Header/Header';
 import BackofficeCards from '../../components/BackofficeCards/BackofficeCards.jsx';
 import { TestimonialBackoffice } from '../../components/testimonials/TestimonialBackoffice';
 import Categories from '../../components/Categories/Categories';
+import { ActivitiesBackoffice } from '../../components/activities/ActivitiesBackoffice';
 const Backoffice = () => {
   return (
     // LayoutBackoffice
@@ -18,6 +19,7 @@ const Backoffice = () => {
         <Route path='/contactos' element={<Contacts />} />
         {/*<Route path='/backoffice' element={<Backoffice />} /> */}
         <Route path='/testimonios' element={<TestimonialBackoffice />} />
+        <Route path='/actividades' element={<ActivitiesBackoffice />} />
       </Routes>
     </>
   );
