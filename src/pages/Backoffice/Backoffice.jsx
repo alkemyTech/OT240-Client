@@ -12,7 +12,7 @@ const Backoffice = () => {
       <Routes>
         {/* <Route path='/' element={<Backoffice />} />
         <Route path='/backoffice' element={<Backoffice />} /> */}
-        <Route path='/contacts' element={<Contacts />} />
+        <Route path='/contactos' element={<Contacts />} />
         <Route path='/testimonios' element={<TestimonialBackoffice />} />
       </Routes>
     </>
