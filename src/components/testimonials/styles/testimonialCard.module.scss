@@ -1,0 +1,50 @@
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 16px;
+    width: 212px;
+    height: 254px;
+    background: #FDFFA4;
+    border: 1px solid #F9FE00;
+    border-radius: 20px;
+
+    @media screen and (max-width: 768px) {
+        width: 180px;
+        p {
+            font-size: 14px;
+        }
+    }
+    @media screen and (max-width: 450px) {
+        width: 100%;
+        p {
+            font-size: 16px;
+        }
+    }
+}
+
+.profilePic {
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;    
+}
+span {
+    width: 200px;
+    height: 20px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 5px;
+}
+
+p {
+    font-family: 'Poppins';
+    font-style: normal;    
+    display: flex;    
+    color: #000000;
+    overflow: hidden;
+}
