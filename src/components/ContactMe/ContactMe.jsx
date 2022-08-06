@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './styles/ContactMe.module.scss';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
 
 function ContactMe() {
   return (
