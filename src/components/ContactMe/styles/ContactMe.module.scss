@@ -13,10 +13,16 @@
   }
 }
 
-.formColumn {
-}
+// .formColumn {
+  
+// }
 
 .asideColumn {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  align-items: flex-end;
+  padding-right: 70px;
   p {
     max-width: 70%;
     margin-top: 2em;
@@ -26,7 +32,7 @@
 .contactMeForm {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   font-size: 16px;
   input {
     width: 300px;
@@ -40,7 +46,7 @@
     font-family: 'Poppins';
   }
   textarea {
-    height: 200px;
+    height: 170px;
     max-width: 700px;
   }
 }
