@@ -16,7 +16,9 @@
     border: 1px solid gray;
     border-radius: var(--mod);
 
-    button {
+    .submitBtn {
+      display: block;
+      text-align: right;
       font-family: Mulish, sans-serif;
       font-size: calc(2 * var(--mod));
       font-weight: 800;
@@ -24,10 +26,17 @@
       border: none;
       border-radius: calc(1 * var(--mod));
       padding: calc(0.8 * var(--mod));
-      padding-left: calc(3 * var(--mod));
-      padding-right: calc(3 * var(--mod));
+      padding-left: calc(5 * var(--mod));
+      padding-right: calc(5 * var(--mod));
       margin: calc(1.2 * var(--mod));
+      margin-left: auto;
+      margin-bottom: 0;
       color: white;
+      cursor: pointer;
+      box-shadow: 5px 5px 10px -1px rgba(0, 0, 0, 0.222);
+      &:hover {
+        opacity: 0.9;
+      }
     }
   }
 
@@ -46,6 +55,23 @@
       width: calc(8 * var(--mod));
       padding: calc(0.5 * var(--mod));
       margin-right: var(--mod);
+    }
+
+    .image {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .imgPreview {
+      margin-top: calc(2 * var(--mod));
+      background-color: black;
+      height: 150px;
+      aspect-ratio: 3 / 1;
+      border: 2px solid lightgray;
+      border-radius: 10px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
     }
   }
 

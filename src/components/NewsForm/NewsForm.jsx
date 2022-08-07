@@ -3,15 +3,41 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import style from './styles/NewsForm.module.scss';
+import fetchApi from '../../axios/axios';
 
 const NewsForm = ({ existingNew }) => {
+  const imgPreviewRef = React.useRef();
   const [image, setImage] = React.useState('');
   const [title, setTitle] = React.useState('');
   const [content, setContent] = React.useState('');
 
-  const submitNew = (e) => {
+  const handlePreview = (image) => {
+    if (image) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        imgPreviewRef.current.style.backgroundImage = `url('${reader.result}')`;
+      };
+      reader.readAsDataURL(image);
+    } else {
+      imgPreviewRef.current.style.backgroundImage = 'none';
+    }
+  };
+
+  const submitNew = async (e) => {
     e.preventDefault();
-    console.log(image, title, content);
+    const formData = new FormData();
+    formData.append('image', image);
+    formData.append('name', title);
+    formData.append('content', content);
+    const options = {
+      method: 'post',
+      url: '/news',
+      data: formData,
+      headers: {
+        'content-type': 'multipart/form-data',
+      },
+    };
+    const { data } = await fetchApi(options);
   };
 
   return (
@@ -28,7 +54,17 @@ const NewsForm = ({ existingNew }) => {
           <label className={style.label} htmlFor='imagen'>
             Imagen:
           </label>
-          <input type='file' id='imagen' onChange={(e) => setImage(e.target.files[0])} />
+          <div className={style.image}>
+            <input
+              type='file'
+              id='imagen'
+              onChange={(e) => {
+                setImage(e.target.files[0]);
+                handlePreview(e.target.files[0]);
+              }}
+            />
+            {image && <div className={style.imgPreview} ref={imgPreviewRef}></div>}
+          </div>
         </div>
         <div className={style.field}>
           <label className={style.label} htmlFor='content'>
@@ -48,7 +84,9 @@ const NewsForm = ({ existingNew }) => {
           </label>
           <input type='text' placeholder='Novedades' disabled />
         </div>
-        <button onClick={submitNew}>Enviar</button>
+        <button className={style.submitBtn} onClick={submitNew}>
+          Enviar
+        </button>
       </form>
     </article>
   );
