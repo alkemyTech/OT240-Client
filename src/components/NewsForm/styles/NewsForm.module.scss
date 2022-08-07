@@ -1,0 +1,62 @@
+.container {
+  --mod: 10px;
+
+  font-family: Mulish, sans-serif;
+  font-size: calc(1.6 * var(--mod));
+
+  h1 {
+    text-align: center;
+  }
+
+  form {
+    display: block;
+    width: fit-content;
+    padding: calc(2 * var(--mod));
+    margin: var(--mod) auto;
+    border: 1px solid gray;
+    border-radius: var(--mod);
+
+    button {
+      font-family: Mulish, sans-serif;
+      font-size: calc(2 * var(--mod));
+      font-weight: 800;
+      background-color: yellowgreen;
+      border: none;
+      border-radius: calc(1 * var(--mod));
+      padding: calc(0.8 * var(--mod));
+      padding-left: calc(3 * var(--mod));
+      padding-right: calc(3 * var(--mod));
+      margin: calc(1.2 * var(--mod));
+      color: white;
+    }
+  }
+
+  .field {
+    margin-bottom: calc(2 * var(--mod));
+
+    input {
+      font-family: Mulish !important;
+      padding: calc(0.6 * var(--mod));
+      border-radius: calc(0.3 * var(--mod));
+      border: 1px solid lightgray;
+    }
+
+    .label {
+      display: inline-block;
+      width: calc(8 * var(--mod));
+      padding: calc(0.5 * var(--mod));
+      margin-right: var(--mod);
+    }
+  }
+
+  .content {
+    display: inline-block;
+    margin-top: calc(0.5 * var(--mod));
+    vertical-align: top;
+
+    p {
+      font-family: Mulish, sans-serif;
+      margin: 0;
+    }
+  }
+}
