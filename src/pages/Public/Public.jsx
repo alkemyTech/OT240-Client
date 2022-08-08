@@ -10,17 +10,23 @@ import NewsDetail from './NewsDetail/NewsDetail';
 import { Activity } from '../../components/activities/Activity.jsx';
 import { Activities } from '../../components/activities/Activities.jsx';
 import { Testimonials } from '../../components/testimonials/Testimonials.jsx';
+import Home from './Home/Home.jsx';
+import Members from './Members/Members.jsx';
 
 const Public = () => {
   return (
     <>
       <Header />
       <Routes>
+        <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/registro' element={<Register />} />
-        <Route path='novedades/:id' element={<NewsDetail />} />
+        <Route path='/nosotros' element={<Members />} />
         <Route path='novedades' element={<News />} />
+        <Route path='novedades/:id' element={<NewsDetail />} />
         <Route path='/testimonios' element={<Testimonials />} />
+        <Route path='/actividades' element={<Activities />} />
+        <Route path='/actividades/:id' element={<Activity />} />
         {/* <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/registro' element={<Register />} />
@@ -31,8 +37,6 @@ const Public = () => {
           <Route path='/contacto' element={<News />} />
           <Route path='/contribuye' element={<News />} />
           <Route path='/staff' element={<News />} /> */}
-        <Route path='/actividades' element={<Activities />} />
-        <Route path='/actividades/:id' element={<Activity />} />
       </Routes>
       {/* <NewsSlider /> */}
       <Footer />
