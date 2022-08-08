@@ -14,6 +14,11 @@ const NewsForm = ({ existingNew }) => {
   const [success, setSuccess] = React.useState('');
   const [error, setError] = React.useState('');
 
+  React.useEffect(() => {
+    existingNew &&
+      (imgPreviewRef.current.style.backgroundImage = `url('http://localhost:3000/img/news/${existingNew.image}')`);
+  });
+
   const handlePreview = (image) => {
     if (image) {
       const reader = new FileReader();
@@ -37,9 +42,12 @@ const NewsForm = ({ existingNew }) => {
     title && formData.append('name', title);
     content && formData.append('content', content);
 
+    const isUpdate = existingNew ? { method: 'put', url: `/news/${existingNew.id}` } : {};
+
     const options = {
       method: 'post',
       url: '/news',
+      ...isUpdate,
       data: formData,
       headers: {
         'content-type': 'multipart/form-data',
@@ -48,6 +56,7 @@ const NewsForm = ({ existingNew }) => {
 
     try {
       const { data } = await fetchApi(options);
+      handlePreview(image);
       setSuccess(`La novedad fue guardada exitosamente`);
     } catch (err) {
       switch (err.response.status) {
@@ -93,7 +102,7 @@ const NewsForm = ({ existingNew }) => {
           <label className={style.label} htmlFor='titulo'>
             Título:
           </label>
-          <input type='text' id='titulo' onChange={(e) => setTitle(e.target.value)} />
+          <input type='text' id='titulo' value={title} onChange={(e) => setTitle(e.target.value)} />
         </div>
         <div className={style.field}>
           <label className={style.label} htmlFor='imagen'>
@@ -118,6 +127,7 @@ const NewsForm = ({ existingNew }) => {
           <div className={style.content}>
             <CKEditor
               editor={ClassicEditor}
+              data={content}
               id='content'
               onChange={(e, editor) => setContent(editor.getData())}
             />
