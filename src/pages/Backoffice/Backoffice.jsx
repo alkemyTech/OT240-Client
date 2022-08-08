@@ -9,6 +9,7 @@ import NewsListBackoffice from './NewsListBackoffice/NewsListBackoffice';
 import Categories from '../../components/Categories/Categories';
 import { ActivitiesBackoffice } from '../../components/activities/ActivitiesBackoffice';
 import UsersBackoffice from '../../components/Users/UsersBackoffice';
+import EditOrganization from '../../components/EditOrganization/EditOrganization';
 
 const Backoffice = () => {
   return (
@@ -22,7 +23,8 @@ const Backoffice = () => {
         <Route path='/categorias' element={<Categories />} />
         <Route path='/contactos' element={<Contacts />} />
         <Route path='/actividades' element={<ActivitiesBackoffice />} />
-        <Route path='/usuarios' element={<UsersBackoffice/>}/>
+        <Route path='/usuarios' element={<UsersBackoffice />} />
+        <Route path='/editar-organizacion' element={<EditOrganization />} />
       </Routes>
     </>
   );
