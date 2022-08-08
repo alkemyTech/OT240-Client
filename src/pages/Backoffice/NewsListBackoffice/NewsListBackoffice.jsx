@@ -6,10 +6,31 @@ import style from './styles/NewsListBackoffice.module.scss';
 import NewsForm from '../../../components/NewsForm/NewsForm';
 
 import news from '../../../news.mock';
+import fetchApi from '../../../axios/axios';
 
 const NewsListBackoffice = () => {
   const [editing, setEditing] = React.useState(false);
   const [formIsOpen, setFormIsOpen] = React.useState(false);
+
+  const [latestNews, setLatestNews] = React.useState([]);
+  const [error, setError] = React.useState('');
+
+  React.useEffect(() => {
+    let isMounted = true;
+
+    const getNews = async () => {
+      try {
+        const { data } = await fetchApi({ method: 'get', url: '/news' });
+        isMounted && setLatestNews(data);
+      } catch (err) {
+        isMounted && setError('');
+      }
+    };
+
+    getNews();
+
+    return () => (isMounted = false);
+  }, []);
 
   const handleDelete = async (id) => {
     alert(`DELETE ID ${id}`);
@@ -31,8 +52,8 @@ const NewsListBackoffice = () => {
               </tr>
             </thead>
             <tbody>
-              {news.length &&
-                news.map((entry, i) => (
+              {latestNews.length &&
+                latestNews.map((entry, i) => (
                   <tr key={i}>
                     <td>{entry.name}</td>
                     <td>{entry.image}</td>
