@@ -17,12 +17,12 @@ const Backoffice = () => {
       <Header />
       <Routes>
         <Route path='/' element={<BackofficeCards />} />
-        <Route path='novedades' element={<NewsListBackoffice />} />
+        <Route path='/novedades' element={<NewsListBackoffice />} />
         <Route path='/testimonios' element={<TestimonialBackoffice />} />
         <Route path='/categorias' element={<Categories />} />
         <Route path='/contactos' element={<Contacts />} />
         <Route path='/actividades' element={<ActivitiesBackoffice />} />
-        <Route path='/usuarios' element={<UsersBackoffice/>}/>
+        <Route path='/usuarios' element={<UsersBackoffice />} />
       </Routes>
     </>
   );
