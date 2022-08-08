@@ -6,7 +6,7 @@ import style from './styles/NewsForm.module.scss';
 import close from './styles/assets/close.png';
 import fetchApi from '../../axios/axios';
 
-const NewsForm = ({ existingNew }) => {
+const NewsForm = ({ existingNew, setFormIsOpen, setEditing }) => {
   const imgPreviewRef = React.useRef();
   const [image, setImage] = React.useState(existingNew?.image);
   const [title, setTitle] = React.useState(existingNew?.name);
@@ -139,9 +139,19 @@ const NewsForm = ({ existingNew }) => {
           </label>
           <input type='text' placeholder='Novedades' disabled />
         </div>
-        <button className={style.submitBtn} onClick={submitNew}>
-          Enviar
-        </button>
+        <div className={style.buttonsContainer}>
+          <button className={style.submitBtn} onClick={submitNew}>
+            Enviar
+          </button>
+          <button
+            className={style.cancelBtn}
+            onClick={() => {
+              setFormIsOpen(false);
+              setEditing(false);
+            }}>
+            Cancelar
+          </button>
+        </div>
       </form>
     </article>
   );
