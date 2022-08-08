@@ -46,6 +46,20 @@
         td {
           padding: 2px;
           border-collapse: collapse;
+          button{
+            cursor: pointer;
+            color: #FFFFFF;
+            background: #FF0000;
+            border-radius: 8px;
+            border-width: 1px;
+            border-color: #FF0000;
+            margin-right: 5px;
+            margin-top: 5px;
+            padding: 5px;
+          }
+          button:hover {
+            background-color: #fd4646;
+          }
         }
         .name {
             display: flex;
@@ -58,7 +72,7 @@
           td {
             border-top: 1px solid rgb(207, 207, 207);
             padding: 5px 0px;
-        }
+          }
         .name{
               width: 100%;
               justify-content: start;
