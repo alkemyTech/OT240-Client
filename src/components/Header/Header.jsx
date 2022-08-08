@@ -34,8 +34,8 @@ const Header = () => {
           { text: 'Nosotros', route: '/nosotros' },
           { text: 'Novedades', route: '/novedades' },
           { text: 'Testimonios', route: '/testimonios' },
+          { text: 'Actividades', route: '/actividades' },
           { text: 'Contacto', route: '/contacto' },
-          { text: 'Contribuye', route: '/contribuye' },
         ]);
   }, [location.pathname]);
 
