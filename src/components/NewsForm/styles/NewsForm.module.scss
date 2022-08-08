@@ -16,6 +16,42 @@
     border: 1px solid gray;
     border-radius: var(--mod);
 
+    .success {
+      background-color: rgba(153, 205, 50, 0.468);
+      color: green;
+      height: 20px;
+      padding: calc(1 * var(--mod));
+      margin-bottom: calc(1 * var(--mod));
+      border: 1px solid rgba(0, 128, 0, 0.45);
+      border-radius: 5px;
+
+      img {
+        height: 100%;
+        background-color: transparent;
+        float: right;
+        cursor: pointer;
+        opacity: 0.4;
+      }
+    }
+
+    .error {
+      background-color: rgba(239, 90, 90, 0.402);
+      color: rgb(101, 27, 27);
+      height: 20px;
+      padding: calc(1 * var(--mod));
+      margin-bottom: calc(1 * var(--mod));
+      border: 1px solid rgba(101, 27, 27, 0.33);
+      border-radius: 5px;
+
+      img {
+        height: 100%;
+        background-color: transparent;
+        float: right;
+        cursor: pointer;
+        opacity: 0.4;
+      }
+    }
+
     .submitBtn {
       display: block;
       text-align: right;
@@ -65,8 +101,8 @@
     .imgPreview {
       margin-top: calc(2 * var(--mod));
       background-color: black;
-      height: 150px;
-      aspect-ratio: 3 / 1;
+      min-height: 130px;
+      aspect-ratio: 2 / 1;
       border: 2px solid lightgray;
       border-radius: 10px;
       background-size: contain;

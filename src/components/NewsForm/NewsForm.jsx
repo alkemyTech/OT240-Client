@@ -3,13 +3,16 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import style from './styles/NewsForm.module.scss';
+import close from './styles/assets/close.png';
 import fetchApi from '../../axios/axios';
 
 const NewsForm = ({ existingNew }) => {
   const imgPreviewRef = React.useRef();
-  const [image, setImage] = React.useState('');
-  const [title, setTitle] = React.useState('');
-  const [content, setContent] = React.useState('');
+  const [image, setImage] = React.useState(existingNew?.image);
+  const [title, setTitle] = React.useState(existingNew?.name);
+  const [content, setContent] = React.useState(existingNew?.content);
+  const [success, setSuccess] = React.useState('');
+  const [error, setError] = React.useState('');
 
   const handlePreview = (image) => {
     if (image) {
@@ -25,10 +28,15 @@ const NewsForm = ({ existingNew }) => {
 
   const submitNew = async (e) => {
     e.preventDefault();
+    setError('');
+    setSuccess('');
+
     const formData = new FormData();
-    formData.append('image', image);
-    formData.append('name', title);
-    formData.append('content', content);
+
+    image && formData.append('image', image);
+    title && formData.append('name', title);
+    content && formData.append('content', content);
+
     const options = {
       method: 'post',
       url: '/news',
@@ -37,13 +45,50 @@ const NewsForm = ({ existingNew }) => {
         'content-type': 'multipart/form-data',
       },
     };
-    const { data } = await fetchApi(options);
+
+    try {
+      const { data } = await fetchApi(options);
+      setSuccess(`La novedad fue guardada exitosamente`);
+    } catch (err) {
+      switch (err.response.status) {
+        case 400:
+          setError('Campos incorrectos/vacios');
+          break;
+        case 401:
+          setError('Usuario deslogeado');
+          break;
+        case 403:
+          setError('Acceso denegado');
+          break;
+        case 404:
+          setError('Ruta no encontrada');
+          break;
+        case 500:
+          setError('Error en el servidor');
+          break;
+        default:
+          setError(err.message);
+          break;
+      }
+    }
   };
 
   return (
     <article className={style.container}>
       <h1>{existingNew ? 'Editar Novedad' : 'Crear Novedad'}</h1>
       <form>
+        {success && (
+          <div className={style.success} onClick={() => setSuccess('')}>
+            {success}
+            <img src={close} alt='close' />
+          </div>
+        )}
+        {error && (
+          <div className={style.error} onClick={() => setError('')}>
+            {error}
+            <img src={close} alt='close' />
+          </div>
+        )}
         <div className={style.field}>
           <label className={style.label} htmlFor='titulo'>
             Título:
