@@ -4,7 +4,8 @@
   margin-bottom: calc(4 * var(--mod));
 
   h1 {
-    margin: calc(4 * var(--mod)) auto;
+    margin: calc(2 * var(--mod)) auto;
+    text-align: center;
     font-size: calc(4 * var(--mod));
   }
 }
