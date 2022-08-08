@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 2rem auto;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .title {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .titleCentered {
+      text-align: center;
+    }
+  }
+  .headerPage {
+    flex-direction: column;
+  }
+}
