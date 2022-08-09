@@ -53,7 +53,7 @@ const Form = () => {
           setError('Usuario deslogeado');
           break;
         case 403:
-          setError('Se requieren permisos especiales para generar esta accion');
+          setError('Se requieren permisos especiales para realizar esta accion');
           break;
         case 404:
           setError('No se encontró el elemento');

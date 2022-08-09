@@ -1,15 +1,14 @@
 import React from 'react';
 
-const TextField = ({ field, name, value, setState, style }) => {
+const TextField = ({ field, label, value, setState, style }) => {
   return (
     <>
-      <label className={style.label} htmlFor={name}>
-        {name}
+      <label className={style.label} htmlFor={label}>
+        {label}
       </label>
       <input
-        name={name}
         type='text'
-        id={name}
+        id={label}
         value={value}
         onChange={(e) => {
           const { value } = e.target;

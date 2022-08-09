@@ -1,8 +1,6 @@
 import React from 'react';
 
-import { convertToBase64 } from '../../utils/convertToBase64';
-
-const FileField = ({ field, name, value, setState, style }) => {
+const FileField = ({ field, label, value, setState, style }) => {
   const imgPreviewRef = React.useRef();
 
   const handlePreview = (image) => {
@@ -23,13 +21,12 @@ const FileField = ({ field, name, value, setState, style }) => {
 
   return (
     <>
-      <label className={style.label} htmlFor={name}>
-        {name}
+      <label className={style.label} htmlFor={label}>
+        {label}
       </label>
       <input
-        name={name}
         type='file'
-        id={name}
+        id={label}
         onChange={(e) => {
           const { files } = e.target;
           setState((prev) => ({ ...prev, [field]: files[0] }));

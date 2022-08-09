@@ -36,6 +36,14 @@
   margin-bottom: calc(2 * var(--mod));
   border: 1px solid rgba(0, 128, 0, 0.45);
   border-radius: 5px;
+  img {
+    height: calc(2 * var(--mod));
+    background-color: transparent;
+    float: right;
+    cursor: pointer;
+    opacity: 0.4;
+    margin-left: auto;
+  }
 }
 
 .error {
@@ -43,15 +51,14 @@
   background-color: rgba(239, 90, 90, 0.402);
   color: rgb(101, 27, 27);
   border-color: rgba(101, 27, 27, 0.33);
-}
-
-.close {
-  height: calc(2 * var(--mod));
-  background-color: transparent;
-  float: right;
-  cursor: pointer;
-  opacity: 0.4;
-  margin-left: auto;
+  img {
+    height: calc(2 * var(--mod));
+    background-color: transparent;
+    float: right;
+    cursor: pointer;
+    opacity: 0.4;
+    margin-left: auto;
+  }
 }
 
 .buttonsContainer {
