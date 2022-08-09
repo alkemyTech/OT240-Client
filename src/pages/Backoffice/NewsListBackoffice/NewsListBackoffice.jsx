@@ -1,86 +1,85 @@
 import React from 'react';
-import useNavigate from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 
 import style from './styles/NewsListBackoffice.module.scss';
-
-import NewsForm from '../../../components/NewsForm/NewsForm';
-
+import Form from '../../../components/Form/Form';
 import news from '../../../news.mock';
-import fetchApi from '../../../axios/axios';
 
-const NewsListBackoffice = () => {
-  const [editing, setEditing] = React.useState(false);
-  const [formIsOpen, setFormIsOpen] = React.useState(false);
-
-  const [latestNews, setLatestNews] = React.useState([]);
-  const [error, setError] = React.useState('');
-
-  React.useEffect(() => {
-    let isMounted = true;
-
-    const getNews = async () => {
-      try {
-        const { data } = await fetchApi({ method: 'get', url: '/news' });
-        isMounted && setLatestNews(data);
-      } catch (err) {
-        isMounted && setError('');
-      }
-    };
-
-    getNews();
-
-    return () => (isMounted = false);
-  }, []);
+const NewsTable = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleDelete = async (id) => {
     alert(`DELETE ID ${id}`);
   };
 
+  const handleEdit = async ({ id, fields }) => {
+    navigate('editar', {
+      state: {
+        id,
+        title: 'Editar Novedad',
+        fields,
+        options: { method: 'put', url: `/news/${id}` },
+        from: location,
+      },
+    });
+  };
+
+  const handleCreate = async () => {
+    navigate('crear', {
+      state: {
+        title: 'Crear Novedad',
+        options: { method: 'post', url: `/news` },
+        from: location,
+        fields: { name: '', image: '', content: '' },
+      },
+    });
+  };
+
   return (
-    <>
-      {!formIsOpen && (
-        <section className={style.container}>
-          <h1>Administrar Novedades</h1>
-          <table>
-            <thead>
-              <tr>
-                <th>Titulo</th>
-                <th>URL imagen</th>
-                <th>Fecha Creacion</th>
-                <th>Editar</th>
-                <th>Borrar</th>
+    <section className={style.container}>
+      <h1>Administrar Novedades</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Titulo</th>
+            <th>URL imagen</th>
+            <th>Fecha Creacion</th>
+            <th>Editar</th>
+            <th>Borrar</th>
+          </tr>
+        </thead>
+        <tbody>
+          {news.length &&
+            news.map(({ name, image, createdAt, id, content }, i) => (
+              <tr key={i}>
+                <td>{name}</td>
+                <td>{image}</td>
+                <td>{createdAt.split('.')[0].replace('T', ' ')}</td>
+                <td onClick={() => handleEdit({ id, fields: { name, image, content } })}>
+                  <button>Editar</button>
+                </td>
+                <td onClick={() => handleDelete(id)}>
+                  <button>Borrar</button>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {latestNews.length &&
-                latestNews.map((entry, i) => (
-                  <tr key={i}>
-                    <td>{entry.name}</td>
-                    <td>{entry.image}</td>
-                    <td>{entry.createdAt.split('.')[0].replace('T', ' ')}</td>
-                    <td
-                      onClick={() => {
-                        setEditing(entry);
-                        setFormIsOpen(true);
-                      }}>
-                      <button>Editar</button>
-                    </td>
-                    <td onClick={() => handleDelete(entry.id)}>
-                      <button>Borrar</button>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-          <button onClick={() => setFormIsOpen(true)} className={style.addBtn}>
-            Agregar Novedad
-          </button>
-        </section>
-      )}
-      {formIsOpen && (
-        <NewsForm existingNew={editing} setFormIsOpen={setFormIsOpen} setEditing={setEditing} />
-      )}
-    </>
+            ))}
+        </tbody>
+      </table>
+      <button onClick={handleCreate} className={style.addBtn}>
+        Agregar Novedad
+      </button>
+    </section>
+  );
+};
+
+const NewsListBackoffice = () => {
+  return (
+    <Routes>
+      <Route path='/crear' element={<Form />} />
+      <Route path='/editar' element={<Form />} />
+      <Route path='/' element={<NewsTable />} />
+    </Routes>
   );
 };
 
