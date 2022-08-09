@@ -10,6 +10,7 @@ import NewsDetail from './NewsDetail/NewsDetail';
 import { Activity } from '../../components/activities/Activity.jsx';
 import { Activities } from '../../components/activities/Activities.jsx';
 import { Testimonials } from '../../components/testimonials/Testimonials.jsx';
+import ContactMe from '../../components/ContactMe/ContactMe.jsx';
 import Home from './Home/Home.jsx';
 import Members from './Members/Members.jsx';
 
@@ -25,6 +26,7 @@ const Public = () => {
         <Route path='novedades' element={<News />} />
         <Route path='novedades/:id' element={<NewsDetail />} />
         <Route path='/testimonios' element={<Testimonials />} />
+        <Route path='/contacto' element={<ContactMe />} />
         <Route path='/actividades' element={<Activities />} />
         <Route path='/actividades/:id' element={<Activity />} />
         {/* <Route path='/' element={<Home />} />
