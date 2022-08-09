@@ -32,7 +32,6 @@
             margin-bottom: 12px;
             margin-top: 12px;
             padding-left: 16px;
-            width: 451px;
         }
     }
     button {
@@ -46,7 +45,6 @@
         height: 56px;
         margin-top: 12px;
         padding: 10px;
-        width: 470px;
     }
     button:hover {
       background-color: #fd4646;
@@ -70,7 +68,7 @@
         text-decoration: none;
     }
 }
-@media (max-width: 1370px) {
+@media (max-width: 1450px) {
     .container{
         height: 100%;
         margin-top: 10px;
@@ -78,23 +76,35 @@
         .imageContainer{
             display: none;
         }
+    
     }
+
+}
+@media (max-width: 1370px) {
     .formContainer{
         padding-right: 0px;
     }
 }
+@media (min-width:490px) {
+    .formContainer{
+        form{
+            width: 100%;
+            input{
+                width: 100%;
+            }
+        }
+    }
+}
 @media (max-width: 490px) {
     .formContainer {
-        h4{
-            width: 80vw;
-        }
-        Form {
+        form {
+            width: 80%;
             input {
-                width: 80vw;
+                width: 100%
             }
         }
         button{
-            width: 84vw;
+            width: 90%;
         }
     }
     .registro {
