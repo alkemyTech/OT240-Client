@@ -36,11 +36,10 @@ const NewsList = ({ quantity }) => {
             <div
               className={style.img}
               style={{
-                backgroundImage: `url('http://localhost:3000/img/news/${image}')`,
+                backgroundImage: `url('${image}')`,
               }}></div>
             <div>
-              <h1>{name}</h1>
-              <p>{content.slice(0, 50).replace(/<\/?[^>]+(>|$)/g, '')}...</p>
+              <h1>{name.slice(0, 35)}...</h1>
               <button className={style.buttonLink} onClick={() => navigate(`${id}`)}>
                 Ver Novedad
               </button>

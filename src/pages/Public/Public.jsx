@@ -1,12 +1,12 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+
 import Header from '../../components/Header/Header.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
 import Login from '../../components/Login/Login.jsx';
 import Register from '../../components/Register/Register.jsx';
 import News from './News/News';
 import NewsDetail from './NewsDetail/NewsDetail';
-// import NewsSlider from '../../components/NewsSlider/NewsSlider.jsx';
 import { Activity } from '../../components/activities/Activity.jsx';
 import { Activities } from '../../components/activities/Activities.jsx';
 import { Testimonials } from '../../components/testimonials/Testimonials.jsx';
@@ -34,7 +34,6 @@ const Public = () => {
         <Route path='/actividades' element={<Activities />} />
         <Route path='/actividades/:id' element={<Activity />} />
       </Routes>
-      {/* <NewsSlider /> */}
       <Footer />
     </>
   );

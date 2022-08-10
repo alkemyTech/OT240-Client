@@ -32,10 +32,12 @@ const NewsDetail = () => {
     <>
       {currentNew && (
         <article className={style.container}>
-          <img src={`http://localhost:3000/img/news/${currentNew.image}`} alt='' />
+          <img src={`${currentNew.image}`} alt='' />
           <div>
             <h1>{currentNew.name}</h1>
-            <p dangerouslySetInnerHTML={{ __html: currentNew.content }}></p>
+            <div
+              className={style.content}
+              dangerouslySetInnerHTML={{ __html: currentNew.content }}></div>
             <button onClick={() => navigate('/')}>Ir al inicio</button>
           </div>
         </article>
