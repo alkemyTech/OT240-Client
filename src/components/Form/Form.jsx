@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import style from './styles/Form.module.scss';
 
-import { convertToBase64 } from '../../utils/convertToBase64';
+import convertToBase64 from '../../utils/handleBase64';
 import fieldSwitch from './fieldSwitch';
 import fetchApi from '../../axios/axios';
 

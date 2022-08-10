@@ -1,12 +1,17 @@
 import React from 'react';
 
-import { readFromBase64 } from '../../utils/convertToBase64';
+import convertToBase64 from '../../utils/handleBase64';
 
 const FileField = ({ field, label, value, setState, style }) => {
   const imgPreviewRef = React.useRef();
 
+  const handlePreview = async (image) => {
+    const result = await convertToBase64(image);
+    imgPreviewRef.current.style.backgroundImage = `url('${result}')`;
+  };
+
   React.useEffect(() => {
-    readFromBase64(value, imgPreviewRef);
+    handlePreview(value);
   });
 
   return (
@@ -20,7 +25,7 @@ const FileField = ({ field, label, value, setState, style }) => {
         onChange={(e) => {
           const { files } = e.target;
           setState((prev) => ({ ...prev, [field]: files[0] }));
-          readFromBase64(files[0], imgPreviewRef);
+          handlePreview(files[0]);
         }}
       />
       <div ref={imgPreviewRef} className={style.imgPreview}></div>
