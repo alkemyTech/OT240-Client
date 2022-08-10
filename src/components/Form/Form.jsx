@@ -38,11 +38,14 @@ const Form = () => {
     setSuccess('');
 
     try {
-      const convertedImage =
-        fields?.image instanceof Blob || fields?.image instanceof ArrayBuffer
-          ? await convertToBase64(fields?.image)
-          : fields.image;
-      const reqConfig = { ...options, data: { ...fields, image: convertedImage } };
+      const reqConfig = { ...options, data: { ...fields } };
+      if (fields?.image) {
+        const convertedImage =
+          fields.image instanceof Blob || fields.image instanceof ArrayBuffer
+            ? await convertToBase64(fields?.image)
+            : fields.image;
+        reqConfig.data.image = convertedImage;
+      }
       const { data } = await fetchApi(reqConfig);
       setSuccess(`La novedad fue guardada exitosamente`);
     } catch (err) {
