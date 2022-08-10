@@ -1,6 +1,7 @@
 .container {
   --mod: 10px;
-
+  width: 80%;
+  margin: auto;
   margin-bottom: calc(4 * var(--mod));
 
   h1 {

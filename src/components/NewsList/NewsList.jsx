@@ -16,7 +16,7 @@ const NewsList = ({ quantity }) => {
             <img src={image} alt='' />
             <div>
               <p>{content.slice(0, 100)}...</p>
-              <button className={style.buttonLink} onClick={() => navigate(`${id}`)}>
+              <button className={style.buttonLink} onClick={() => navigate(`/novedades/${id}`)}>
                 Ver Novedad
               </button>
             </div>

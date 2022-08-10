@@ -1,59 +1,39 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import styles from "./styles/testimonials.module.scss";
+import { useNavigate, useLocation, Link } from 'react-router-dom';
+import styles from './styles/testimonials.module.scss';
 import { TestimonialCard } from './TestimonialCard';
+import testimonialsMock from '../../testimonials.mock';
 
-
-
-
-export const Testimonials = () => {
-
-    const navigate = useNavigate();
-
-    let data = [
-        {
-            id: 1,
-            image: "/images/author-01.png",
-            name: "Juan Pérez",
-            content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, enim temporibus totam amet deserunt repellendus ipsam cumque fuga ex, dignissimos at voluptatum! Esse, nam."
-        },
-        {
-            id: 1,
-            image: "/images/author-01.png",
-            name: "Juan Pérez",
-            content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, enim temporibus totam amet deserunt repellendus ipsam cumque fuga ex, dignissimos at voluptatum! Esse, nam."
-        },
-        {
-            id: 1,
-            image: "/images/author-01.png",
-            name: "Juan Pérez",
-            content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, enim temporibus totam amet deserunt repellendus ipsam cumque fuga ex, dignissimos at voluptatum! Esse, nam."
-        }
-    ];
-
-    
-
+export const Testimonials = ({ quantity }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <div className={styles.container}>
-        <div>
-            <h2 className={styles.title}>Testimonios</h2>
+      <div
+        className={
+          !location.pathname.includes('testimonios')
+            ? `${styles.header}`
+            : `${styles.headerCentered}`
+        }>
+        <h2 className={styles.title}>Testimonios</h2>
+        {!location.pathname.includes('testimonios') && <Link to='/testimonios'>{`Ver mas >`}</Link>}
+      </div>
+      <div className={styles.cards}>
+        {testimonialsMock.slice(0, quantity).map((el) => (
+          <TestimonialCard key={el.id} {...el} />
+        ))}
+      </div>
+      {location.pathname.includes('testimonios') && (
+        <div className={styles.buttonsContainer}>
+          <div className={styles.buttons}>
+            <button className={styles.button1}>¡Agregar mi testimonio!</button>
+            <button className={styles.button2} onClick={() => navigate('/')}>
+              Ir al inicio
+            </button>
+          </div>
         </div>
-        <div className={styles.cards}>
-            {
-                data.map( (el)=> (
-                    <TestimonialCard key={el.id} {...el}/>
-                ) )
-            }            
-        </div>
-        <div className={styles.buttons}>
-            <div >
-                <button className={styles.button1}>¡Agregar mi testimonio!</button>
-            </div>
-            <div >
-                <button className={styles.button2} onClick={()=> navigate("/")}>Ir al inicio</button>
-            </div>
-        </div>
+      )}
     </div>
-  )
-}
+  );
+};

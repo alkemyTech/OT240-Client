@@ -1,0 +1,25 @@
+.testimonials {
+  margin-top: 3rem;
+}
+.news {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+
+  .newsHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 3rem;
+
+    .title {
+      margin: 0;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+    }
+  }
+}

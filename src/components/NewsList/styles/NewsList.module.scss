@@ -1,11 +1,15 @@
 .container {
   --mod: 10px;
-
   display: flex;
   flex-wrap: wrap;
-  margin: 0 auto;
-  justify-content: center;
-  min-width: 360px;
+  justify-content: space-between;
+  padding: 0;
+  margin: 1rem 0;
+  // min-width: 360px;
+
+  @media all and (max-width: 1024px) {
+    justify-content: center;
+  }
 
   .card {
     display: flex;
@@ -15,7 +19,8 @@
     background-color: #7e9afd;
     border: 1px solid #0038ff;
     padding: calc(2 * var(--mod));
-    margin: calc(2 * var(--mod));
+    margin: 1rem 0;
+    // margin: calc(2 * var(--mod));
 
     h1 {
       font-size: calc(1.2 * var(--mod));
