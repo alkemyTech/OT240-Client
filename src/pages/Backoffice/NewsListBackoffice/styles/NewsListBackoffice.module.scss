@@ -4,6 +4,8 @@
   margin: auto;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   h1 {
     text-align: center;
@@ -65,6 +67,17 @@
     }
   }
 
+  .empty {
+    display: block;
+    text-align: center;
+    color: grey !important;
+    font-style: italic;
+    padding: var(--mod) calc(5 * var(--mod));
+    border-radius: calc(0.5 * var(--mod));
+    background-color: floralwhite;
+    box-sizing: border-box;
+  }
+
   .addBtn {
     box-shadow: 5px 5px 10px -1px rgba(0, 0, 0, 0.222);
     cursor: pointer;
@@ -77,7 +90,7 @@
     color: white;
     font-weight: 600;
     max-width: 300px;
-    margin: calc(2 * var(--mod)) auto;
+    margin: calc(4 * var(--mod)) auto;
     &:hover {
       opacity: 0.8;
     }

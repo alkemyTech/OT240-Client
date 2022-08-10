@@ -6,6 +6,22 @@ import Form from '../../../components/Form/Form';
 
 import fetchApi from '../../../axios/axios';
 
+const TableRow = ({ entry, handleEdit, handleDelete }) => {
+  const { name, image, content, id } = entry;
+  return (
+    <tr key={id}>
+      <td>{entry.name}</td>
+      <td>{new Date(entry.createdAt).toLocaleDateString()}</td>
+      <td onClick={() => handleEdit({ id, fields: { name, image, content } })}>
+        <button>Editar</button>
+      </td>
+      <td onClick={() => handleDelete({ id, name })}>
+        <button>Borrar</button>
+      </td>
+    </tr>
+  );
+};
+
 const NewsTable = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -68,38 +84,29 @@ const NewsTable = () => {
   return (
     <section className={style.container}>
       <h1>Administrar Novedades</h1>
-      {!loading && (
-        <>
-          <table>
-            <thead>
-              <tr>
-                <th>Titulo</th>
-                <th>Fecha Creacion</th>
-                <th>Editar</th>
-                <th>Borrar</th>
-              </tr>
-            </thead>
-            <tbody>
-              {news.length &&
-                news.map(({ name, image, createdAt, id, content }, i) => (
-                  <tr key={i}>
-                    <td>{name}</td>
-                    <td>{new Date(createdAt).toLocaleDateString()}</td>
-                    <td onClick={() => handleEdit({ id, fields: { name, image, content } })}>
-                      <button>Editar</button>
-                    </td>
-                    <td onClick={() => handleDelete({ id, name })}>
-                      <button>Borrar</button>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-          <button onClick={handleCreate} className={style.addBtn}>
-            Agregar Novedad
-          </button>
-        </>
+      {!loading && news.length ? (
+        <table>
+          <thead>
+            <tr>
+              <th>Titulo</th>
+              <th>Fecha Creacion</th>
+              <th>Editar</th>
+              <th>Borrar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {news.map((entry) => (
+              <TableRow entry={entry} handleDelete={handleDelete} handleEdit={handleEdit} />
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p className={style.empty}>No hay novedades que mostrar todavía! </p>
       )}
+
+      <button onClick={handleCreate} className={style.addBtn}>
+        Agregar Novedad
+      </button>
     </section>
   );
 };
