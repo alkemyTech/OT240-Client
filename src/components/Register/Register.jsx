@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 import register from './styles/Register.module.scss';
 import InputField from '../InputField/InputField';
+import fetchApi from '../../axios/axios';
+
 
 const Register = () => {
+
+  const [errors, setErrors] = useState('');
+  const navigate = useNavigate();
 
   const validate = Yup.object({
     registerFirstName: Yup.string().required('El nombre es requerido').min(3, 'El nombre debe contener al menos 3 caracteres'),
@@ -16,8 +22,23 @@ const Register = () => {
   });
 
   const handleSubmit = async(values) => {
-
-    
+    try {
+      const fetchApiData = await fetchApi({method: 'POST', url: '/auth/register', data: {
+        firstName : values.registerFirstName,
+        lastName: values.registerLastName,
+        email : values.registerEmail,
+        password: values.registerPassword
+      }});
+      sessionStorage.setItem('Token', fetchApiData.data.token);
+      navigate('/');
+    } catch (error) {
+      if(error.response.data.msg === 'User already exists with that email'){
+        setErrors('El email ya está en uso');
+      } else {
+        setErrors('Ocurrió un error');
+        console.log(error.response.data.msg);
+      };
+    };
   };
 
   return (
@@ -43,6 +64,7 @@ const Register = () => {
                   <InputField label='Email' name='registerEmail' type='email' />
                   <InputField label='Contraseña' name='registerPassword' type='Password' />
                   <InputField label='Confirmar contraseña' name='registerConfirmPassword' type='Password' />
+                  {errors ? <p>{errors}</p> : <p></p>}
                   <button type='submit'> Registrarse </button>
               </Form>
             )}

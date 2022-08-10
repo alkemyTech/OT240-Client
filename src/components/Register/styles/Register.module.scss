@@ -31,7 +31,15 @@
             height: 56px;
             margin-bottom: 12px;
             margin-top: 12px;
-            padding-left: 16px;
+            padding: 0;
+            padding-left: 5px;
+        }
+        p {
+            background-color: #FF0000;
+            color: #FFFFFF;
+            justify-content: center;
+            border-radius: 5px;
+            margin: 0;
         }
     }
     button {
@@ -62,6 +70,8 @@
     font-size: 24px;
     font-weight: 400;
     justify-content: center;
+    margin: 0;
+    margin-top: 24px;
     a {
         color: #FF0000;
         padding-left: 4px;
@@ -102,9 +112,9 @@
             input {
                 width: 100%
             }
-        }
-        button{
-            width: 90%;
+            p{
+                padding-left: 5px;
+            }
         }
     }
     .registro {
