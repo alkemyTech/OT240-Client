@@ -12,6 +12,7 @@ const NewsTable = () => {
 
   const [news, setNews] = React.useState([]);
   const [error, setError] = React.useState('');
+  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     let isMounted = true;
@@ -21,6 +22,8 @@ const NewsTable = () => {
         isMounted && setNews(data);
       } catch (err) {
         isMounted && setError(err.messsage);
+      } finally {
+        isMounted && setLoading(false);
       }
     };
 
@@ -29,12 +32,17 @@ const NewsTable = () => {
     return () => (isMounted = false);
   }, []);
 
-  const handleDelete = async (id) => {
-    alert(`DELETE ID ${id}`);
+  const handleDelete = async ({ id, name }) => {
+    const confirmDelete = window.confirm(
+      `Desea borrar la novedad "${name}"?\nEsta operación no puede desacerse!`
+    );
+    if (confirmDelete) {
+      await fetchApi({ method: 'delete', url: `/news/${id}` });
+      window.location.reload();
+    }
   };
 
   const handleEdit = async ({ id, fields }) => {
-    console.log(fields.content);
     navigate('editar', {
       state: {
         id,
@@ -60,34 +68,38 @@ const NewsTable = () => {
   return (
     <section className={style.container}>
       <h1>Administrar Novedades</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Titulo</th>
-            <th>Fecha Creacion</th>
-            <th>Editar</th>
-            <th>Borrar</th>
-          </tr>
-        </thead>
-        <tbody>
-          {news.length &&
-            news.map(({ name, image, createdAt, id, content }, i) => (
-              <tr key={i}>
-                <td>{name}</td>
-                <td>{new Date(createdAt).toLocaleDateString()}</td>
-                <td onClick={() => handleEdit({ id, fields: { name, image, content } })}>
-                  <button>Editar</button>
-                </td>
-                <td onClick={() => handleDelete(id)}>
-                  <button>Borrar</button>
-                </td>
+      {!loading && (
+        <>
+          <table>
+            <thead>
+              <tr>
+                <th>Titulo</th>
+                <th>Fecha Creacion</th>
+                <th>Editar</th>
+                <th>Borrar</th>
               </tr>
-            ))}
-        </tbody>
-      </table>
-      <button onClick={handleCreate} className={style.addBtn}>
-        Agregar Novedad
-      </button>
+            </thead>
+            <tbody>
+              {news.length &&
+                news.map(({ name, image, createdAt, id, content }, i) => (
+                  <tr key={i}>
+                    <td>{name}</td>
+                    <td>{new Date(createdAt).toLocaleDateString()}</td>
+                    <td onClick={() => handleEdit({ id, fields: { name, image, content } })}>
+                      <button>Editar</button>
+                    </td>
+                    <td onClick={() => handleDelete({ id, name })}>
+                      <button>Borrar</button>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+          <button onClick={handleCreate} className={style.addBtn}>
+            Agregar Novedad
+          </button>
+        </>
+      )}
     </section>
   );
 };

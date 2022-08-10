@@ -77,7 +77,7 @@ const Form = () => {
       <form>
         <div ref={messageRef}>
           {success && (
-            <StatusMessage message={success} style={style.success} onClick={() => setSuccess('')} />
+            <StatusMessage message={success} style={style.success} onClick={() => navigate(-1)} />
           )}
           {error && (
             <StatusMessage message={error} style={style.error} onClick={() => setError('')} />

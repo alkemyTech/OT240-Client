@@ -5,7 +5,7 @@ const StatusMessage = ({ message, style, onClick }) => {
   return (
     <div className={style}>
       <div>{message}</div>
-      <img className={style.close} src={close} alt='close' onClick={onClick} />
+      <img src={close} alt='close' onClick={onClick} />
     </div>
   );
 };
