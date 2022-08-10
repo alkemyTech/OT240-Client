@@ -13,13 +13,31 @@
     width: 100%;
 
     .title {
-      font-family: 'Poppins';
+      font-size: 2rem;
+      margin: 2rem 0 2rem;
       font-style: normal;
       font-weight: 600;
+
+      @media screen and (min-width: 769px) {
+        font-size: 3rem;
+        margin: 1rem 0 2rem;
+      }
     }
   }
   .headerCentered {
     justify-content: center;
+
+    .title {
+      font-size: 2rem;
+      margin: 2rem 0 2rem;
+      font-style: normal;
+      font-weight: 600;
+
+      @media screen and (min-width: 769px) {
+        font-size: 3rem;
+        margin: 1rem 0 2rem;
+      }
+    }
   }
 
   .cards {

@@ -23,6 +23,7 @@
     .title {
       display: none;
       @media all and (min-width: 500px) {
+        font-size: 3rem;
         display: block;
       }
     }
