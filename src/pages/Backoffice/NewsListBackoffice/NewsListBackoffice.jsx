@@ -3,17 +3,41 @@ import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 
 import style from './styles/NewsListBackoffice.module.scss';
 import Form from '../../../components/Form/Form';
-import news from '../../../news.mock';
+
+import fetchApi from '../../../axios/axios';
 
 const NewsTable = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const [news, setNews] = React.useState([]);
+  const [error, setError] = React.useState('');
+
+  React.useEffect(() => {
+    let isMounted = true;
+    const getNews = async () => {
+      try {
+        const { data } = await fetchApi({ method: 'get', url: '/news' });
+        console.log(data);
+        isMounted && setNews(data);
+      } catch (err) {
+        isMounted && setError(err.messsage);
+      } finally {
+        window.scrollTo(0, 0);
+      }
+    };
+
+    getNews();
+
+    return () => (isMounted = false);
+  }, []);
 
   const handleDelete = async (id) => {
     alert(`DELETE ID ${id}`);
   };
 
   const handleEdit = async ({ id, fields }) => {
+    console.log(fields.content);
     navigate('editar', {
       state: {
         id,
@@ -43,7 +67,6 @@ const NewsTable = () => {
         <thead>
           <tr>
             <th>Titulo</th>
-            <th>URL imagen</th>
             <th>Fecha Creacion</th>
             <th>Editar</th>
             <th>Borrar</th>
@@ -54,8 +77,7 @@ const NewsTable = () => {
             news.map(({ name, image, createdAt, id, content }, i) => (
               <tr key={i}>
                 <td>{name}</td>
-                <td>{image}</td>
-                <td>{createdAt.split('.')[0].replace('T', ' ')}</td>
+                <td>{new Date(createdAt).toLocaleDateString()}</td>
                 <td onClick={() => handleEdit({ id, fields: { name, image, content } })}>
                   <button>Editar</button>
                 </td>

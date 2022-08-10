@@ -18,6 +18,7 @@
   form {
     box-sizing: border-box;
     width: 90%;
+    max-width: 700px;
     margin: auto;
     padding: calc(2 * var(--mod));
     border: 1px solid gray;

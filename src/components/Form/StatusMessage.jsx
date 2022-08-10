@@ -3,9 +3,9 @@ import close from './styles/assets/close.png';
 
 const StatusMessage = ({ message, style, onClick }) => {
   return (
-    <div className={style} onClick={onClick}>
+    <div className={style}>
       <div>{message}</div>
-      <img className={style.close} src={close} alt='close' />
+      <img className={style.close} src={close} alt='close' onClick={onClick} />
     </div>
   );
 };
