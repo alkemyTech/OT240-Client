@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './styles/LogoFooter.module.scss';
-import logo from './assets/logo.svg';
+import logo from './assets/LOGO-SOMOS-MAS.png';
 
 const LogoFooter = () => {
   return (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import style from './styles/Header.module.scss';
-import logo from './assets/logo.svg';
+import logo from './assets/LOGO-SOMOS-MAS.png';
 import Hamburger from '../Hamburger/Hamburger';
 import Links from '../Links/Links';
 import Buttons from '../Buttons/Buttons';
