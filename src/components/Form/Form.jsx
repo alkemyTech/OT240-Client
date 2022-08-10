@@ -15,6 +15,7 @@ const Form = () => {
   const navigate = useNavigate();
   const { fields: recievedFields, options, title, from: prevLocation } = location.state;
 
+  const messageRef = React.useRef();
   const [fields, setFields] = React.useState(recievedFields);
   const [success, setSuccess] = React.useState('');
   const [error, setError] = React.useState('');
@@ -65,6 +66,8 @@ const Form = () => {
           setError(err.message);
           break;
       }
+    } finally {
+      window.scrollTo(0, 0);
     }
   };
 
@@ -72,12 +75,14 @@ const Form = () => {
     <article className={style.container}>
       <h1>{title}</h1>
       <form>
-        {success && (
-          <StatusMessage message={success} style={style.success} onClick={() => setSuccess('')} />
-        )}
-        {error && (
-          <StatusMessage message={error} style={style.error} onClick={() => setError('')} />
-        )}
+        <div ref={messageRef}>
+          {success && (
+            <StatusMessage message={success} style={style.success} onClick={() => setSuccess('')} />
+          )}
+          {error && (
+            <StatusMessage message={error} style={style.error} onClick={() => setError('')} />
+          )}
+        </div>
         {mapFields(fields)}
         <div className={style.buttonsContainer}>
           <Button style={style.submitBtn} text='Enviar' onClick={handleSubmit} />

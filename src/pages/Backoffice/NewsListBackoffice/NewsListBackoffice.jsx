@@ -18,12 +18,9 @@ const NewsTable = () => {
     const getNews = async () => {
       try {
         const { data } = await fetchApi({ method: 'get', url: '/news' });
-        console.log(data);
         isMounted && setNews(data);
       } catch (err) {
         isMounted && setError(err.messsage);
-      } finally {
-        window.scrollTo(0, 0);
       }
     };
 
