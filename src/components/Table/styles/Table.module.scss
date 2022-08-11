@@ -21,6 +21,7 @@
     @media screen and (min-width: 768px) {
       display: table-header-group;
       text-align: left;
+      font-weight: 600;
       th {
         padding: 10px 0;
       }
@@ -49,10 +50,18 @@
       align-items: center;
       gap: 2px;
       margin: 10px 0;
+      border-bottom: 1px solid rgb(207, 207, 207);
       td {
         padding: 2px;
-        border-top: 1px solid rgb(207, 207, 207);
         border-collapse: collapse;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+        @media screen and (min-width: 768px) {
+          display: table-cell;
+          border-top: 1px solid rgb(207, 207, 207);
+        }
       }
       button {
         padding: 7px 15px;
@@ -62,6 +71,7 @@
         margin: 5px;
       }
       @media screen and (min-width: 768px) {
+        border-bottom: none;
         display: table-row;
         td {
           padding: 5px 0px;
@@ -75,15 +85,20 @@
   }
 }
 
-.deleteBtn {
+.orange {
   background-color: var(--btnPrimaryColor);
   color: white;
   border: 1px solid var(--btnPrimaryColor);
 }
-
-.messageBtn {
+.white {
   background-color: white;
   color: black;
   font-weight: bold;
   border: 1px solid black;
+}
+.dolares {
+  background-color: rgb(12, 93, 43);
+  color: black;
+  font-weight: bold;
+  border: 1px solid rgb(4, 37, 11);
 }

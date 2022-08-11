@@ -6,37 +6,59 @@ const Table = ({
   tableRowsData,
   tableRowsProperties,
   title,
-  actions,
+  buttons,
 }) => {
-  // Componente Table
   return (
     <div className={styles.layout}>
       <h1>{title}</h1>
       <table className={styles.table}>
-        <thead>
-          <tr>
-            {theadColumns.map((columnData) => (
-              <td>{columnData}</td>
-            ))}
-            <td>Acciones</td>
-          </tr>
-        </thead>
-        <tbody>
-          {tableRowsData.map((tableRow) => (
-            <tr>
-              {Object.entries(tableRow).map((columnContent) => {
-                if (tableRowsProperties.includes(columnContent[0])) {
-                  return <td>{columnContent[1]}</td>;
-                }
-              })}
-              <td><button onClick={actions.handleEdit}>Editar</button></td>
-              <td><button onClick={actions.handleEdit}>Eliminar</button></td>
-            </tr>
-          ))}
-        </tbody>
+        <thead>{generateTableHead(theadColumns)}</thead>
+        <tbody>{generateRows(tableRowsData, tableRowsProperties, buttons)}</tbody>
       </table>
     </div>
   );
+};
+
+const generateRows = (tableRowsData, tableRowsProperties, buttons) => {
+  return (
+    <>
+      {tableRowsData.map((tableRow) => (
+        <tr>
+          {Object.entries(tableRow).map(([property, value]) => {
+            if (propertyIsIncluded(tableRowsProperties, property)) {
+              return <td>{value}</td>;
+            }
+          })}
+          <td>
+            {buttons.map(({ title, handler, className }) => (
+              <button onClick={handler} className={styles[className]}>
+                {title}
+              </button>
+            ))}
+          </td>
+        </tr>
+      ))}
+    </>
+  );
+};
+
+function generateTableHead(theadColumns) {
+  return (
+    <tr>
+      {theadColumns.map((columnData) => (
+        <td>{columnData}</td>
+      ))}
+      <td>Acciones</td>
+    </tr>
+  );
 }
+
+function propertyIsIncluded(tableRowsProperties, property) {
+  return tableRowsProperties.includes(property);
+}
+
+// function generateButtons(buttons){
+
+// }
 
 export default Table;
