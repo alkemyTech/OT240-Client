@@ -1,11 +1,18 @@
 import React from 'react';
 import style from './styles/Buttons.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import logOut from '../../helpers/logOut.js';
 
 const Buttons = () => {
   //estos se tomaran desde el state o local storage!!!
   const isAdmin = true;
   const isAuth = true;
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    logOut();
+    navigate('/login');
+  };
 
   return (
     <div className={style.buttons}>
@@ -26,7 +33,7 @@ const Buttons = () => {
       )}
       {isAuth && (
         <div className={style.btn}>
-          <Link to={'/'}>Log out</Link>
+          <Link onClick={handleLogOut} to={'/login'}>Log out</Link>
         </div>
       )}
     </div>

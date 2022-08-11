@@ -1,18 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 import login from './styles/Login.module.scss';
 import InputField from '../InputField/InputField';
+import fetchApi from '../../axios/axios';
 
 const Login = () => {
 
-  let formData = {};
+  const [errors, setErrors] = useState('');
+  const navigate = useNavigate();
 
   const validate = Yup.object({
     loginEmail: Yup.string().required('El email es requerido').email('El email es invalido'),
     loginPassword: Yup.string().required('La contraseña es requerida').min(6, 'La contraseña tiene que ser de al menos 6 caracteres')
   });
+
+  const handleSubmit = async(values) => {
+    try {
+      const fetchApiData = await fetchApi({method: 'POST', url: '/auth/login', data: {
+        email : values.loginEmail,
+        password: values.loginPassword
+      }});
+      sessionStorage.setItem('Token', fetchApiData.data.token)
+      navigate('/');
+    } catch (error) {
+      if ( error.response.data.msg === "User with that email doesn't exist"  || error.response.data.msg === 'Invalid credentials') {
+        setErrors('Contraseña o email incorrecto');
+      }else {
+        setErrors('Ocurrió un error');
+        console.log(error.response.data.msg);
+      };
+    };  
+  };
 
   return (
     <div className={login.container}>
@@ -25,17 +46,13 @@ const Login = () => {
               loginPassword: ''
             }}
             validationSchema={validate}
-            onSubmit={values => {
-              // IMPORTANT
-              // Handle API submission
-              formData = values;
-              console.log(formData); 
-            }}
+            onSubmit={handleSubmit}
           >
             {formik => (
               <Form onSubmit={formik.handleSubmit}>
                   <InputField label='Email' name='loginEmail' type='text' />
                   <InputField label='Contraseña' name='loginPassword' type='Password' />
+                  {errors ? <p>{errors}</p> : <p></p>}
                   <button type='submit'> Inicia sesión </button>
               </Form>
             )}
