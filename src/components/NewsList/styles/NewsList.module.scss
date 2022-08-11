@@ -1,28 +1,30 @@
 .container {
   --mod: 10px;
   display: flex;
+  justify-content: flex-start;
   flex-wrap: wrap;
   margin: 0 auto;
-  justify-content: center;
-  min-width: 360px;
+  padding: 0;
 
   .card {
     display: flex;
-    width: calc(30 * var(--mod));
-    height: calc(13 * var(--mod));
+    width: calc(35 * var(--mod));
+    height: calc(18 * var(--mod));
     border-radius: calc(1.6 * var(--mod));
     background-color: #7e9afd;
-    border: 1px solid #0038ff;
-    padding: calc(2 * var(--mod));
-    margin: calc(2 * var(--mod));
+    border: 1px solid #3f68ff;
+    padding: var(--mod);
+    margin: calc(1 * var(--mod));
 
     h1 {
+      font-family: Mulish !important;
       font-size: calc(2 * var(--mod));
       line-height: 1;
-      margin: 0;
-      margin-top: calc(0.4 * var(--mod));
+      margin: auto calc(0.6 * var(--mod));
+      // margin-top: calc(0.4 * var(--mod));
       text-align: left;
       font-weight: 400;
+      text-align: center;
     }
 
     .img {
@@ -52,12 +54,12 @@
       }
 
       .buttonLink {
-        background-color: #0038ff;
+        background-color: #2f5bf9;
         border-radius: calc(0.8 * var(--mod));
         padding: var(--mod);
         color: white;
         width: 100%;
-        font-size: calc(1.2 * var(--mod));
+        font-size: calc(1.5 * var(--mod));
         font-family: inherit;
         border: none;
         box-shadow: 0 10px 10px -5px rgba(12, 12, 12, 0.276);

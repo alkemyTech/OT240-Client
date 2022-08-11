@@ -53,8 +53,12 @@ const NewsTable = () => {
       `Desea borrar la novedad "${name}"?\nEsta operación no puede desacerse!`
     );
     if (confirmDelete) {
-      await fetchApi({ method: 'delete', url: `/news/${id}` });
-      window.location.reload();
+      try {
+        const { data } = await fetchApi({ method: 'delete', url: `/news/${id}` });
+        window.location.reload();
+      } catch (err) {
+        window.alert(err);
+      }
     }
   };
 
@@ -96,7 +100,12 @@ const NewsTable = () => {
           </thead>
           <tbody>
             {news.map((entry) => (
-              <TableRow entry={entry} handleDelete={handleDelete} handleEdit={handleEdit} />
+              <TableRow
+                entry={entry}
+                handleDelete={handleDelete}
+                handleEdit={handleEdit}
+                key={entry.id}
+              />
             ))}
           </tbody>
         </table>

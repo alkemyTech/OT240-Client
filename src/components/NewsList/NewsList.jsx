@@ -39,7 +39,7 @@ const NewsList = ({ quantity }) => {
                 backgroundImage: `url('${image}')`,
               }}></div>
             <div>
-              <p>{content.slice(0, 100)}...</p>
+              <h1>{name.length > 50 ? name.slice(0, 50) + '...' : name}</h1>
               <button className={style.buttonLink} onClick={() => navigate(`/novedades/${id}`)}>
                 Ver Novedad
               </button>
