@@ -10,15 +10,19 @@ const Links = ({ navigationItems }) => {
     <div>Loading...</div>
   ) : (
     <div className={style.links}>
-      {navigationItems.map(({ text, route }, index) => {
+      {/* {navigationItems.map(({ text, route }, index) => {
         return (
           <NavLink key={index} to={route} className={handleActiveTab}>
             {text}
           </NavLink>
         );
-      })}
+      })} */}
+      <NavLink key={15} to={'/backoffice/usuarios'} className={handleActiveTab} >
+        Usuarios
+      </NavLink>
     </div>
   );
 };
+
 
 export default Links;
