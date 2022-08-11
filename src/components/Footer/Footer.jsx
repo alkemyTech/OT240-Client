@@ -3,7 +3,7 @@ import style from './styles/Footer.module.scss';
 import LogoFooter from '../LogoFooter/LogoFooter';
 import Links from '../Links/Links';
 import RedesIcons from '../RedesIcons/RedesIcons';
-import axios from 'axios';
+import fetchApi from '../FetchApi/FetchApi';
 
 const Footer = () => {
   const [navigationItems, setNavigationItems] = useState([]);
@@ -44,9 +44,7 @@ const Footer = () => {
 //Fetches public organization data for social media links
 async function fetchSocialMediaLinks() {
   try {
-    const response = await axios.get(
-      `http://${window.location.hostname}:3000/api/organization/public`
-    );
+    const response = await fetchApi('/organization/public');
     const { instagram, linkedin, facebook } = response.data;
     return { instagram, linkedin, facebook };
   } catch (error) {
