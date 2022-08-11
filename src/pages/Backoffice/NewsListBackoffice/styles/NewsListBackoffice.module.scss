@@ -1,18 +1,33 @@
 .container {
-  --mod: 5px;
+  --mod: 10px;
   min-height: inherit;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-family: Poppins;
+    font-weight: bolder;
+    text-align: center;
+    margin: calc(3 * var(--mod));
+    line-height: 1;
+    font-size: calc(3 * var(--mod));
+  }
 
   table {
-    font-size: calc(3 * var(--mod));
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: calc(2 * var(--mod));
     font-family: Mulish;
     border-collapse: collapse;
     height: 100%;
-    margin: auto;
 
     td,
     th {
-      padding: calc(1 * var(--mod)) calc(2 * var(--mod));
+      padding: calc(0.6 * var(--mod));
     }
 
     thead {
@@ -23,7 +38,7 @@
         text-align: left;
 
         &:first-child {
-          padding-left: calc(4 * var(--mod));
+          padding-left: calc(1 * var(--mod));
         }
       }
     }
@@ -33,37 +48,59 @@
         border-bottom: 1px solid gray;
 
         button {
+          box-shadow: 5px 5px 10px -1px rgba(0, 0, 0, 0.222);
           cursor: pointer;
           background-color: orange;
-          font-size: calc(3 * var(--mod));
-          border-radius: 5px;
+          font-size: calc(2 * var(--mod));
+          border-radius: var(--mod);
           border: none;
-          padding: calc(1 * var(--mod)) calc(4 * var(--mod));
+          padding: calc(0.7 * var(--mod)) calc(2 * var(--mod));
+          font-family: inherit;
+          &:hover {
+            opacity: 0.8;
+          }
         }
 
         &:last-child button {
           background-color: rgb(242, 65, 65);
+          font-family: inherit;
         }
       }
     }
   }
 
-  h1 {
+  .empty {
+    display: block;
+    text-align: center;
+    color: grey !important;
+    font-style: italic;
+    padding: var(--mod) calc(5 * var(--mod));
+    border-radius: calc(0.5 * var(--mod));
+    background-color: floralwhite;
+    box-sizing: border-box;
+  }
+
+  .addBtn {
+    box-shadow: 5px 5px 10px -1px rgba(0, 0, 0, 0.222);
+    cursor: pointer;
+    background-color: yellowgreen;
+    font-size: calc(2 * var(--mod));
+    font-family: inherit;
+    border-radius: var(--mod);
+    border: none;
+    padding: calc(1 * var(--mod)) calc(2 * var(--mod));
+    color: white;
+    font-weight: 600;
+    max-width: 300px;
     margin: calc(4 * var(--mod)) auto;
-    width: fit-content;
-    line-height: 1;
-    font-size: calc(5 * var(--mod));
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
 
 @media all and (max-width: 600px) {
   .container {
-    --mod: 4px;
-  }
-}
-
-@media all and (min-width: 900px) {
-  .container {
-    --mod: 8px;
+    --mod: 6px;
   }
 }

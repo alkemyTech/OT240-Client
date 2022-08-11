@@ -7,36 +7,51 @@
   position: absolute !important;
   border-radius: 0px !important;
   bottom: 0 !important;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgb(39, 38, 38) 24% 76%,
-    transparent
-  ) !important;
+  background-color: transparent !important;
   color: white !important;
+  font-size: 18px !important;
+}
+
+.legend {
+  text-shadow: 0 0 10px black !important;
 }
 
 .control-dots {
   bottom: -40px !important;
 }
 
-button {
+#slider button {
   margin: auto 0;
   background: none !important;
   opacity: 1 !important;
 }
 
-figure {
+#slider button.control-arrow.control-next::before {
+  border: none !important;
+  color: darkgrey;
+  content: '▶';
+}
+
+#slider button.control-arrow.control-prev::before {
+  border: none !important;
+  color: darkgrey;
+  content: '◀';
+}
+
+#slider figure {
   margin: 0;
-  max-height: 700px;
-  background-color: rgb(39, 38, 38);
+  max-height: 500px;
 }
 
-figure img {
-  max-width: 1000px;
+#slider .image {
+  min-height: 500px;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-button {
+#slider button {
   margin: auto 0;
   background: none !important;
   opacity: 1 !important;

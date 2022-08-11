@@ -1,57 +1,65 @@
 .container {
   --mod: 10px;
   display: flex;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  justify-content: space-between;
+  margin: 0 auto;
   padding: 0;
-  margin: 1rem 0;
-  // min-width: 360px;
-
-  @media all and (max-width: 1024px) {
-    justify-content: center;
-  }
 
   .card {
     display: flex;
-    width: calc(50 * var(--mod));
-    height: calc(23 * var(--mod));
-    border-radius: 20px;
+    width: calc(35 * var(--mod));
+    height: calc(18 * var(--mod));
+    border-radius: calc(1.6 * var(--mod));
     background-color: #7e9afd;
-    border: 1px solid #0038ff;
-    padding: calc(2 * var(--mod));
-    margin: 1rem 0;
-    // margin: calc(2 * var(--mod));
+    border: 1px solid #3f68ff;
+    padding: var(--mod);
+    margin: calc(1 * var(--mod));
 
     h1 {
-      font-size: calc(1.2 * var(--mod));
+      font-family: Mulish !important;
+      font-size: calc(2 * var(--mod));
+      line-height: 1;
+      margin: auto calc(0.6 * var(--mod));
+      // margin-top: calc(0.4 * var(--mod));
+      text-align: left;
+      font-weight: 400;
+      text-align: center;
     }
 
-    img {
+    .img {
+      padding: 0;
       height: 100%;
-      aspect-ratio: 1 / 1;
       object-fit: cover;
-      border-radius: 20px;
+      border-radius: var(--mod);
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
     }
 
     div {
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       padding-left: calc(2 * var(--mod));
       width: 100%;
       height: 100%;
 
       p {
+        margin-top: calc(1 * var(--mod));
         margin-bottom: auto;
-        font-size: calc(2 * var(--mod));
+        font-size: calc(1.4 * var(--mod));
+        line-height: 1;
+        color: rgba(0, 0, 0, 0.33);
       }
 
       .buttonLink {
-        background-color: #0038ff;
-        border-radius: 8px;
+        background-color: #2f5bf9;
+        border-radius: calc(0.8 * var(--mod));
         padding: var(--mod);
         color: white;
         width: 100%;
-        font-size: calc(1.6 * var(--mod));
+        font-size: calc(1.5 * var(--mod));
         font-family: inherit;
         border: none;
         box-shadow: 0 10px 10px -5px rgba(12, 12, 12, 0.276);
@@ -63,6 +71,6 @@
 
 @media all and (max-width: 600px) {
   .container {
-    --mod: 6px;
+    --mod: 8px;
   }
 }

@@ -3,17 +3,43 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 
 import css from './styles/NewsSlider.css';
-import news from '../../news.mock';
+import fetchApi from '../../axios/axios';
 
-const NewsSlider = () => {
-  const toShow = news.slice(0, 4);
+const NewsSlider = ({ limit }) => {
+  const [loading, setIsLoading] = React.useState(true);
+  const [error, setError] = React.useState('');
+  const [news, setNews] = React.useState([]);
+
+  React.useEffect(() => {
+    let isMounted = true;
+
+    const getNews = async () => {
+      try {
+        const { data } = await fetchApi({ method: 'get', url: '/news' });
+        isMounted && setNews(data);
+      } catch (err) {
+        isMounted && setError(err.message);
+      } finally {
+        isMounted && setIsLoading(false);
+      }
+    };
+
+    getNews();
+
+    return () => (isMounted = false);
+  }, []);
+
   return (
-    <article>
-      {news.length && (
+    <article id='slider'>
+      {!loading && news.length && (
         <Carousel infiniteLoop={true} showStatus={false} showThumbs={false} transitionTime={500}>
-          {toShow.map(({ image, name }, i) => (
+          {news.slice(0, limit).map(({ image, name }, i) => (
             <figure key={i}>
-              <img src={image} alt={`Slide ${i}`} />
+              <div
+                className='image'
+                style={{ backgroundImage: `url('${image}')` }}
+                alt={`Slide ${i}`}
+              />
               <figcaption className='legend'>{name}</figcaption>
             </figure>
           ))}
