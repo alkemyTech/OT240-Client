@@ -32,7 +32,6 @@ const Header = () => {
           { text: 'Miembros', route: '/backoffice/miembros' },
         ])
       : setNavigationItems([
-          { text: 'Inicio', route: '/' },
           { text: 'Nosotros', route: '/nosotros' },
           { text: 'Novedades', route: '/novedades' },
           { text: 'Testimonios', route: '/testimonios' },
