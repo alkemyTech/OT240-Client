@@ -10,25 +10,26 @@ export const Testimonials = ({ quantity }) => {
   const location = useLocation();
   const [testimonials, setTestimonials] = React.useState([]);
 
-  React.useEffect(() => {    
+  React.useEffect(() => {
     const getTestimonials = async () => {
       try {
         const { data } = await fetchApi({ method: 'get', url: '/testimonials' });
+
         setTestimonials(data);
       } catch (err) {
-        console.log("Error en el get");        
-      }  
+        console.log('Error en el get');
+      }
     };
-    getTestimonials();    
+    getTestimonials();
   }, []);
 
   const handleAdd = () => {
-    navigate("crear", {
+    navigate('crear', {
       state: {
         title: 'Crear Testimonio',
         options: { method: 'post', url: `/testimonials` },
         from: location,
-        fields: { name: "", image: '', content: "" },
+        fields: { name: '', image: '', content: '' },
       },
     });
   };
@@ -53,7 +54,9 @@ export const Testimonials = ({ quantity }) => {
       {location.pathname.includes('testimonios') && (
         <div className={styles.buttonsContainer}>
           <div className={styles.buttons}>
-            <button className={styles.button1} onClick={()=>handleAdd()}>¡Agregar mi testimonio!</button>
+            <button className={styles.button1} onClick={() => handleAdd()}>
+              ¡Agregar mi testimonio!
+            </button>
             <button className={styles.button2} onClick={() => navigate('/')}>
               Ir al inicio
             </button>
