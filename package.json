@@ -21,6 +21,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "3.4.3",
     "sass": "^1.54.0",
+    "sweetalert2": "^11.4.26",
     "yup": "^0.32.11"
   },
   "scripts": {
