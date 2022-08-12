@@ -3,7 +3,7 @@ import style from './styles/Footer.module.scss';
 import LogoFooter from '../LogoFooter/LogoFooter';
 import Links from '../Links/Links';
 import RedesIcons from '../RedesIcons/RedesIcons';
-import fetchApi from '../FetchApi/FetchApi';
+import fetchApi from '../../axios/axios';
 
 const Footer = () => {
   const [navigationItems, setNavigationItems] = useState([]);
