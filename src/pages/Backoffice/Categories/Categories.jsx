@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
-import style from './styles/Categories.module.scss';
+
 import Form from '../../../components/Form/Form';
 import Table from '../../../components/Table/Table';
 import fetchApi from '../../../axios/axios';
@@ -33,13 +33,13 @@ const Categories = () => {
 
   const deleteHandler = async (tableRow) => {
     const { id, name } = tableRow;
-    const options = { type: 'Categoria', id, name, url: `/categories/${id}` };
+    const options = { type: 'Categoría', id, name, url: `/categories/${id}` };
     handleDelete(navigate, options);
   };
 
   const createHandler = async () => {
     handleCreate(navigate, {
-      title: 'Crear Categoria',
+      title: 'Crear Categoría',
       fields: { name: '', description: '' },
       options: { method: 'post', url: `/categories` },
       from: location,
@@ -50,7 +50,7 @@ const Categories = () => {
     const { id, name, description } = tableRow;
     handleEdit(navigate, {
       id,
-      title: 'Editar Categoria',
+      title: 'Editar Categoría',
       fields: { name, description },
       options: { method: 'put', url: `/categories/${id}` },
       from: location,
@@ -66,8 +66,8 @@ const Categories = () => {
           path='/'
           element={
             <Table
-              title='Categorias'
-              tableHeader={['Titulo', 'Descripcion']}
+              title='Categorías'
+              tableHeader={['Titulo', 'Descripción']}
               tableRowsData={categories}
               tableRowsProperties={['name', 'description']}
               buttons={[
