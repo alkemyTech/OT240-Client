@@ -7,31 +7,35 @@ const Table = ({
   tableRowsProperties,
   title,
   buttons,
+  loading,
+  addBtnHandler,
 }) => {
-  return (
+  return !loading && tableRowsData.length ? (
     <div className={styles.layout}>
       <h1>{title}</h1>
       <table className={styles.table}>
         <thead>{generateTableHead(theadColumns)}</thead>
         <tbody>{generateRows(tableRowsData, tableRowsProperties, buttons)}</tbody>
       </table>
+      <button onClick={addBtnHandler} className={styles.addBtn}>{`Agregar ${title}`}</button>
     </div>
+  ) : (
+    <p>Loading... </p>
   );
 };
-
 const generateRows = (tableRowsData, tableRowsProperties, buttons) => {
   return (
     <>
-      {tableRowsData.map((tableRow, index) => (
-        <tr key={index}>
-          {Object.entries(tableRow).map(([property, value], index) => {
+      {tableRowsData.map((tableRow) => (
+        <tr key={tableRow.id} id={tableRow.id}>
+          {Object.entries(tableRow).map(([property, value]) => {
             if (propertyIsIncluded(tableRowsProperties, property)) {
-              return <td key={index}>{value}</td>;
+              return <td>{value}</td>;
             }
           })}
-          <td>
-            {buttons.map(({ title, handler, className }, index) => (
-              <button key={index} onClick={handler} className={styles[className]}>
+          <td className={styles.buttons}>
+            {buttons.map(({ title, handler, className }) => (
+              <button onClick={() => handler(tableRow)} className={styles[className]}>
                 {title}
               </button>
             ))}
@@ -45,8 +49,8 @@ const generateRows = (tableRowsData, tableRowsProperties, buttons) => {
 function generateTableHead(theadColumns) {
   return (
     <tr>
-      {theadColumns.map((columnData, index) => (
-        <td key={index}>{columnData}</td>
+      {theadColumns.map((columnData) => (
+        <td>{columnData}</td>
       ))}
       <td>Acciones</td>
     </tr>

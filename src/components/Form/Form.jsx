@@ -47,7 +47,7 @@ const Form = () => {
         reqConfig.data.image = convertedImage;
       }
       const { data } = await fetchApi(reqConfig);
-      setSuccess(`La novedad fue guardada exitosamente`);
+      setSuccess(`Actualizacion exitosa`);
     } catch (err) {
       switch (err?.response?.status) {
         case 400:
