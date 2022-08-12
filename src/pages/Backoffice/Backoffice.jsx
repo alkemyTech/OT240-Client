@@ -17,7 +17,7 @@ const Backoffice = () => {
       <Header />
       <Routes>
         <Route path='/' element={<BackofficeCards />} />
-        organizacion
+        <Route path='/novedades/*' element={<NewsListBackoffice />} />
         <Route path='/testimonios/*' element={<TestimonialRoutes />} />
         <Route path='/categorias/*' element={<Categories />} />
         <Route path='/contactos' element={<Contacts />} />
