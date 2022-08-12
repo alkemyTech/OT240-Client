@@ -1,0 +1,133 @@
+.layout {
+  --mod: 10px;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 15px;
+  h1 {
+    text-align: center;
+  }
+
+  .addBtn {
+    box-shadow: 5px 5px 10px -1px rgba(0, 0, 0, 0.222);
+    cursor: pointer;
+    background-color: yellowgreen;
+    font-size: calc(2 * var(--mod));
+    font-family: inherit;
+    border-radius: var(--mod);
+    border: none;
+    padding: calc(1 * var(--mod)) calc(2 * var(--mod));
+    color: white;
+    font-weight: 600;
+    max-width: 300px;
+    margin: calc(4 * var(--mod)) auto;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+@media all and (max-width: 600px) {
+  .container {
+    --mod: 6px;
+  }
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  align-items: stretch;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  thead {
+    display: none;
+    @media screen and (min-width: 768px) {
+      display: table-header-group;
+      text-align: center;
+      font-weight: 600;
+      th {
+        padding: 10px 0;
+      }
+      // th:nth-child(1) {
+      //   width: 25%;
+      // }
+      // th:nth-child(2) {
+      //   width: 25%;
+      // }
+      // th:nth-child(3) {
+      //   width: 30%;
+      // }
+      // th:nth-child(4) {
+      //   width: 20%;
+      // }
+    }
+  }
+
+  tbody {
+    @media screen and (min-width: 768px) {
+      display: table-row-group;
+    }
+    tr {
+      flex-direction: column;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2px;
+      margin: 10px 0;
+      border-bottom: 1px solid rgb(207, 207, 207);
+
+      td {
+        padding: 2px;
+        border-collapse: collapse;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        @media screen and (min-width: 768px) {
+          display: table-cell;
+          border-top: 1px solid rgb(207, 207, 207);
+        }
+      }
+      .buttons {
+        display: flex;
+        flex-wrap: nowrap;
+      }
+
+      button {
+        padding: 7px 15px;
+        border-radius: 7px;
+        cursor: pointer;
+        font-family: 'Poppins';
+        margin: 5px;
+      }
+
+      @media screen and (min-width: 768px) {
+        border-bottom: none;
+        display: table-row;
+        td {
+          padding: 5px 0px;
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 768px) {
+    display: table;
+    table-layout: fixed;
+  }
+}
+
+.orange {
+  background-color: var(--btnPrimaryColor);
+  color: white;
+  border: 1px solid var(--btnPrimaryColor);
+}
+.white {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  border: 1px solid black;
+}
