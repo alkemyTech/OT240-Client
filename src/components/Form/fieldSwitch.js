@@ -16,6 +16,12 @@ const translateFieldName = (recievedName) => {
       return 'Descripcion';
     case 'image':
       return 'Imagen';
+    case 'firstName':
+      return 'Nombre';
+    case 'lastName':
+      return 'Apellido';
+    case 'roleId':
+      return 'Rol';
     default:
       return recievedName;
   }

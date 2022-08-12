@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import fetchApi from '../../axios/axios';
+import { handleDelete, handleEdit } from '../../utils/formsHandlers';
 import Table from '../Table/Table';
 import usersBackoffice from './styles/UsersBackoffice.module.scss';
 
@@ -29,22 +30,30 @@ const UsersBackoffice = () => {
 
 
 
-  const editHandler = ({id}) => {
-    navigate('editar', {state: {
-        title: 'Editar Usuario', 
-        fields: {
-            Nombre: '', 
-            Apellido: '', 
-            Email: '', 
-            Rol: ''
-          },
-        options: {method: 'put', url: `/users/${id}`},
-        from: location
-      }});
+  const editHandler = (user) => {
+
+    handleEdit(navigate, {
+          title: 'Editar Usuario', 
+          fields: {
+              firstName: user.firstName, 
+              lastName: user.lastName, 
+              email: user.email, 
+              roleId: user.roleId
+            },
+          options: {method: 'put', url: `/users/${user.id}`},
+          from: location
+        })
+
+    // navigate('editar', {state: });
   }
 
-  const handleDelete = () => {
-
+  const deleteHandler = (user) => {
+    handleDelete(navigate, {
+      type: 'usuario',
+      id: user.id,
+      name: `${user.firstName} ${user.lastName}`,
+      url: `/users/${user.id}`
+    })
   }
 
   return (
@@ -69,7 +78,7 @@ const UsersBackoffice = () => {
             },
             {
               title: 'Eliminar',
-              handler: handleDelete,
+              handler: deleteHandler,
               className: 'white',
             },
           ]}
