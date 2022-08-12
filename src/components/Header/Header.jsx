@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import style from './styles/Header.module.scss';
 import logo from './assets/LOGO-SOMOS-MAS.png';
 import Hamburger from '../Hamburger/Hamburger';
@@ -8,6 +8,7 @@ import Buttons from '../Buttons/Buttons';
 
 const Header = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const [navigationItems, setNavigationItems] = useState([]);
@@ -21,6 +22,7 @@ const Header = () => {
     location.pathname.includes('backoffice')
       ? setNavigationItems([
           { text: 'Novedades', route: '/backoffice/novedades' },
+          { text: 'Novedades', route: '/backoffice/novedades' },
           { text: 'Actividades', route: '/backoffice/actividades' },
           { text: 'Categorias', route: '/backoffice/categorias' },
           { text: 'Testimonios', route: '/backoffice/testimonios' },
@@ -30,7 +32,6 @@ const Header = () => {
           { text: 'Miembros', route: '/backoffice/miembros' },
         ])
       : setNavigationItems([
-          { text: 'Inicio', route: '/' },
           { text: 'Nosotros', route: '/nosotros' },
           { text: 'Novedades', route: '/novedades' },
           { text: 'Testimonios', route: '/testimonios' },
