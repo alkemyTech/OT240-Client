@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import styles from './styles/Table.module.scss';
 
 const Table = ({
@@ -7,31 +8,43 @@ const Table = ({
   tableRowsProperties,
   title,
   buttons,
+  loading,
+  addBtnHandler,
+  isOrganization,
 }) => {
-  return (
+  const location = useLocation();
+
+  return !loading && tableRowsData.length ? (
     <div className={styles.layout}>
       <h1>{title}</h1>
       <table className={styles.table}>
-        <thead>{generateTableHead(theadColumns)}</thead>
-        <tbody>{generateRows(tableRowsData, tableRowsProperties, buttons)}</tbody>
+        <thead>{generateTableHead(theadColumns, isOrganization)}</thead>
+        <tbody>{generateRows(tableRowsData, tableRowsProperties, buttons, isOrganization)}</tbody>
       </table>
+      {!isOrganization && (
+        <button onClick={addBtnHandler} className={styles.addBtn}>{`Agregar ${title}`}</button>
+      )}
     </div>
+  ) : (
+    <p>Loading... </p>
   );
 };
-
-const generateRows = (tableRowsData, tableRowsProperties, buttons) => {
+const generateRows = (tableRowsData, tableRowsProperties, buttons, isOrganization) => {
   return (
     <>
-      {tableRowsData.map((tableRow, index) => (
-        <tr key={index}>
-          {Object.entries(tableRow).map(([property, value], index) => {
+      {tableRowsData.map((tableRow) => (
+        <tr
+          key={tableRow.id}
+          id={tableRow.id}
+          className={isOrganization && `${styles.organization}`}>
+          {Object.entries(tableRow).map(([property, value]) => {
             if (propertyIsIncluded(tableRowsProperties, property)) {
-              return <td key={index}>{value}</td>;
+              return <td>{value}</td>;
             }
           })}
-          <td>
-            {buttons.map(({ title, handler, className }, index) => (
-              <button key={index} onClick={handler} className={styles[className]}>
+          <td className={styles.buttons}>
+            {buttons.map(({ title, handler, className }) => (
+              <button onClick={() => handler(tableRow)} className={styles[className]}>
                 {title}
               </button>
             ))}
@@ -42,14 +55,18 @@ const generateRows = (tableRowsData, tableRowsProperties, buttons) => {
   );
 };
 
-function generateTableHead(theadColumns) {
+function generateTableHead(theadColumns, isOrganization) {
   return (
-    <tr>
-      {theadColumns.map((columnData, index) => (
-        <td key={index}>{columnData}</td>
-      ))}
-      <td>Acciones</td>
-    </tr>
+    <>
+      {!isOrganization && (
+        <tr>
+          {theadColumns.map((columnData) => (
+            <td>{columnData}</td>
+          ))}
+          <td>Acciones</td>
+        </tr>
+      )}
+    </>
   );
 }
 

@@ -4,8 +4,9 @@ import { Routes, Route } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import BackofficeCards from '../../components/BackofficeCards/BackofficeCards.jsx';
 import NewsListBackoffice from './NewsListBackoffice/NewsListBackoffice';
-import Categories from '../../components/Categories/Categories';
+import Categories from './Categories/Categories';
 import UsersBackoffice from '../../components/Users/UsersBackoffice';
+import Organization from './Organization/Organization';
 import ActivitiesRoutes from './subroutes/ActivityRoutes';
 import TestimonialRoutes from './subroutes/TestimonialRoutes';
 
@@ -16,12 +17,13 @@ const Backoffice = () => {
       <Header />
       <Routes>
         <Route path='/' element={<BackofficeCards />} />
-        <Route path='/novedades/*' element={<NewsListBackoffice />} />
+        organizacion
         <Route path='/testimonios/*' element={<TestimonialRoutes />} />
-        <Route path='/categorias' element={<Categories />} />
+        <Route path='/categorias/*' element={<Categories />} />
         <Route path='/contactos' element={<Contacts />} />
         <Route path='/actividades/*' element={<ActivitiesRoutes />} />
         <Route path='/usuarios' element={<UsersBackoffice />} />
+        <Route path='/organizacion/*' element={<Organization />} />
       </Routes>
     </>
   );

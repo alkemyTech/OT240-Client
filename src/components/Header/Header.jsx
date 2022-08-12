@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import style from './styles/Header.module.scss';
 import logo from './assets/LOGO-SOMOS-MAS.png';
 import Hamburger from '../Hamburger/Hamburger';
@@ -44,7 +44,9 @@ const Header = () => {
     <>
       <header className={style.header}>
         <div className={style.topBar}>
-          <img src={logo} alt='somos_mas_logo' onClick={() => navigate('/')} />
+          <Link to={'/'}>
+            <img src={logo} alt='somos_mas_logo' />
+          </Link>
           <div className={` ${style.topLinks} `}>
             <Links navigationItems={navigationItems} />
             <Buttons />
