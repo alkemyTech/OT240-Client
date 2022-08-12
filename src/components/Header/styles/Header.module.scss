@@ -1,6 +1,7 @@
 .header {
   position: sticky;
   top: 0;
+  z-index: 2;
 
   .topBar {
     display: flex;
@@ -14,7 +15,7 @@
     img {
       position: relative;
       z-index: 1;
-      width: 100px;
+      width: 150px;
       margin-left: 30px;
     }
 

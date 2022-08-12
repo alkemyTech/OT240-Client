@@ -1,0 +1,32 @@
+.members,
+.testimonials,
+.news {
+  margin-top: 2rem;
+}
+
+.news {
+  width: 80%;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+
+  .newsHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .title {
+      font-size: 2rem;
+      margin: 0;
+      font-style: normal;
+      font-weight: 600;
+
+      @media screen and (min-width: 769px) {
+        font-size: 3rem;
+        margin: 1rem 0 2rem;
+      }
+    }
+  }
+}

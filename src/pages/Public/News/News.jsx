@@ -7,7 +7,7 @@ import NewsList from '../../../components/NewsList/NewsList';
 const News = () => {
   return (
     <section className={style.container}>
-      <h1>Novedades</h1>
+      <h2>Novedades</h2>
       <NewsList />
     </section>
   );
