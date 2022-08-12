@@ -23,7 +23,7 @@ const Login = () => {
         email : values.loginEmail,
         password: values.loginPassword
       }});
-      sessionStorage.setItem('Token', fetchApiData.data.token)
+      sessionStorage.setItem('token', fetchApiData.data.token)
       navigate('/');
     } catch (error) {
       if ( error.response.data.msg === "User with that email doesn't exist"  || error.response.data.msg === 'Invalid credentials') {

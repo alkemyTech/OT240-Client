@@ -29,7 +29,7 @@ const Register = () => {
         email : values.registerEmail,
         password: values.registerPassword
       }});
-      sessionStorage.setItem('Token', fetchApiData.data.token);
+      sessionStorage.setItem('token', fetchApiData.data.token);
       navigate('/');
     } catch (error) {
       if(error.response.data.msg === 'User already exists with that email'){

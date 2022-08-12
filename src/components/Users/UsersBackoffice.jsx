@@ -1,77 +1,71 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 
+import fetchApi from '../../axios/axios';
+import Table from '../Table/Table';
 import usersBackoffice from './styles/UsersBackoffice.module.scss';
 
 const UsersBackoffice = () => {
 
-  //columnas nombre, apellido, email y las acciones para editar o eliminar al usuario.
+  const [userData, setUserData] = useState([]);
+  const [getError, setGetError] = useState('Loading...');
 
-    const mockUsers = [
-        {
-          firstName: 'Juan',
-          lastName: 'Perez',
-          email: 'correo@correo.com',
-          roleId: 2,
-          createdAt: '12/12/2018',
-          id: 1,
-        },
-        {
-          firstName: 'Francisco',
-          lastName: 'Lopez',
-          email: 'correo@correo.com',
-          roleId: 2,
-          createdAt: '12/12/2019',
-          id: 2,
-        },
-        {
-          firstName: 'Julieta',
-          lastName: 'Garcia',
-          email: 'correo@correo.com',
-          roleId: 2,
-          createdAt: '12/12/2020',
-          id: 3,
-        },
-        {
-          firstName: 'Agustina',
-          lastName: 'Martinez',
-          email: 'correo@correo.com',
-          roleId: 2,
-          createdAt: '12/12/2021',
-          id: 4,
-        },
-        
-      ];
+  useEffect(() => {
+    const getUsers = async() => {
+      try {
+        const {data} = await fetchApi({method: 'get', url: '/users'});
+        const mapping = data.users.map(({firstName,lastName,email,id,roleId}) => {return({firstName,lastName,email,id,roleId})});
+        setUserData(mapping);
+        setGetError('');
+      } catch (err) {
+        setGetError('Ocurrió un error');
+      };
+
+    };
+    getUsers();
+  }, []);
+
+
+
+  const editHandler = () => {
+    
+  }
+
+  const handleDelete = () => {
+
+  }
 
   return (
-    <div className={usersBackoffice.layout}>
-      <h1>Usuarios registraddos</h1>
-      <table className={usersBackoffice.table}>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {mockUsers.length > 0 ? (
-            mockUsers.map(({ firstName, lastName, email, roleId, createdAt,id }) => (
-              //Pending: add expandable message section
-              <tr key={id}>
-                <td className={usersBackoffice.name}>{firstName} {lastName}</td>
-                <td>{email}</td>
-                <td>
-                  <button>Editar</button>
-                  <button>Borrar</button>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <p>No hay usuarios.</p>
-          )}
-        </tbody>
-      </table>
-    </div>
+    <>
+    { 
+      getError == '' ? 
+        <Table
+          //For the h1
+          title='Usuarios'
+          //Names for the column for tHead
+          tableHeader={['Nombre', 'Apellido', 'Email']}
+          //Array for the rows
+          tableRowsData={userData}
+          //Names of properties to be extracted from data objects
+          tableRowsProperties={['firstName', 'lastName', 'email']}
+          //Array of objects for action buttons
+          buttons={[
+            {
+              title: 'Editar', // Button text
+              handler: editHandler, // handler function for onClick
+              className: 'orange', // Class name for button styles. The classes are stored in the Table styles
+            },
+            {
+              title: 'Eliminar',
+              handler: handleDelete,
+              className: 'white',
+            },
+          ]}
+        />
+      : 
+        <p className={usersBackoffice.errorMessage}> {getError} </p>
+    }
+    </>
   );
 };
 
