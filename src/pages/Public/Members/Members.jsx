@@ -19,8 +19,6 @@ const Members = ({ quantity }) => {
     return memb[random];
   };
 
-  // !location.pathname.includes('testimonios')
-  console.log(members);
   return (
     <div className={style.container}>
       <div
