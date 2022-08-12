@@ -57,8 +57,4 @@ function propertyIsIncluded(tableRowsProperties, property) {
   return tableRowsProperties.includes(property);
 }
 
-// function generateButtons(buttons){
-
-// }
-
 export default Table;
