@@ -22,16 +22,16 @@ const Table = ({
 const generateRows = (tableRowsData, tableRowsProperties, buttons) => {
   return (
     <>
-      {tableRowsData.map((tableRow) => (
-        <tr>
-          {Object.entries(tableRow).map(([property, value]) => {
+      {tableRowsData.map((tableRow, index) => (
+        <tr key={index}>
+          {Object.entries(tableRow).map(([property, value], index) => {
             if (propertyIsIncluded(tableRowsProperties, property)) {
-              return <td>{value}</td>;
+              return <td key={index}>{value}</td>;
             }
           })}
           <td>
-            {buttons.map(({ title, handler, className }) => (
-              <button onClick={handler} className={styles[className]}>
+            {buttons.map(({ title, handler, className }, index) => (
+              <button key={index} onClick={handler} className={styles[className]}>
                 {title}
               </button>
             ))}
@@ -45,8 +45,8 @@ const generateRows = (tableRowsData, tableRowsProperties, buttons) => {
 function generateTableHead(theadColumns) {
   return (
     <tr>
-      {theadColumns.map((columnData) => (
-        <td>{columnData}</td>
+      {theadColumns.map((columnData, index) => (
+        <td key={index}>{columnData}</td>
       ))}
       <td>Acciones</td>
     </tr>
