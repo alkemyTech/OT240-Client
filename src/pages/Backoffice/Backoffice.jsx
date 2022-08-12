@@ -5,7 +5,7 @@ import Header from '../../components/Header/Header';
 import BackofficeCards from '../../components/BackofficeCards/BackofficeCards.jsx';
 import { TestimonialBackoffice } from '../../components/testimonials/TestimonialBackoffice';
 import NewsListBackoffice from './NewsListBackoffice/NewsListBackoffice';
-import Categories from '../../components/Categories/Categories';
+import Categories from './Categories/Categories';
 import { ActivitiesBackoffice } from '../../components/activities/ActivitiesBackoffice';
 import UsersBackoffice from '../../components/Users/UsersBackoffice';
 
@@ -18,7 +18,7 @@ const Backoffice = () => {
         <Route path='/' element={<BackofficeCards />} />
         <Route path='/novedades/*' element={<NewsListBackoffice />} />
         <Route path='/testimonios' element={<TestimonialBackoffice />} />
-        <Route path='/categorias' element={<Categories />} />
+        <Route path='/categorias/*' element={<Categories />} />
         <Route path='/contactos' element={<Contacts />} />
         <Route path='/actividades' element={<ActivitiesBackoffice />} />
         <Route path='/usuarios' element={<UsersBackoffice />} />
