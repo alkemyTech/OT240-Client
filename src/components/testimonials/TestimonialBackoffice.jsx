@@ -1,36 +1,48 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import fetchApi from '../../axios/axios';
 import style from "./styles/testimonialBackoffice.module.scss";
 
 
 export const TestimonialBackoffice = () => {
 
-  let data = [
-      {
-        id: 1,
-        name: "Mauricio Yapura",
-        content: "contenido del testimonio 1"      
-      },{
-        id: 2,
-        name: "Juan Perez",
-        content: "contenido del testimonio 2"      
-      },{
-        id: 3,
-        name: "María López",
-        content: "contenido del testimonio 3"      
-      },{
-        id: 4,
-        name: "Laura Gómez",
-        content: "contenido del testimonio 4"
-      }
-  ];
+  const navigate = useNavigate();
+  const location = useLocation();  
+  const [testimonials, setTestimonials] = React.useState([]);
 
-  const handleEdit = (e) => {
-    console.log("boton editar")
+  React.useEffect(() => {    
+    const getTestimonials = async () => {
+      try {
+        const { data } = await fetchApi({ method: 'get', url: '/testimonials' });
+        setTestimonials(data);
+      } catch (err) {
+        console.log("Error en el get");        
+      }  
+    };
+    getTestimonials();    
+  }, []);
+  
+
+  const handleEdit = ({id, fields}) => {       
+    navigate("editar", {
+      state: {
+        id,
+        title: 'Editar Testimonio',
+        options: { method: 'put', url: `/testimonials/${id}` },
+        from: location,
+        fields
+      },
+    });    
   };
   
-  const handleDelete = () => {
-    console.log("boton eliminar")
-  }
+  const handleDelete = async(id) => {
+    try {      
+      await fetchApi({method: 'delete', url: `/testimonials/${id}`});
+      alert("Testimonio eliminada");
+    } catch (error) {      
+      alert(error.response.data.error)
+    }
+  };
 
   return (
     
@@ -46,12 +58,12 @@ export const TestimonialBackoffice = () => {
         </thead>
         <tbody>
           {
-            data.map( (registro)=>(
-              <tr key={registro.id} className={style.tr}>
-                  <td className={style.name}>{registro.name}</td>                                  
+            testimonials.map( ({id, name, image, content})=>(
+              <tr key={id} className={style.tr}>
+                  <td className={style.name}>{name}</td>                                  
                   <td className={style.options}>
-                      <button className={style.buttonEdit} onClick={()=>handleEdit()}>Editar</button>
-                      <button className={style.buttonDelete} onClick={()=>handleDelete()}>Eliminar</button>
+                      <button className={style.buttonEdit} onClick={()=>handleEdit({id, fields:{name, image, content}})}>Editar</button>
+                      <button className={style.buttonDelete} onClick={()=>handleDelete(id)}>Eliminar</button>
                   </td>
               </tr> 
               ) )

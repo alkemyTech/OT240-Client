@@ -7,8 +7,8 @@ export const TestimonialCard = ({image, name, content}) => {
 
     <div className={styles.card}>
         <img src={image} alt="profile picture" className={styles.profilePic}/>
-        <span>{name}</span>
-        <p>{content}</p>
+        <span className={styles.span}>{name}</span>
+        <p className={styles.p}>{content}</p>
 
     </div>
   )
