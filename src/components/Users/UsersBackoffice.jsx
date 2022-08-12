@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import fetchApi from '../../axios/axios';
 import Table from '../Table/Table';
@@ -7,6 +7,8 @@ import usersBackoffice from './styles/UsersBackoffice.module.scss';
 
 const UsersBackoffice = () => {
 
+  const location = useLocation();
+  const navigate = useNavigate();
   const [userData, setUserData] = useState([]);
   const [getError, setGetError] = useState('Loading...');
 
@@ -27,8 +29,18 @@ const UsersBackoffice = () => {
 
 
 
-  const editHandler = () => {
-    
+  const editHandler = ({id}) => {
+    navigate('editar', {state: {
+        title: 'Editar Usuario', 
+        fields: {
+            Nombre: '', 
+            Apellido: '', 
+            Email: '', 
+            Rol: ''
+          },
+        options: {method: 'put', url: `/users/${id}`},
+        from: location
+      }});
   }
 
   const handleDelete = () => {
