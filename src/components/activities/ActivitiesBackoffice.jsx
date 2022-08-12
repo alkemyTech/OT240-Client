@@ -22,13 +22,14 @@ export const ActivitiesBackoffice = () => {
     getActivities();    
   }, []);
 
-  const handleEdit = (id, name, content) => {      
+  const handleEdit = ({id, fields}) => {       
     navigate("editar", {
       state: {
+        id,
         title: 'Editar Actividad',
         options: { method: 'put', url: `/activities/${id}` },
         from: location,
-        fields: { name: name, image: '', content: content },
+        fields
       },
     });    
   };
@@ -52,6 +53,7 @@ export const ActivitiesBackoffice = () => {
       },
     });
   };
+  
 
   return (
 
@@ -68,15 +70,17 @@ export const ActivitiesBackoffice = () => {
             </tr>
         </thead>
         <tbody>
-          {
-            activities.map( (registro)=>(
-              <tr key={registro.id} className={style.tr}>
-                  <td className={style.name}>{registro.name}</td>                                  
+          {            
+            activities.map( ({id, name, image, content})=>(
+              
+              <tr key={id} className={style.tr}>
+                  <td className={style.name}>{name}</td>                                  
                   <td className={style.options}>
-                      <button className={style.buttonEdit} onClick={()=>handleEdit(registro.id, registro.name, registro.content)}>Editar</button>
-                      <button className={style.buttonDelete} onClick={()=>handleDelete(registro.id)}>Eliminar</button>
+                      <button className={style.buttonEdit} onClick={()=>handleEdit({id, fields:{name, image, content}})}>Editar</button>
+                      <button className={style.buttonDelete} onClick={()=>handleDelete(id)}>Eliminar</button>
                   </td>
               </tr> 
+              
               ) )
           }
         </tbody>      
