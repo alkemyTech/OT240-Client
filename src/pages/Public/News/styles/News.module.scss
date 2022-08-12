@@ -4,17 +4,24 @@
   margin: auto;
   margin-bottom: calc(4 * var(--mod));
 
-  h2 {
+  // <<<<<<< HEAD
+  h1 {
+    margin: calc(2 * var(--mod)) auto;
     text-align: center;
-    font-size: 2rem;
-    margin: 2rem 0 2rem;
-    font-style: normal;
-    font-weight: 600;
+    font-size: calc(4 * var(--mod));
+    // =======
+    //   h2 {
+    //     text-align: center;
+    //     font-size: 2rem;
+    //     margin: 2rem 0 2rem;
+    //     font-style: normal;
+    //     font-weight: 600;
 
-    @media screen and (min-width: 769px) {
-      font-size: 3rem;
-      margin: 1rem 0 2rem;
-    }
+    //     @media screen and (min-width: 769px) {
+    //       font-size: 3rem;
+    //       margin: 1rem 0 2rem;
+    //     }
+    // >>>>>>> dev
   }
 }
 
