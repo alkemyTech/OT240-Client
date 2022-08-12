@@ -4,6 +4,7 @@ import LogoFooter from '../LogoFooter/LogoFooter';
 import Links from '../Links/Links';
 import RedesIcons from '../RedesIcons/RedesIcons';
 import fetchApi from '../../axios/axios';
+import { CONSTANTS } from '../../constants';
 
 const Footer = () => {
   const [navigationItems, setNavigationItems] = useState([]);
@@ -16,14 +17,7 @@ const Footer = () => {
 
   useEffect(() => {
     //obtener links desde endpoint de datos públicos o de algun store de redux y que se cargue al principio
-    setNavigationItems([
-      { text: 'Inicio', route: '/' },
-      { text: 'Nosotros', route: '/nosotros' },
-      { text: 'Novedades', route: '/news' },
-      { text: 'Testimonios', route: '/testimonios' },
-      { text: 'Contacto', route: '/contacto' },
-      { text: 'Contribuye', route: '/contribuye' },
-    ]);
+    setNavigationItems(CONSTANTS.HEADER_LINKS.PUBLIC_LINKS);
     //Doing the socialMediaLinks fetching and storing it in the state
     (async () => {
       const socialMediaLinks = await fetchSocialMediaLinks();
