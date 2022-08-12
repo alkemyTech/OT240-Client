@@ -31,7 +31,7 @@ const NewsSlider = ({ limit }) => {
 
   return (
     <article id='slider'>
-      {!loading && news.length && (
+      {!loading && news.length ? (
         <Carousel infiniteLoop={true} showStatus={false} showThumbs={false} transitionTime={500}>
           {news.slice(0, limit).map(({ image, name }, i) => (
             <figure key={i}>
@@ -44,6 +44,8 @@ const NewsSlider = ({ limit }) => {
             </figure>
           ))}
         </Carousel>
+      ) : (
+        ''
       )}
     </article>
   );
