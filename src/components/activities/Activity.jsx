@@ -1,41 +1,37 @@
 import React from 'react';
 import { useParams } from 'react-router';
+import fetchApi from '../../axios/axios';
 import styles from "./styles/activity.module.scss"
 
 
 export const Activity = () => {
 
     const {id} = useParams();    
+    const [activity, setActivity] = React.useState([]);
 
-    let data = [
-        {
-            id: 1,
-            name: "Actividad 1",
-            image: "/images/journal-01.jpg",
-            content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque ex optio laboriosam! Dolorem impedit temporibus facere eos ex quidem recusandae necessitatibus fugiat doloribus perferendis, mollitia, quam autem sapiente cumque dolore?"
-        },{
-            id: 2,
-            name: "Actividad 2",
-            image: "/images/journal-02.jpg",
-            content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque ex optio laboriosam! Dolorem impedit temporibus facere eos ex quidem recusandae necessitatibus fugiat doloribus perferendis, mollitia, quam autem sapiente cumque dolore?"
-        },{
-            id: 3,
-            name: "Actividad 3",
-            image: "/images/journal-03.jpg",
-            content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque ex optio laboriosam! Dolorem impedit temporibus facere eos ex quidem recusandae necessitatibus fugiat doloribus perferendis, mollitia, quam autem sapiente cumque dolore?"
-        },
-    ];  
+    React.useEffect(() => {    
+        const getActivity = async () => {
+          try {
+            const { data } = await fetchApi({ method: 'get', url: `/activities/${id}` });
+            console.log(data)
+            setActivity(data);
+          } catch (err) {
+            console.log("Error en el get");        
+          }  
+        };
+        getActivity();    
+      }, []);      
     
-    let actividad = data.find((el) => el.id==id);       
+    //let actividad = data.find((el) => el.id==id);       
       
   return (
     <div className={styles.container}>  
         {
-            (actividad!=undefined) ? 
+            (activity!=undefined) ? 
                 <>
-                    <img src={actividad.image} alt='actividad' className={styles.image} /> 
-                    <h2 className={styles.name}>{actividad.name}</h2> 
-                    <p className={styles.content}>{actividad.content}</p> 
+                    <img src={activity.image} alt='actividad' className={styles.image} /> 
+                    <h2 className={styles.name}>{activity.name}</h2> 
+                    <p className={styles.content}>{activity.content}</p> 
                 </>
                 : <p className={styles.error}>Error: no se encontró la actividad</p>                
             }             
