@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import style from './styles/Header.module.scss';
 import logo from './assets/LOGO-SOMOS-MAS.png';
 import Hamburger from '../Hamburger/Hamburger';
@@ -8,6 +8,7 @@ import Buttons from '../Buttons/Buttons';
 
 const Header = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const [navigationItems, setNavigationItems] = useState([]);
@@ -20,6 +21,7 @@ const Header = () => {
     //obtener links desde endpoint de datos públicos o de algun store de redux y que se cargue al principio
     location.pathname.includes('backoffice')
       ? setNavigationItems([
+          { text: 'Novedades', route: '/backoffice/novedades' },
           { text: 'Novedades', route: '/backoffice/novedades' },
           { text: 'Actividades', route: '/backoffice/actividades' },
           { text: 'Categorias', route: '/backoffice/categorias' },
@@ -43,7 +45,7 @@ const Header = () => {
     <>
       <header className={style.header}>
         <div className={style.topBar}>
-          <img src={logo} alt='somos_mas_logo' />
+          <img src={logo} alt='somos_mas_logo' onClick={() => navigate('/')} />
           <div className={` ${style.topLinks} `}>
             <Links navigationItems={navigationItems} />
             <Buttons />
