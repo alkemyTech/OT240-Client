@@ -70,6 +70,12 @@
     @media screen and (min-width: 768px) {
       display: table-row-group;
     }
+    .organization {
+      flex-direction: column;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     tr {
       flex-direction: column;
       display: flex;
@@ -130,4 +136,5 @@
   color: black;
   font-weight: bold;
   border: 1px solid black;
+
 }

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import style from './styles/Header.module.scss';
 import logo from './assets/LOGO-SOMOS-MAS.png';
 import Hamburger from '../Hamburger/Hamburger';
 import Links from '../Links/Links';
 import Buttons from '../Buttons/Buttons';
+import { CONSTANTS } from '../../constants';
 
 const Header = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const [navigationItems, setNavigationItems] = useState([]);
@@ -19,24 +21,8 @@ const Header = () => {
   useEffect(() => {
     //obtener links desde endpoint de datos públicos o de algun store de redux y que se cargue al principio
     location.pathname.includes('backoffice')
-      ? setNavigationItems([
-          { text: 'Novedades', route: '/backoffice/novedades' },
-          { text: 'Actividades', route: '/backoffice/actividades' },
-          { text: 'Categorias', route: '/backoffice/categorias' },
-          { text: 'Testimonios', route: '/backoffice/testimonios' },
-          { text: 'Organización', route: '/backoffice/organizacion' },
-          { text: 'Slides', route: '/backoffice/slides' },
-          { text: 'Usuarios', route: '/backoffice/usuarios' },
-          { text: 'Miembros', route: '/backoffice/miembros' },
-        ])
-      : setNavigationItems([
-          { text: 'Inicio', route: '/' },
-          { text: 'Nosotros', route: '/nosotros' },
-          { text: 'Novedades', route: '/novedades' },
-          { text: 'Testimonios', route: '/testimonios' },
-          { text: 'Actividades', route: '/actividades' },
-          { text: 'Contacto', route: '/contacto' },
-        ]);
+      ? setNavigationItems(CONSTANTS.HEADER_LINKS.BACKOFFICE_LINKS)
+      : setNavigationItems(CONSTANTS.HEADER_LINKS.PUBLIC_LINKS);
   }, [location.pathname]);
 
   return (

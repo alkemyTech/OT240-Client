@@ -13,9 +13,21 @@ const translateFieldName = (recievedName) => {
     case 'content':
       return 'Contenido';
     case 'description':
-      return 'Descripcion';
+      return 'Descripción';
     case 'image':
       return 'Imagen';
+    case 'phone':
+      return 'Telefono';
+    case 'welcomeText':
+      return 'Texto de bienvenida';
+    case 'address':
+      return 'Dirección';
+    case 'facebook':
+      return 'Facebook';
+    case 'linkedin':
+      return 'Linkedin';
+    case 'instagram':
+      return 'instagram';
     case 'firstName':
       return 'Nombre';
     case 'lastName':
@@ -40,6 +52,7 @@ const fieldSwitch = (key, value, setState) => {
         />
       );
     case 'content':
+    case 'welcomeText':
     case 'description':
       return (
         <TextEditor
