@@ -28,8 +28,6 @@ const UsersBackoffice = () => {
     getUsers();
   }, []);
 
-
-
   const editHandler = (user) => {
 
     handleEdit(navigate, {
@@ -42,10 +40,8 @@ const UsersBackoffice = () => {
             },
           options: {method: 'put', url: `/users/${user.id}`},
           from: location
-        })
-
-    // navigate('editar', {state: });
-  }
+        });
+  };
 
   const deleteHandler = (user) => {
     handleDelete(navigate, {
@@ -53,8 +49,8 @@ const UsersBackoffice = () => {
       id: user.id,
       name: `${user.firstName} ${user.lastName}`,
       url: `/users/${user.id}`
-    })
-  }
+    });
+  };
 
   return (
     <>
