@@ -33,41 +33,34 @@ const translateFieldName = (recievedName) => {
   }
 };
 
-const fieldSwitch = (key, value, setState) => {
+const fieldSwitch = (key) => {
   switch (key) {
     case 'image':
-      return (
-        <FileField
-          style={style}
-          label={translateFieldName(key)}
-          field={key}
-          value={value}
-          setState={setState}
-        />
-      );
+      return <FileField field={key} />;
     case 'content':
     case 'welcomeText':
     case 'description':
-      return (
-        <TextEditor
-          style={style}
-          label={translateFieldName(key)}
-          field={key}
-          value={value}
-          setState={setState}
-        />
-      );
+      return <TextEditor field={key} />;
     default:
-      return (
-        <TextField
-          style={style}
-          label={translateFieldName(key)}
-          field={key}
-          value={value}
-          setState={setState}
-        />
-      );
+      return <TextField field={key} />;
   }
 };
 
-export default fieldSwitch;
+const FieldMap = ({ fields }) => {
+  const entries = Object.entries(fields);
+  return (
+    <>
+      {entries.length &&
+        entries.map(([key, value]) => (
+          <div key={key} className={style.field}>
+            <label className={style.label} htmlFor={key}>
+              {translateFieldName(key)}
+            </label>
+            {fieldSwitch(key)}
+          </div>
+        ))}
+    </>
+  );
+};
+
+export default FieldMap;
