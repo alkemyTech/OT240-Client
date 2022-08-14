@@ -1,50 +1,39 @@
-import {
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
-  USER_LOADED,
-  AUTH_ERROR,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  LOGOUT,
-} from '../types/auth.types';
-import { SET_LOADING } from '../types/common.types';
+import { REGISTER_SUCCESS, LOGIN_SUCCESS, SET_USER, LOGOUT } from '../types/auth.types';
+import { SET_LOADING, SET_ERROR } from '../types/common.types';
 
 const initialState = {
-  token: localStorage.getItem('token'),
-  isAuth: false,
-  isAdmin: false,
+  token: sessionStorage.getItem('token'),
   loading: false,
   user: null,
 };
 
-export default function authReducer(state = initialState, action) {
-  const { type, payload } = action;
-
+export default function authReducer(state = initialState, { type, payload }) {
   switch (type) {
-    case SET_LOADING:
-      return { ...state, loading: payload };
-
-    // case USER_LOADED:
-    //   return { ...state, isAuth: true, loading: false, user: payload };
-
+    case SET_USER:
+      return {
+        ...state,
+        user: payload,
+      };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       sessionStorage.setItem('token', payload.token);
       return {
         ...state,
-        ...payload,
-        isAuth: true,
-        // isAdmin: payload.user.roleId == 1,
+        token: payload.token,
+        user: payload.user,
       };
-
-    // case REGISTER_FAIL:
-    // case AUTH_ERROR:
-    // case LOGIN_FAIL:
-    // case LOGOUT:
-    // case ACCOUNT_DELETED:
-    //   localStorage.removeItem('token');
-    //   return { ...state, token: null, isAuthenticated: false, loading: false };
-
+    case LOGOUT:
+      sessionStorage.removeItem('token');
+      return {
+        ...initialState,
+      };
+    case SET_LOADING:
+      return { ...state, loading: payload };
+    case SET_ERROR:
+      return {
+        ...state,
+        error: payload,
+      };
     default:
       return state;
   }

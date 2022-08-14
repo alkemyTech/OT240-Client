@@ -1,6 +1,7 @@
 import React from 'react';
-import Contacts from '../../components/Contacts/Contacts';
 import { Routes, Route } from 'react-router-dom';
+
+import Contacts from '../../components/Contacts/Contacts';
 import Header from '../../components/Header/Header';
 import BackofficeCards from '../../components/BackofficeCards/BackofficeCards.jsx';
 import { TestimonialBackoffice } from '../../components/testimonials/TestimonialBackoffice';
@@ -12,7 +13,6 @@ import Organization from './Organization/Organization';
 
 const Backoffice = () => {
   return (
-    // LayoutBackoffice
     <>
       <Header />
       <Routes>
