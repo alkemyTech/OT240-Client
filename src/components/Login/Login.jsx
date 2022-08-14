@@ -7,7 +7,6 @@ import { loginAction } from '../../redux/actions/auth.action';
 
 import login from './styles/Login.module.scss';
 import InputField from '../InputField/InputField';
-import fetchApi from '../../axios/axios';
 
 const Login = () => {
   const [errors, setErrors] = useState('');
