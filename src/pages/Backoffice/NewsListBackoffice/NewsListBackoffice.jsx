@@ -1,73 +1,36 @@
 import React from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import style from './styles/NewsListBackoffice.module.scss';
+import { fetchNews } from '../../../redux/actions/news.actions';
 import Form from '../../../components/Form/Form';
 
-import fetchApi from '../../../axios/axios';
-
-const TableRow = ({ entry, handleEdit, handleDelete }) => {
-  const { name, image, content, id } = entry;
-  return (
-    <tr key={id}>
-      <td>{entry.name}</td>
-      <td>{new Date(entry.createdAt).toLocaleDateString()}</td>
-      <td onClick={() => handleEdit({ id, fields: { name, image, content } })}>
-        <button>Editar</button>
-      </td>
-      <td onClick={() => handleDelete({ id, name })}>
-        <button>Borrar</button>
-      </td>
-    </tr>
-  );
-};
-
-const NewsTable = () => {
-  const location = useLocation();
+const NewsListBackoffice = () => {
   const navigate = useNavigate();
-
-  const [news, setNews] = React.useState([]);
-  const [error, setError] = React.useState('');
-  const [loading, setLoading] = React.useState(true);
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const { news, loading, error } = useSelector((state) => state.news);
 
   React.useEffect(() => {
-    let isMounted = true;
-    const getNews = async () => {
-      try {
-        const { data } = await fetchApi({ method: 'get', url: '/news' });
-        isMounted && setNews(data);
-      } catch (err) {
-        isMounted && setError(err.messsage);
-      } finally {
-        isMounted && setLoading(false);
-      }
-    };
-
-    getNews();
-
-    return () => (isMounted = false);
+    dispatch(fetchNews({ url: '/news' }));
   }, []);
 
-  const handleDelete = async ({ id, name }) => {
+  const handleDelete = async (fields) => {
     const confirmDelete = window.confirm(
-      `Desea borrar la novedad "${name}"?\nEsta operación no puede desacerse!`
+      `Desea borrar la novedad "${fields.name}"?\nEsta operación no puede deshacerse!`
     );
     if (confirmDelete) {
-      try {
-        const { data } = await fetchApi({ method: 'delete', url: `/news/${id}` });
-        window.location.reload();
-      } catch (err) {
-        window.alert(err);
-      }
+      dispatch(fetchNews({ url: `/news/${fields.id}`, method: 'delete' }));
     }
   };
 
-  const handleEdit = async ({ id, fields }) => {
+  const handleEdit = async (fields) => {
+    const { name, content, image, id } = fields;
     navigate('editar', {
       state: {
-        id,
         title: 'Editar Novedad',
-        fields,
+        fields: { name, content, image },
         options: { method: 'put', url: `/news/${id}` },
         from: location,
       },
@@ -86,9 +49,34 @@ const NewsTable = () => {
   };
 
   return (
+    <Routes>
+      <Route path='/crear' element={<Form />} />
+      <Route path='/editar' element={<Form />} />
+      <Route
+        path='/'
+        element={
+          <Table
+            entries={news}
+            loading={loading}
+            error={error}
+            handleCreate={handleCreate}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+          />
+        }
+      />
+    </Routes>
+  );
+};
+
+export default NewsListBackoffice;
+
+function Table({ entries, error, loading, handleDelete, handleCreate, handleEdit }) {
+  return (
     <section className={style.container}>
       <h1>Administrar Novedades</h1>
-      {!loading && news.length ? (
+      {error && <h2>{error}</h2>}
+      {!loading && entries.length ? (
         <table>
           <thead>
             <tr>
@@ -99,7 +87,7 @@ const NewsTable = () => {
             </tr>
           </thead>
           <tbody>
-            {news.map((entry) => (
+            {entries.map((entry) => (
               <TableRow
                 entry={entry}
                 handleDelete={handleDelete}
@@ -118,16 +106,20 @@ const NewsTable = () => {
       </button>
     </section>
   );
-};
+}
 
-const NewsListBackoffice = () => {
+function TableRow({ entry, handleEdit, handleDelete }) {
+  const { name, image, createdAt, content, id } = entry;
   return (
-    <Routes>
-      <Route path='/crear' element={<Form />} />
-      <Route path='/editar' element={<Form />} />
-      <Route path='/' element={<NewsTable />} />
-    </Routes>
+    <tr key={id}>
+      <td>{entry.name}</td>
+      <td>{new Date(createdAt).toLocaleDateString()}</td>
+      <td onClick={() => handleEdit({ id, name, image, content })}>
+        <button>Editar</button>
+      </td>
+      <td onClick={() => handleDelete({ id, name })}>
+        <button>Borrar</button>
+      </td>
+    </tr>
   );
-};
-
-export default NewsListBackoffice;
+}

@@ -1,31 +1,18 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import style from './styles/NewsList.module.scss';
 
-import fetchApi from '../../axios/axios';
+import { fetchNews } from '../../redux/actions/news.actions';
 
 const NewsList = ({ quantity }) => {
   const navigate = useNavigate();
-
-  const [news, setNews] = React.useState([]);
-  const [error, setError] = React.useState('');
+  const dispatch = useDispatch();
+  const { news, error, loading } = useSelector((state) => state.news);
 
   React.useEffect(() => {
-    let isMounted = true;
-
-    const getNews = async () => {
-      try {
-        const { data } = await fetchApi({ method: 'get', url: '/news' });
-        isMounted && setNews(data);
-      } catch (err) {
-        setError('');
-      }
-    };
-
-    getNews();
-
-    return () => (isMounted = false);
+    dispatch(fetchNews({ method: 'get', url: '/news' }));
   }, []);
 
   return (
