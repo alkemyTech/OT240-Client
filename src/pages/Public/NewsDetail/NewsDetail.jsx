@@ -30,7 +30,7 @@ const NewsDetail = () => {
     getNew(id);
 
     return () => (isMounted = false);
-  }, []);
+  }, [id]);
 
   return (
     <>

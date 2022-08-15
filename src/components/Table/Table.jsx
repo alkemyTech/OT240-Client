@@ -38,8 +38,9 @@ const generateRows = (tableRowsData, tableRowsProperties, buttons, isOrganizatio
           id={tableRow.id}
           className={isOrganization && `${styles.organization}`}>
           {Object.entries(tableRow).map(([property, value]) => {
+            const isDateValue = property === 'createdAt';
             if (propertyIsIncluded(tableRowsProperties, property)) {
-              return <td>{value}</td>;
+              return <td>{isDateValue ? new Date(value).toLocaleDateString() : value}</td>;
             }
           })}
           <td className={styles.buttons}>

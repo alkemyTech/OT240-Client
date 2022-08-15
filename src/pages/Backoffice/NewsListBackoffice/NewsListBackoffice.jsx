@@ -6,10 +6,25 @@ import style from './styles/NewsListBackoffice.module.scss';
 import Form from '../../../components/Form/Form';
 import { fetchNews } from '../../../redux/actions/news.actions';
 
+import Table from '../../../components/Table/Table';
+
 const NewsListBackoffice = () => {
+  return (
+    <Routes>
+      <Route path='/crear' element={<Form />} />
+      <Route path='/editar' element={<Form />} />
+      <Route path='/' element={<NewsTable />} />
+    </Routes>
+  );
+};
+
+export default NewsListBackoffice;
+
+function NewsTable() {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
+  const { entries, loading, error } = useSelector((state) => state.news);
 
   const handleDelete = async (fields) => {
     const confirmDelete = window.confirm(
@@ -43,65 +58,59 @@ const NewsListBackoffice = () => {
     });
   };
 
-  return (
-    <Routes>
-      <Route path='/crear' element={<Form />} />
-      <Route path='/editar' element={<Form />} />
-      <Route
-        path='/'
-        element={
-          <Table handleCreate={handleCreate} handleEdit={handleEdit} handleDelete={handleDelete} />
-        }
-      />
-    </Routes>
-  );
-};
-
-export default NewsListBackoffice;
-
-function Table({ handleDelete, handleCreate, handleEdit }) {
-  const dispatch = useDispatch();
-  const { entries, loading, error } = useSelector((state) => state.news);
-
   React.useEffect(() => {
     dispatch(fetchNews({ url: '/news' }));
   }, [dispatch]);
 
   return (
-    <section className={style.container}>
-      <h1>Administrar Novedades</h1>
-      {loading ? (
-        <></>
-      ) : error ? (
-        <p className={style.error}>{error}</p>
-      ) : !entries.length ? (
-        <p className={style.empty}>No hay novedades que mostrar todavía! </p>
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Titulo</th>
-              <th>Fecha Creacion</th>
-              <th>Editar</th>
-              <th>Borrar</th>
-            </tr>
-          </thead>
-          <tbody>
-            {entries.map((entry) => (
-              <TableRow
-                entry={entry}
-                handleDelete={handleDelete}
-                handleEdit={handleEdit}
-                key={entry.id}
-              />
-            ))}
-          </tbody>
-        </table>
-      )}
-      <button onClick={handleCreate} className={style.addBtn}>
-        Agregar Novedad
-      </button>
-    </section>
+    <>
+      <Table
+        title='Novedades'
+        tableHeader={['Titulo', 'Fecha']}
+        tableRowsData={entries}
+        tableRowsProperties={['name', 'createdAt']}
+        buttons={[
+          { title: 'Editar', handler: handleEdit, className: 'white' },
+          { title: 'Eliminar', handler: handleDelete, className: 'orange' },
+        ]}
+        loading={loading}
+        addBtnHandler={handleCreate}
+      />
+      <section className={style.container}>
+        <h1>Administrar Novedades</h1>
+        {loading ? (
+          <></>
+        ) : error ? (
+          <p className={style.error}>{error}</p>
+        ) : !entries.length ? (
+          <p className={style.empty}>No hay novedades que mostrar todavía! </p>
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>Titulo</th>
+                <th>Fecha Creacion</th>
+                <th>Editar</th>
+                <th>Borrar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {entries.map((entry) => (
+                <TableRow
+                  entry={entry}
+                  handleDelete={handleDelete}
+                  handleEdit={handleEdit}
+                  key={entry.id}
+                />
+              ))}
+            </tbody>
+          </table>
+        )}
+        <button onClick={handleCreate} className={style.addBtn}>
+          Agregar Novedad
+        </button>
+      </section>
+    </>
   );
 }
 
