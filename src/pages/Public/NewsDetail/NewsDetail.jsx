@@ -11,15 +11,19 @@ const NewsDetail = () => {
 
   const [currentNew, setCurrentNew] = React.useState('');
   const [error, setError] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
     let isMounted = true;
     const getNew = async (id) => {
+      setLoading(true);
       try {
         const { data } = await fetchApi({ method: 'get', url: `/news/${id}` });
         isMounted && setCurrentNew(data);
       } catch (err) {
         isMounted && setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -30,7 +34,11 @@ const NewsDetail = () => {
 
   return (
     <>
-      {currentNew && (
+      {loading ? (
+        <></>
+      ) : error ? (
+        <p>{error}</p>
+      ) : (
         <article className={style.container}>
           <img src={`${currentNew.image}`} alt='' />
           <div>
