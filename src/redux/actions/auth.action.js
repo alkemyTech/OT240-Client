@@ -39,7 +39,7 @@ export const fetchUser = (options) => async (dispatch) => {
   dispatch(authError(null));
   try {
     const { data } = await fetchApi(options);
-    dispatch(authUser(data));
+    dispatch(authUser(data.user));
   } catch (err) {
     dispatch(authError(err.message));
     if (err?.response?.status === 403) {
