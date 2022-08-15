@@ -53,6 +53,12 @@ const NewsListBackoffice = () => {
           <Table handleCreate={handleCreate} handleEdit={handleEdit} handleDelete={handleDelete} />
         }
       />
+      <Route
+        path='/'
+        element={
+          <Table handleCreate={handleCreate} handleEdit={handleEdit} handleDelete={handleDelete} />
+        }
+      />
     </Routes>
   );
 };

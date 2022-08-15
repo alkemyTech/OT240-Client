@@ -6,6 +6,30 @@
   margin: 0 auto;
   padding: 0;
 
+  .empty {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: grey !important;
+    font-style: italic;
+    padding: var(--mod) calc(5 * var(--mod));
+    border-radius: calc(0.5 * var(--mod));
+    background-color: floralwhite;
+    box-sizing: border-box;
+  }
+
+  .error {
+    @extend .empty;
+    background-color: rgb(236, 185, 185);
+  }
+
+  .loading {
+    @extend .empty;
+    font-family: sans-serif;
+    letter-spacing: calc(0.2 * var(--mod));
+    background-color: transparent;
+  }
+
   .card {
     display: flex;
     width: calc(35 * var(--mod));
