@@ -53,12 +53,6 @@ const NewsListBackoffice = () => {
           <Table handleCreate={handleCreate} handleEdit={handleEdit} handleDelete={handleDelete} />
         }
       />
-      <Route
-        path='/'
-        element={
-          <Table handleCreate={handleCreate} handleEdit={handleEdit} handleDelete={handleDelete} />
-        }
-      />
     </Routes>
   );
 };
@@ -76,12 +70,13 @@ function Table({ handleDelete, handleCreate, handleEdit }) {
   return (
     <section className={style.container}>
       <h1>Administrar Novedades</h1>
-      {loading && 'Cargando...'}
-      {!loading && error && <p className={style.error}>{error}</p>}
-      {!loading && !entries.length && (
+      {loading ? (
+        <></>
+      ) : error ? (
+        <p className={style.error}>{error}</p>
+      ) : !entries.length ? (
         <p className={style.empty}>No hay novedades que mostrar todavía! </p>
-      )}
-      {!loading && entries.length && (
+      ) : (
         <table>
           <thead>
             <tr>
@@ -103,7 +98,6 @@ function Table({ handleDelete, handleCreate, handleEdit }) {
           </tbody>
         </table>
       )}
-
       <button onClick={handleCreate} className={style.addBtn}>
         Agregar Novedad
       </button>

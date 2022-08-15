@@ -16,9 +16,13 @@ const NewsSlider = ({ limit }) => {
 
   return (
     <article id='slider'>
-      {loading && <p className='loading'>Cargando Sildes...</p>}
-      {!loading && error && <p className='error'>{error}</p>}
-      {!loading && !error && entries.length && (
+      {loading ? (
+        <></>
+      ) : error ? (
+        <p className='error'>{error}</p>
+      ) : !entries.length ? (
+        <></>
+      ) : (
         <Carousel infiniteLoop={true} showStatus={false} showThumbs={false} transitionTime={500}>
           {entries.slice(0, limit).map(({ image, name }, i) => (
             <figure key={i}>

@@ -23,13 +23,6 @@
     background-color: rgb(236, 185, 185);
   }
 
-  .loading {
-    @extend .empty;
-    font-family: sans-serif;
-    letter-spacing: calc(0.2 * var(--mod));
-    background-color: transparent;
-  }
-
   .card {
     display: flex;
     width: calc(35 * var(--mod));

@@ -17,14 +17,13 @@ const NewsList = ({ quantity }) => {
 
   return (
     <ul className={style.container}>
-      {loading && <p className={style.loading}>Cargando Novedades...</p>}
-      {!loading && error && <p className={style.error}>{error}</p>}
-      {!loading && !error && !news.length && (
+      {loading ? (
+        <></>
+      ) : error ? (
+        <p className={style.error}>{error}</p>
+      ) : !news.length ? (
         <p className={style.empty}>No hay novedades para mostrar</p>
-      )}
-      {!loading &&
-        !error &&
-        news.length &&
+      ) : (
         news.slice(0, quantity).map(({ name, image, id }) => (
           <li className={style.card} key={id}>
             <div
@@ -39,7 +38,8 @@ const NewsList = ({ quantity }) => {
               </button>
             </div>
           </li>
-        ))}
+        ))
+      )}
     </ul>
   );
 };
