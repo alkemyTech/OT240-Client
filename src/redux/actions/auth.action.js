@@ -26,6 +26,7 @@ export const registerAction = (options) => async (dispatch) => {
   dispatch(authError(null));
   try {
     const { data } = await fetchApi(options);
+    sessionStorage.setItem('token', data.token);
     dispatch(authSuccess(data));
   } catch (err) {
     dispatch(authError(err.message));
