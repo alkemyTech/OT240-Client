@@ -1,32 +1,29 @@
-import { SET_FIELDS, SET_FIELD } from '../types/form.types';
-import { loading, setError, setSuccess } from './common.action';
+import {
+  FORM_LOADING,
+  FORM_SUCCESS,
+  FORM_ERROR,
+  FORM_FIELDS,
+  FORM_FIELD,
+} from '../types/form.types';
 import fetchApi from '../../axios/axios';
 
 export const submitForm = (options) => async (dispatch, state) => {
-  dispatch(loading(true));
-  dispatch(setError(null));
+  dispatch(formLoading(true));
+  dispatch(formError(null));
+  dispatch(formSuccess(null));
   try {
-    const { data } = await fetchApi(options);
-    // dispatch(updateState(data));
-    dispatch(setSuccess('Formulario enviado exitosamente!'));
+    await fetchApi(options);
+    dispatch(formSuccess('Formulario enviado exitosamente!'));
   } catch (err) {
     console.log(err);
-    dispatch(setError(err.message));
+    dispatch(formError(err.message));
   } finally {
-    dispatch(loading(false));
+    dispatch(formLoading(false));
   }
 };
 
-export const setFields = (payload) => {
-  return {
-    type: SET_FIELDS,
-    payload,
-  };
-};
-
-export const setField = (payload) => {
-  return {
-    type: SET_FIELD,
-    payload,
-  };
-};
+const formLoading = (payload) => ({ type: FORM_LOADING, payload });
+export const formError = (payload) => ({ type: FORM_ERROR, payload });
+export const formSuccess = (payload) => ({ type: FORM_SUCCESS, payload });
+export const formFields = (payload) => ({ type: FORM_FIELDS, payload });
+export const formField = (payload) => ({ type: FORM_FIELD, payload });

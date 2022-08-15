@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from './styles/Form.module.scss';
 
 import convertToBase64 from '../../utils/handleBase64';
-import { setField } from '../../redux/actions/form.actions';
+import { formField } from '../../redux/actions/form.actions';
 
 const FileField = ({ field }) => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const FileField = ({ field }) => {
   const onChange = async (e) => {
     const { files } = e.target;
     const toBase64 = await convertToBase64(files[0]);
-    dispatch(setField({ [field]: toBase64 }));
+    dispatch(formField({ [field]: toBase64 }));
   };
 
   return (

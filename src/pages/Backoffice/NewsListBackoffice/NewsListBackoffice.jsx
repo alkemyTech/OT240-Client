@@ -3,18 +3,13 @@ import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import style from './styles/NewsListBackoffice.module.scss';
-import { fetchNews } from '../../../redux/actions/news.actions';
 import Form from '../../../components/Form/Form';
+import { fetchNews } from '../../../redux/actions/news.actions';
 
 const NewsListBackoffice = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-  const { news, loading, error } = useSelector((state) => state.news);
-
-  React.useEffect(() => {
-    dispatch(fetchNews({ url: '/news' }));
-  }, []);
 
   const handleDelete = async (fields) => {
     const confirmDelete = window.confirm(
@@ -55,14 +50,7 @@ const NewsListBackoffice = () => {
       <Route
         path='/'
         element={
-          <Table
-            entries={news}
-            loading={loading}
-            error={error}
-            handleCreate={handleCreate}
-            handleEdit={handleEdit}
-            handleDelete={handleDelete}
-          />
+          <Table handleCreate={handleCreate} handleEdit={handleEdit} handleDelete={handleDelete} />
         }
       />
     </Routes>
@@ -71,12 +59,23 @@ const NewsListBackoffice = () => {
 
 export default NewsListBackoffice;
 
-function Table({ entries, error, loading, handleDelete, handleCreate, handleEdit }) {
+function Table({ handleDelete, handleCreate, handleEdit }) {
+  const dispatch = useDispatch();
+  const { entries, loading, error } = useSelector((state) => state.news);
+
+  React.useEffect(() => {
+    dispatch(fetchNews({ url: '/news' }));
+  }, [dispatch]);
+
   return (
     <section className={style.container}>
       <h1>Administrar Novedades</h1>
-      {error && <h2>{error}</h2>}
-      {!loading && entries.length ? (
+      {loading && 'Cargando...'}
+      {!loading && error && <p className={style.error}>{error}</p>}
+      {!loading && !entries.length && (
+        <p className={style.empty}>No hay novedades que mostrar todavía! </p>
+      )}
+      {!loading && entries.length && (
         <table>
           <thead>
             <tr>
@@ -97,8 +96,6 @@ function Table({ entries, error, loading, handleDelete, handleCreate, handleEdit
             ))}
           </tbody>
         </table>
-      ) : (
-        <p className={style.empty}>No hay novedades que mostrar todavía! </p>
       )}
 
       <button onClick={handleCreate} className={style.addBtn}>

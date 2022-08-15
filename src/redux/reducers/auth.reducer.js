@@ -1,40 +1,31 @@
-import { REGISTER_SUCCESS, LOGIN_SUCCESS, SET_USER, LOGOUT } from '../types/auth.types';
-import { SET_LOADING, SET_ERROR } from '../types/common.types';
+import {
+  AUTH_LOADING,
+  AUTH_SUCCESS,
+  AUTH_ERROR,
+  AUTH_USER,
+  AUTH_LOGOUT,
+} from '../types/auth.types';
 
 const initialState = {
-  token: sessionStorage.getItem('token'),
   loading: false,
+  error: null,
   user: null,
+  token: sessionStorage.getItem('token'),
 };
 
 export default function authReducer(state = initialState, { type, payload }) {
   switch (type) {
-    case SET_USER:
-      return {
-        ...state,
-        user: payload,
-      };
-    case REGISTER_SUCCESS:
-    case LOGIN_SUCCESS:
-      sessionStorage.setItem('token', payload.token);
-      return {
-        ...state,
-        token: payload.token,
-        user: payload.user,
-      };
-    case LOGOUT:
-      sessionStorage.removeItem('token');
-      return {
-        ...initialState,
-      };
-    case SET_LOADING:
+    case AUTH_LOADING:
       return { ...state, loading: payload };
-    case SET_ERROR:
-      return {
-        ...state,
-        error: payload,
-      };
+    case AUTH_SUCCESS:
+      return { ...state, token: payload?.token, user: payload?.user };
+    case AUTH_ERROR:
+      return { ...state, error: payload };
+    case AUTH_USER:
+      return { ...state, user: payload };
+    case AUTH_LOGOUT:
+      return { ...state, token: null, user: null };
     default:
-      return state;
+      return { ...state };
   }
 }

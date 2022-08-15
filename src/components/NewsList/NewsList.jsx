@@ -9,14 +9,16 @@ import { fetchNews } from '../../redux/actions/news.actions';
 const NewsList = ({ quantity }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { news, error, loading } = useSelector((state) => state.news);
+  const { entries: news, error, loading } = useSelector((state) => state.news);
 
   React.useEffect(() => {
     dispatch(fetchNews({ method: 'get', url: '/news' }));
-  }, []);
+  }, [dispatch]);
 
   return (
     <ul className={style.container}>
+      {error && `${error}`}
+      {loading && 'Loading...'}
       {news.length ? (
         news.slice(0, quantity).map(({ name, image, id, content }) => (
           <li className={style.card} key={id}>

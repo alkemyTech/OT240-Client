@@ -12,7 +12,7 @@ function App() {
 
   React.useEffect(() => {
     dispatch(fetchUser({ url: '/auth/me' }));
-  }, []);
+  }, [dispatch]);
 
   return (
     <Router>

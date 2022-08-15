@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setField } from '../../redux/actions/form.actions';
+import { formField } from '../../redux/actions/form.actions';
 
 const TextField = ({ field }) => {
   const dispatch = useDispatch();
@@ -9,7 +9,7 @@ const TextField = ({ field }) => {
 
   const onChange = (e) => {
     const { value } = e.target;
-    dispatch(setField({ [field]: value }));
+    dispatch(formField({ [field]: value }));
   };
 
   return <input type='text' id={field} value={value} onChange={onChange} />;
