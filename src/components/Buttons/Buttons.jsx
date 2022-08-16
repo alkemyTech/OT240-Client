@@ -33,7 +33,9 @@ const Buttons = () => {
       )}
       {isAuth && (
         <div className={style.btn}>
-          <Link onClick={handleLogOut} to={'/login'}>Log out</Link>
+          <Link onClick={handleLogOut} to={'/login'}>
+            Log out
+          </Link>
         </div>
       )}
     </div>

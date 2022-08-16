@@ -1,27 +1,27 @@
 import React from 'react'
 import { ActivityCard } from './ActivityCard';
-import styles from "./styles/activities.module.scss"
+import styles from "./styles/activities.module.scss";
+import { useNavigate, useLocation } from 'react-router-dom';
+import fetchApi from '../../axios/axios';
+
 
 export const Activities = () => {
 
-    let data = [
-        {
-            id: 1,
-            name: "Actividad 1",
-            image: "/images/journal-01.jpg",
-            content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque ex optio laboriosam! Dolorem impedit temporibus facere eos ex quidem recusandae necessitatibus fugiat doloribus perferendis, mollitia, quam autem sapiente cumque dolore?"
-        },{
-            id: 2,
-            name: "Actividad 2",
-            image: "/images/journal-02.jpg",
-            content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque ex optio laboriosam! Dolorem impedit temporibus facere eos ex quidem recusandae necessitatibus fugiat doloribus perferendis, mollitia, quam autem sapiente cumque dolore?"
-        },{
-            id: 3,
-            name: "Actividad 3",
-            image: "/images/journal-03.jpg",
-            content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque ex optio laboriosam! Dolorem impedit temporibus facere eos ex quidem recusandae necessitatibus fugiat doloribus perferendis, mollitia, quam autem sapiente cumque dolore?"
-        },
-    ];
+    const navigate = useNavigate();
+    const location = useLocation();
+    const [activities, setActivities] = React.useState([]);
+    
+    React.useEffect(() => {    
+        const getActivities = async () => {
+          try {
+            const { data } = await fetchApi({ method: 'get', url: '/activities' });
+            setActivities(data);
+          } catch (err) {
+            console.log("Error en el get");        
+          }  
+        };
+        getActivities();    
+      }, []);
 
 
   return (
@@ -30,7 +30,7 @@ export const Activities = () => {
         <h2 className={styles.title}>Actividades</h2>
         <div className={styles.cards}>
         {
-            data.map( (el) => (
+            activities.map( (el) => (
                 <ActivityCard  key={el.id} {...el}/>
             ) )
         }
