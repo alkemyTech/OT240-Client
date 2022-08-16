@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
-import MembersBanners from './MembersBanner/MembersBanner';
+import Banner from '../../../components/Banner/Banner';
 import MembersList from './MembersList/MembersList';
 import style from './styles/Members.module.scss';
 import fetchApi from '../../../axios/axios';
@@ -56,7 +56,7 @@ const Members = ({ quantity }) => {
                 {location.pathname.includes('nosotros') ? '¡Nuestro Staff!' : 'Nuestro Staff'}
               </h2>
               {location.pathname.includes('nosotros') && members.length > 0 && (
-                <MembersBanners member={selectRandomMember(members)} />
+                <Banner data={selectRandomMember(members)} />
               )}
               {!location.pathname.includes('nosotros') && <Link to='/nosotros'>{`Ver mas >`}</Link>}
             </div>
