@@ -62,70 +62,20 @@ function NewsTable() {
     dispatch(fetchNews({ url: '/news' }));
   }, [dispatch]);
 
-  return (
-    <>
-      <Table
-        title='Novedades'
-        tableHeader={['Titulo', 'Fecha']}
-        tableRowsData={entries}
-        tableRowsProperties={['name', 'createdAt']}
-        buttons={[
-          { title: 'Editar', handler: handleEdit, className: 'white' },
-          { title: 'Eliminar', handler: handleDelete, className: 'orange' },
-        ]}
-        loading={loading}
-        addBtnHandler={handleCreate}
-      />
-      <section className={style.container}>
-        <h1>Administrar Novedades</h1>
-        {loading ? (
-          <></>
-        ) : error ? (
-          <p className={style.error}>{error}</p>
-        ) : !entries.length ? (
-          <p className={style.empty}>No hay novedades que mostrar todavía! </p>
-        ) : (
-          <table>
-            <thead>
-              <tr>
-                <th>Titulo</th>
-                <th>Fecha Creacion</th>
-                <th>Editar</th>
-                <th>Borrar</th>
-              </tr>
-            </thead>
-            <tbody>
-              {entries.map((entry) => (
-                <TableRow
-                  entry={entry}
-                  handleDelete={handleDelete}
-                  handleEdit={handleEdit}
-                  key={entry.id}
-                />
-              ))}
-            </tbody>
-          </table>
-        )}
-        <button onClick={handleCreate} className={style.addBtn}>
-          Agregar Novedad
-        </button>
-      </section>
-    </>
-  );
-}
-
-function TableRow({ entry, handleEdit, handleDelete }) {
-  const { name, image, createdAt, content, id } = entry;
-  return (
-    <tr key={id}>
-      <td>{entry.name}</td>
-      <td>{new Date(createdAt).toLocaleDateString()}</td>
-      <td onClick={() => handleEdit({ id, name, image, content })}>
-        <button>Editar</button>
-      </td>
-      <td onClick={() => handleDelete({ id, name })}>
-        <button>Borrar</button>
-      </td>
-    </tr>
+  return error ? (
+    <p>Algo salió mal..</p>
+  ) : (
+    <Table
+      title='Novedades'
+      tableHeader={['Titulo', 'Fecha']}
+      tableRowsData={entries}
+      tableRowsProperties={['name', 'createdAt']}
+      buttons={[
+        { title: 'Editar', handler: handleEdit, className: 'white' },
+        { title: 'Eliminar', handler: handleDelete, className: 'orange' },
+      ]}
+      loading={loading}
+      addBtnHandler={handleCreate}
+    />
   );
 }
