@@ -1,67 +1,88 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
+import fetchApi from '../../axios/axios';
+import { handleDelete, handleEdit } from '../../utils/formsHandlers';
+import Table from '../Table/Table';
 import usersBackoffice from './styles/UsersBackoffice.module.scss';
 
 const UsersBackoffice = () => {
 
-    const mockContacts = [
-        {
-          name: 'Juan Perez',
-          createdAt: '12/12/2018',
-          id: 1,
-        },
-        {
-          name: 'Natalia Fernandez',
-          createdAt: '24/12/2018',
-          id: 2,
-        },
-        {
-          name: 'Romina Gutierrez',
-          createdAt: '01/05/2020',
-          id: 3,
-        },
-        {
-          name: 'Matias Gomez',
-          createdAt: '10/11/2020',
-          id: 4,
-        },
-        {
-          name: 'Juan Bautista',
-          createdAt: '12/06/2021',
-          id: 5,
-        },
-        {
-          name: 'Romina Alarcon',
-          createdAt: '05/08/2022',
-          id: 6,
-        },
-      ];
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState([]);
+  const [getError, setGetError] = useState('Loading...');
+
+  useEffect(() => {
+    const getUsers = async() => {
+      try {
+        const {data} = await fetchApi({method: 'get', url: '/users'});
+        const mapping = data.users.map(({firstName,lastName,email,id,roleId}) => {return({firstName,lastName,email,id,roleId})});
+        setUserData(mapping);
+        setGetError('');
+      } catch (err) {
+        setGetError('Ocurrió un error');
+      };
+
+    };
+    getUsers();
+  }, []);
+
+  const editHandler = (user) => {
+
+    handleEdit(navigate, {
+          title: 'Editar Usuario', 
+          fields: {
+              firstName: user.firstName, 
+              lastName: user.lastName, 
+              email: user.email, 
+              roleId: user.roleId
+            },
+          options: {method: 'put', url: `/users/${user.id}`},
+          from: location
+        });
+  };
+
+  const deleteHandler = (user) => {
+    handleDelete(navigate, {
+      type: 'usuario',
+      id: user.id,
+      name: `${user.firstName} ${user.lastName}`,
+      url: `/users/${user.id}`
+    });
+  };
 
   return (
-    <div className={usersBackoffice.layout}>
-      <h1>Usuarios registraddos</h1>
-      <table className={usersBackoffice.table}>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Fecha de creación</th>
-          </tr>
-        </thead>
-        <tbody>
-          {mockContacts.length > 0 ? (
-            mockContacts.map(({ name, createdAt,id }) => (
-              //Pending: add expandable message section
-              <tr key={id}>
-                <td className={usersBackoffice.name}>{name}</td>
-                <td>{`${createdAt}`}</td>
-              </tr>
-            ))
-          ) : (
-            <p>No hay usuarios.</p>
-          )}
-        </tbody>
-      </table>
-    </div>
+    <>
+    { 
+      getError == '' ? 
+        <Table
+          //For the h1
+          title='Usuarios'
+          //Names for the column for tHead
+          tableHeader={['Nombre', 'Apellido', 'Email']}
+          //Array for the rows
+          tableRowsData={userData}
+          //Names of properties to be extracted from data objects
+          tableRowsProperties={['firstName', 'lastName', 'email']}
+          //Array of objects for action buttons
+          buttons={[
+            {
+              title: 'Editar', // Button text
+              handler: editHandler, // handler function for onClick
+              className: 'orange', // Class name for button styles. The classes are stored in the Table styles
+            },
+            {
+              title: 'Eliminar',
+              handler: deleteHandler,
+              className: 'white',
+            },
+          ]}
+        />
+      : 
+        <p className={usersBackoffice.errorMessage}> {getError} </p>
+    }
+    </>
   );
 };
 

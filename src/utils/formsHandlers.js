@@ -1,4 +1,5 @@
 import fetchApi from '../axios/axios';
+import showAlert from '../services/alert';
 
 export const handleEdit = async (navigate, state) => {
   navigate('editar', {
@@ -13,15 +14,24 @@ export const handleCreate = async (navigate, state) => {
 };
 
 export const handleDelete = async (navigate, { type, id, name, url }) => {
-  const confirmDelete = window.confirm(
-    `Desea borrar la ${type} "${name}"?\nEsta operación no puede desacerse!`
-  );
-  if (confirmDelete) {
-    try {
-      const { data } = await fetchApi({ method: 'delete', url });
-      window.location.reload();
-    } catch (err) {
-      window.alert(err);
-    }
-  }
+  showAlert({
+    title: `Desea borrar "${name}" de ${type}?`,
+    text: `Esta operación no puede deshacerse!`,
+    icon: 'warning'
+  }, {
+    showCancelButton: true,
+    cancelButtonColor: 'red',
+    confirmButtonColor: 'green',
+    iconColor: 'red',
+    // toast: true
+  }).then(async(result) => {
+    
+    if (result.isConfirmed) {
+      try {
+        const { data } = await fetchApi({ method: 'delete', url });
+        window.location.reload();
+      } catch (err) {
+        window.alert(err);
+      }
+    }});
 };

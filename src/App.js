@@ -6,6 +6,8 @@ import Public from './pages/Public/Public';
 import Backoffice from './pages/Backoffice/Backoffice';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import { fetchUser } from './redux/actions/auth.action';
+import MyProfileComponent from './pages/MyProfile/MyProfile';
+import PrivateRoute from './routing/PrivateRoute';
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +23,7 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route path='/backoffice/*' element={<Backoffice />} />
         </Route>
+        <Route path='/miperfil/*' element={<MyProfileComponent />} />
       </Routes>
     </Router>
   );
