@@ -28,6 +28,12 @@ const translateFieldName = (recievedName) => {
       return 'Linkedin';
     case 'instagram':
       return 'instagram';
+    case 'firstName':
+      return 'Nombre';
+    case 'lastName':
+      return 'Apellido';
+    case 'roleId':
+      return 'Rol';
     default:
       return recievedName;
   }

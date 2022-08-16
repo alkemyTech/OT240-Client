@@ -7,6 +7,7 @@ import NewsListBackoffice from './NewsListBackoffice/NewsListBackoffice';
 import Categories from './Categories/Categories';
 import UsersBackoffice from '../../components/Users/UsersBackoffice';
 import Organization from './Organization/Organization';
+import Form from '../../components/Form/Form';
 import ActivitiesRoutes from './subroutes/ActivityRoutes';
 import TestimonialRoutes from './subroutes/TestimonialRoutes';
 
@@ -24,6 +25,7 @@ const Backoffice = () => {
         <Route path='/actividades/*' element={<ActivitiesRoutes />} />
         <Route path='/usuarios' element={<UsersBackoffice />} />
         <Route path='/organizacion/*' element={<Organization />} />
+        <Route path='/usuarios/editar' element={<Form />} />
       </Routes>
     </>
   );

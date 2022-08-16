@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
  */
 
 const showAlert = ({ title, text, icon }, extraParams = {}) => {
-  Swal.fire({
+  return Swal.fire({
     title,
     text,
     icon,
