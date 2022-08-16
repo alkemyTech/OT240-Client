@@ -1,6 +1,7 @@
 import React from 'react';
-import Contacts from '../../components/Contacts/Contacts';
 import { Routes, Route } from 'react-router-dom';
+
+import Contacts from '../../components/Contacts/Contacts';
 import Header from '../../components/Header/Header';
 import BackofficeCards from '../../components/BackofficeCards/BackofficeCards.jsx';
 import NewsListBackoffice from './NewsListBackoffice/NewsListBackoffice';
@@ -12,7 +13,6 @@ import TestimonialRoutes from './subroutes/TestimonialRoutes';
 
 const Backoffice = () => {
   return (
-    // LayoutBackoffice
     <>
       <Header />
       <Routes>

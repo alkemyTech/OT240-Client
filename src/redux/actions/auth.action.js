@@ -1,64 +1,61 @@
 import {
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
-  USER_LOADED,
+  AUTH_LOADING,
+  AUTH_SUCCESS,
   AUTH_ERROR,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  LOGOUT,
+  AUTH_USER,
+  AUTH_LOGOUT,
 } from '../types/auth.types';
-import { loading } from './common.action';
-
 import fetchApi from '../../axios/axios';
 
-//LOGIN user
-export const loginAction =
-  ({ url, method, data }) =>
-  async (dispatch) => {
-    dispatch(loading(true));
-    try {
-      const res = await fetchApi({ url, method, data });
-      dispatch(loginSucces(res.data));
-    } catch (err) {
-      // const errors = err.response.data.errors;
-      // if (errors) {
-      //   // errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
-      // }
-      // dispatch({ type: LOGIN_FAIL });
-    } finally {
-      dispatch(loading(false));
-    }
-  };
-
-//register user
-export const registerAction =
-  ({ url, method, data }) =>
-  async (dispatch) => {
-    dispatch(loading(true));
-    try {
-      const res = await fetchApi({ url, method, data });
-      dispatch(registerSucces(res.data));
-    } catch (err) {
-      // const errors = err.response.data.errors;
-      // if (errors) {
-      //   // errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
-      // }
-      // dispatch({ type: LOGIN_FAIL });
-    } finally {
-      dispatch(loading(false));
-    }
-  };
-
-const loginSucces = (payload) => {
-  return {
-    type: LOGIN_SUCCESS,
-    payload,
-  };
+export const loginAction = (options) => async (dispatch) => {
+  dispatch(authLoading(true));
+  dispatch(authError(null));
+  try {
+    const { data } = await fetchApi(options);
+    sessionStorage.setItem('token', data.token);
+    dispatch(authSuccess(data));
+  } catch (err) {
+    dispatch(authError(err.message));
+  } finally {
+    dispatch(authLoading(false));
+  }
 };
 
-const registerSucces = (payload) => {
-  return {
-    type: REGISTER_SUCCESS,
-    payload,
-  };
+export const registerAction = (options) => async (dispatch) => {
+  dispatch(authLoading(true));
+  dispatch(authError(null));
+  try {
+    const { data } = await fetchApi(options);
+    sessionStorage.setItem('token', data.token);
+    dispatch(authSuccess(data));
+  } catch (err) {
+    dispatch(authError(err.message));
+  } finally {
+    dispatch(authLoading(false));
+  }
+};
+
+export const fetchUser = (options) => async (dispatch) => {
+  dispatch(authLoading(true));
+  dispatch(authError(null));
+  try {
+    const { data } = await fetchApi(options);
+    dispatch(authUser(data.user));
+  } catch (err) {
+    dispatch(authError(err.message));
+    if (err?.response?.status === 403) {
+      sessionStorage.removeItem('token');
+    }
+  } finally {
+    dispatch(authLoading(false));
+  }
+};
+
+const authUser = (payload) => ({ type: AUTH_USER, payload });
+const authSuccess = (payload) => ({ type: AUTH_SUCCESS, payload });
+const authError = (payload) => ({ type: AUTH_ERROR, payload });
+const authLoading = (payload) => ({ type: AUTH_LOADING, payload });
+export const logout = () => {
+  sessionStorage.removeItem('token');
+  return { type: AUTH_LOGOUT };
 };

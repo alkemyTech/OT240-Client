@@ -1,37 +1,30 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import style from './styles/NewsList.module.scss';
 
-import fetchApi from '../../axios/axios';
+import { fetchNews } from '../../redux/actions/news.actions';
 
 const NewsList = ({ quantity }) => {
   const navigate = useNavigate();
-
-  const [news, setNews] = React.useState([]);
-  const [error, setError] = React.useState('');
+  const dispatch = useDispatch();
+  const { entries: news, error, loading } = useSelector((state) => state.news);
 
   React.useEffect(() => {
-    let isMounted = true;
-
-    const getNews = async () => {
-      try {
-        const { data } = await fetchApi({ method: 'get', url: '/news' });
-        isMounted && setNews(data);
-      } catch (err) {
-        setError('');
-      }
-    };
-
-    getNews();
-
-    return () => (isMounted = false);
-  }, []);
+    dispatch(fetchNews({ method: 'get', url: '/news' }));
+  }, [dispatch]);
 
   return (
     <ul className={style.container}>
-      {news.length ? (
-        news.slice(0, quantity).map(({ name, image, id, content }) => (
+      {loading ? (
+        <></>
+      ) : error ? (
+        <p className={style.error}>{error}</p>
+      ) : !news.length ? (
+        <p className={style.empty}>No hay novedades para mostrar</p>
+      ) : (
+        news.slice(0, quantity).map(({ name, image, id }) => (
           <li className={style.card} key={id}>
             <div
               className={style.img}
@@ -46,8 +39,6 @@ const NewsList = ({ quantity }) => {
             </div>
           </li>
         ))
-      ) : (
-        <p>No hay novedades recientes.</p>
       )}
     </ul>
   );
