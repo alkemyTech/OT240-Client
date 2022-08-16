@@ -1,43 +1,46 @@
 import React from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
 import style from './styles/Buttons.module.scss';
-import { Link, useNavigate } from 'react-router-dom';
-import logOut from '../../helpers/logOut.js';
+import { logout } from '../../redux/actions/auth.action';
+import RequireAuth from '../RequireAuth/RequireAuth';
 
 const Buttons = () => {
-  //estos se tomaran desde el state o local storage!!!
-  const isAdmin = true;
-  const isAuth = true;
+  const { pathname } = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
 
   const handleLogOut = () => {
-    logOut();
+    dispatch(logout());
     navigate('/login');
   };
 
   return (
     <div className={style.buttons}>
-      {!isAuth && (
-        <>
-          <div className={style.btn}>
-            <Link to={'/login'}>Log in</Link>
-          </div>
-          <div className={`${style.btn} ${style.registerBtn}`}>
-            <Link to={'/registro'}>Registrate</Link>
-          </div>
-        </>
+      {!user && !pathname.includes('login') && (
+        <div className={style.btn}>
+          <Link to='/login'>Log in</Link>
+        </div>
       )}
-      {isAdmin && (
+      {!user && !pathname.includes('registro') && (
+        <div className={`${style.btn} ${style.registerBtn}`}>
+          <Link to='/registro'>Registrate</Link>
+        </div>
+      )}
+      <RequireAuth allowedRoles={[1]}>
         <div className={style.btn}>
           <Link to={'/backoffice'}>Backoffice</Link>
         </div>
-      )}
-      {isAuth && (
+      </RequireAuth>
+      <RequireAuth>
         <div className={style.btn}>
           <Link onClick={handleLogOut} to={'/login'}>
             Log out
           </Link>
         </div>
-      )}
+      </RequireAuth>
     </div>
   );
 };

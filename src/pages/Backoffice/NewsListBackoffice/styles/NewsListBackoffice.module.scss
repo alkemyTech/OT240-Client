@@ -80,6 +80,11 @@
     box-sizing: border-box;
   }
 
+  .error {
+    @extend .empty;
+    background-color: rgb(236, 185, 185);
+  }
+
   .addBtn {
     box-shadow: 5px 5px 10px -1px rgba(0, 0, 0, 0.222);
     cursor: pointer;

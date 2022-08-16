@@ -1,78 +1,42 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import style from './styles/Form.module.scss';
 
-import convertToBase64 from '../../utils/handleBase64';
-import fieldSwitch from './fieldSwitch';
-import fetchApi from '../../axios/axios';
-
 import StatusMessage from './StatusMessage';
 import Button from './Button';
+import FieldMap from './FieldMap';
+
+import { submitForm, formFields, formError, formSuccess } from '../../redux/actions/form.actions';
 
 const Form = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { error, success, fields } = useSelector((state) => state.form);
+  const messageRef = React.useRef();
   const { fields: recievedFields, options, title, from: prevLocation } = location.state;
 
-  const messageRef = React.useRef();
-  const [fields, setFields] = React.useState(recievedFields);
-  const [success, setSuccess] = React.useState('');
-  const [error, setError] = React.useState('');
+  React.useEffect(() => {
+    dispatch(formFields(recievedFields));
+  }, [dispatch, recievedFields]);
 
-  const mapFields = (fields) => {
-    const entries = Object.entries(fields);
-    const HTMLFields = entries.map(([key, value]) => {
-      return (
-        <div key={key} className={style.field}>
-          {fieldSwitch(key, value, setFields)}
-        </div>
-      );
-    });
-    return HTMLFields;
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setError('');
-    setSuccess('');
-
-    try {
-      const reqConfig = { ...options, data: { ...fields } };
-      if (fields?.image) {
-        const convertedImage =
-          fields.image instanceof Blob || fields.image instanceof ArrayBuffer
-            ? await convertToBase64(fields?.image)
-            : fields.image;
-        reqConfig.data.image = convertedImage;
-      }
-      const { data } = await fetchApi(reqConfig);
-      setSuccess(`Actualizacion exitosa`);
-    } catch (err) {
-      switch (err?.response?.status) {
-        case 400:
-          setError('Campos incorrectos/vacios');
-          break;
-        case 401:
-          setError('Usuario deslogeado');
-          break;
-        case 403:
-          setError('Se requieren permisos especiales para realizar esta accion');
-          break;
-        case 404:
-          setError('No se encontró el elemento');
-          break;
-        case 500:
-          setError('Error en el servidor');
-          break;
-        default:
-          setError(err.message);
-          break;
-      }
-    } finally {
-      window.scrollTo(0, 0);
-    }
+    dispatch(submitForm({ ...options, data: fields }));
+    window.scrollTo(0, 0);
   };
+
+  const handleCloseSuccess = () => {
+    dispatch(formFields({}));
+    dispatch(formSuccess(null));
+    navigate(prevLocation);
+  };
+
+  const handleCloseError = () => dispatch(formError(null));
+
+  const handleCloseForm = () => navigate(prevLocation);
 
   return (
     <article className={style.container}>
@@ -80,16 +44,16 @@ const Form = () => {
       <form>
         <div ref={messageRef}>
           {success && (
-            <StatusMessage message={success} style={style.success} onClick={() => navigate(-1)} />
+            <StatusMessage message={success} style={style.success} onClick={handleCloseSuccess} />
           )}
           {error && (
-            <StatusMessage message={error} style={style.error} onClick={() => setError('')} />
+            <StatusMessage message={error} style={style.error} onClick={handleCloseError} />
           )}
         </div>
-        {mapFields(fields)}
+        <FieldMap fields={fields} />
         <div className={style.buttonsContainer}>
           <Button style={style.submitBtn} text='Enviar' onClick={handleSubmit} />
-          <Button style={style.cancelBtn} text='Cancelar' onClick={() => navigate(prevLocation)} />
+          <Button style={style.cancelBtn} text='Cancelar' onClick={handleCloseForm} />
         </div>
       </form>
     </article>

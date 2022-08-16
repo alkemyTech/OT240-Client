@@ -3,37 +3,28 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 
 import css from './styles/NewsSlider.css';
-import fetchApi from '../../axios/axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchNews } from '../../redux/actions/news.actions';
 
 const NewsSlider = ({ limit }) => {
-  const [loading, setIsLoading] = React.useState(true);
-  const [error, setError] = React.useState('');
-  const [news, setNews] = React.useState([]);
+  const dispatch = useDispatch();
+  const { entries, error, loading } = useSelector((state) => state.news);
 
   React.useEffect(() => {
-    let isMounted = true;
-
-    const getNews = async () => {
-      try {
-        const { data } = await fetchApi({ method: 'get', url: '/news' });
-        isMounted && setNews(data);
-      } catch (err) {
-        isMounted && setError(err.message);
-      } finally {
-        isMounted && setIsLoading(false);
-      }
-    };
-
-    getNews();
-
-    return () => (isMounted = false);
-  }, []);
+    dispatch(fetchNews({ url: '/news' }));
+  }, [dispatch]);
 
   return (
     <article id='slider'>
-      {!loading && news.length ? (
+      {loading ? (
+        <></>
+      ) : error ? (
+        <p className='error'>{error}</p>
+      ) : !entries.length ? (
+        <></>
+      ) : (
         <Carousel infiniteLoop={true} showStatus={false} showThumbs={false} transitionTime={500}>
-          {news.slice(0, limit).map(({ image, name }, i) => (
+          {entries.slice(0, limit).map(({ image, name }, i) => (
             <figure key={i}>
               <div
                 className='image'
@@ -44,8 +35,6 @@ const NewsSlider = ({ limit }) => {
             </figure>
           ))}
         </Carousel>
-      ) : (
-        ''
       )}
     </article>
   );

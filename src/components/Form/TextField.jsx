@@ -1,22 +1,18 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-const TextField = ({ field, label, value, setState, style }) => {
-  return (
-    <>
-      <label className={style.label} htmlFor={label}>
-        {label}
-      </label>
-      <input
-        type='text'
-        id={label}
-        value={value}
-        onChange={(e) => {
-          const { value } = e.target;
-          setState((prev) => ({ ...prev, [field]: value }));
-        }}
-      />
-    </>
-  );
+import { formField } from '../../redux/actions/form.actions';
+
+const TextField = ({ field }) => {
+  const dispatch = useDispatch();
+  const value = useSelector((state) => state.form.fields[field]);
+
+  const onChange = (e) => {
+    const { value } = e.target;
+    dispatch(formField({ [field]: value }));
+  };
+
+  return <input type='text' id={field} value={value} onChange={onChange} />;
 };
 
 export default TextField;

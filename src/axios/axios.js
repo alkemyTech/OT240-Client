@@ -4,7 +4,7 @@ const ong_api = axios.create({
   baseURL: 'http://localhost:3000/api',
 });
 
-const fetchApi = async ({ method, url, data = {}, params = {}, headers = {} }) => {
+const fetchApi = async ({ method = 'get', url = '/', data = {}, params = {}, headers = {} }) => {
   const options = {
     method,
     url,

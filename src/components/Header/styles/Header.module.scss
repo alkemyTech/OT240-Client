@@ -1,7 +1,7 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 3;
 
   .topBar {
     display: flex;
@@ -23,7 +23,7 @@
     .topLinks {
       display: none;
 
-      @media screen and (min-width: 769px) {
+      @media screen and (min-width: 900px) {
         display: flex;
       }
     }
