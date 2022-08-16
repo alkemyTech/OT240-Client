@@ -1,13 +1,7 @@
 .container {
-  padding: 0;
-  margin: 0;
   width: 100%;
   background-color: #fff;
   display: flex;
-
-  @media all and (min-width: 1024px) {
-    height: 500px;
-  }
 
   .description {
     width: 100%;
@@ -16,13 +10,13 @@
     align-items: center;
     margin-bottom: 2rem;
 
-    @media all and (min-width: 500px) {
+    @media all and (min-width: 768px) {
       width: 50%;
       display: block;
     }
     .title {
       display: none;
-      @media all and (min-width: 500px) {
+      @media all and (min-width: 768px) {
         font-size: 3rem;
         display: block;
       }
@@ -55,9 +49,15 @@
     border-radius: 50px;
     margin: 0 20px 20px 20px;
 
-    @media all and (min-width: 500px) {
+    @media all and (min-width: 768px) {
       display: block;
       width: 50%;
     }
   }
+}
+
+.containerHome {
+  width: 80%;
+  margin: 2rem auto;
+  height: auto;
 }
