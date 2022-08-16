@@ -9,7 +9,7 @@ const PrivateRoute = ({ allowedRoles }) => {
   ) : user && allowedRoles && allowedRoles.includes(user.roleId) ? (
     <Outlet />
   ) : (
-    <Navigate to={-1} />
+    <Navigate to={'/login'} />
   );
 };
 

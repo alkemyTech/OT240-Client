@@ -2,15 +2,17 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Form from '../../../components/Form/Form';
 import { Testimonials } from '../../../components/testimonials/Testimonials';
+import PrivateRoute from '../../../components/PrivateRoute/PrivateRoute';
 
 const TestimonialPublic = () => {
-    return (
-      <Routes>
+  return (
+    <Routes>
+      <Route element={<PrivateRoute />}>
         <Route path='/crear' element={<Form />} />
-        <Route path='/editar' element={<Form />} />
-        <Route path='/' element={<Testimonials/>} />
-      </Routes>
-    );
-  };
+      </Route>
+      <Route path='/' element={<Testimonials />} />
+    </Routes>
+  );
+};
 
-  export default TestimonialPublic;
+export default TestimonialPublic;
