@@ -39,16 +39,16 @@ const translateFieldName = (recievedName) => {
   }
 };
 
-const fieldSwitch = (key) => {
-  switch (key) {
+const FieldSwitch = ({ field }) => {
+  switch (field) {
     case 'image':
-      return <FileField field={key} />;
+      return <FileField field={field} />;
     case 'content':
     case 'welcomeText':
     case 'description':
-      return <TextEditor field={key} />;
+      return <TextEditor field={field} />;
     default:
-      return <TextField field={key} />;
+      return <TextField field={field} />;
   }
 };
 
@@ -62,7 +62,7 @@ const FieldMap = ({ fields }) => {
             <label className={style.label} htmlFor={key}>
               {translateFieldName(key)}
             </label>
-            {fieldSwitch(key)}
+            <FieldSwitch field={key} />
           </div>
         ))}
     </>
