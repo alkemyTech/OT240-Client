@@ -1,6 +1,36 @@
-import { GET_ORGANIZATION } from '../types/organization.types';
+import {
+  GET_ORGANIZATION,
+  PUT_ORGANIZATION,
+  ORGANIZATION_LOADING,
+  ORGANIZATION_SUCCESS,
+  ORGANIZATION_ERROR,
+} from '../types/organization.types';
 
-const initialState = {};
+const initialState = {
+  name: '',
+  image: '',
+  phone: '',
+  address: '',
+  welcomeText: '',
+  facebook: '',
+  linkedin: '',
+  instagram: '',
+};
+
+const organizationReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
+    case GET_ORGANIZATION:
+      return { ...state, ...payload };
+    case ORGANIZATION_LOADING:
+      return { ...state, loading: payload };
+    case ORGANIZATION_ERROR:
+      return { ...state, error: payload };
+    default:
+      return { ...state };
+  }
+};
+
+export default organizationReducer;
 
 //demo de reducer
 // export default function authReducer(state = initialState, action) {
