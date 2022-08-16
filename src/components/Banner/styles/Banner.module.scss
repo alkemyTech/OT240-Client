@@ -1,0 +1,63 @@
+.container {
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+
+  .description {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    @media all and (min-width: 768px) {
+      width: 50%;
+      display: block;
+    }
+    .title {
+      display: none;
+      @media all and (min-width: 768px) {
+        font-size: 3rem;
+        display: block;
+      }
+    }
+
+    p {
+      margin-bottom: 4rem;
+    }
+
+    .link {
+      padding: 10px 30px;
+      background-color: red;
+      border-radius: 20px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 48px;
+
+      @media all and (min-width: 769px) {
+        font-size: 32px;
+        padding: 10px 30px;
+      }
+    }
+  }
+  .image {
+    display: none;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50px;
+    margin: 0 20px 20px 20px;
+
+    @media all and (min-width: 768px) {
+      display: block;
+      width: 50%;
+    }
+  }
+}
+
+.containerHome {
+  width: 80%;
+  margin: 2rem auto;
+  height: auto;
+}

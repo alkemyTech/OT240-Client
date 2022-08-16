@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import style from './styles/Home.module.scss';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import NewsSlider from '../../../components/NewsSlider/NewsSlider';
 import { Testimonials } from '../../../components/testimonials/Testimonials';
 import NewsList from '../../../components/NewsList/NewsList';
 import Members from '../Members/Members';
+import Banner from '../../../components/Banner/Banner';
+
 const Home = () => {
   return (
     <div>
+      <Banner />
       <NewsSlider />
       <div className={style.members}>
         <Members quantity={5} />
