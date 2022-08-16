@@ -4,12 +4,12 @@ import { fetchUser } from '../redux/actions/auth.action';
 import { loadOrganization } from '../redux/actions/organization.action';
 import { loadMembers } from '../redux/actions/member.actions';
 
-const orgContext = createContext();
+const OrgContext = createContext();
 
-export const { Provider } = orgContext;
+export const { Provider } = OrgContext;
 
 export const useOrgContext = () => {
-  return useContext(orgContext);
+  return useContext(OrgContext);
 };
 
 const CustomProvider = ({ children }) => {
