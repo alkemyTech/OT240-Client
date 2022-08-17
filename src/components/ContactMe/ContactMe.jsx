@@ -31,9 +31,11 @@ function ContactMe() {
     <div className={styles.layout}>
       <div className={styles.asideColumn}>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, nisi placeat, corrupti,
-          explicabo voluptatum est amet dolorem cum animi numquam dolor! Amet vero tempore
-          recusandae libero ipsum aspernatur sequi aut.
+          En Somos Más trabajamos en algunos de los lugares más difíciles para llegar a los niños y
+          niñas más desfavorecidos del mundo. Para salvar sus vidas. Para defender sus derechos.
+          Para ayudarles a alcanzar su máximo potencial. En 190 países y territorios, trabajamos
+          para cada niño y niña, en todas partes, cada día, para construir un mundo mejor para
+          todos. Y nunca nos rendimos.
         </p>
         <h2>¿Querés contribuir?</h2>
         <button className={styles.colaborateBtn}>Contribuir</button>
