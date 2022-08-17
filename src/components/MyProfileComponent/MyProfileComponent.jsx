@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import fetchApi from '../../axios/axios';
-import { handleEdit } from '../../utils/formsHandlers';
+import { handleDelete, handleEdit } from '../../utils/formsHandlers';
 import style from './styles/MyProfileComponent.module.scss';
 
 const MyProfileComponent = () => {
@@ -38,6 +38,15 @@ const MyProfileComponent = () => {
     });
   };
 
+  const deleteHandler = () => {
+    handleDelete(navigate, {
+      type: 'usuario',
+      id: userData.id,
+      name: `${userData.firstName} ${userData.lastName}`,
+      url: `/users/${userData.id}`
+    });
+  };
+
   return (
     <>
       {
@@ -60,6 +69,7 @@ const MyProfileComponent = () => {
                   </div>
                   <div className={style.buttonContainer}>
                     <button onClick={editHandler} className={style.editButton}> Editar </button>
+                    <button onClick={deleteHandler} className={style.deleteButton}> Eliminar mi cuenta</button>
                   </div>
               </div>
           </article>
