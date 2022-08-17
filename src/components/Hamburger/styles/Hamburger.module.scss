@@ -7,7 +7,7 @@
   margin-left: 0;
   margin-right: 20px;
 
-  @media screen and (min-width: 900px) {
+  @media screen and (min-width: 1124px) {
     display: none;
   }
 
@@ -58,15 +58,13 @@
     transform: translateX(0);
   }
 
-  input[type='checkbox']:checked ~ .hamburgerLines .line1 {
+  .line1rot {
     transform: rotate(45deg);
   }
-
-  input[type='checkbox']:checked ~ .hamburgerLines .line2 {
+  .line2rot {
     transform: scaleY(0);
   }
-
-  input[type='checkbox']:checked ~ .hamburgerLines .line3 {
+  .line3rot {
     transform: rotate(-45deg);
   }
 
