@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import style from './styles/Banner.module.scss';
+import { loadOrganization } from '../../redux/actions/organization.action';
 
 const Banner = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
+  const [data, setData] = useState({});
+
   const { members, loadingMembers } = useSelector((state) => state.members);
   const { organization, loadingOrganization } = useSelector((state) => state.organization);
-
-  const [data, setData] = useState({});
 
   const selectRandomMember = (memb) => {
     const random = Math.floor(Math.random() * memb.length);
@@ -16,6 +18,7 @@ const Banner = () => {
   };
 
   useEffect(() => {
+    dispatch(loadOrganization({ method: 'get', url: '/organization/public' }));
     if (location.pathname.includes('nosotros')) {
       setData(selectRandomMember(members));
     } else {
@@ -23,7 +26,6 @@ const Banner = () => {
     }
   }, [location]);
 
-  //member tiene name, image
   return organization ? (
     <div
       className={

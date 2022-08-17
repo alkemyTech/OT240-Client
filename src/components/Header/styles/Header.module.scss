@@ -2,7 +2,6 @@
   position: sticky;
   top: 0;
   z-index: 3;
-  overflow: hidden;
 
   .topBar {
     display: flex;
@@ -24,7 +23,7 @@
     .topLinks {
       display: none;
 
-      @media screen and (min-width: 900px) {
+      @media screen and (min-width: 1124px) {
         display: flex;
       }
     }
