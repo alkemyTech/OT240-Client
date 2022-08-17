@@ -32,6 +32,15 @@
     max-width: 70%;
     margin-top: 2em;
   }
+  @media screen and (max-width: 1024px) {
+    padding-right: 30px;
+    padding-bottom: 50px;
+    text-align: right;
+    align-items: flex-end;
+    p {
+      max-width: 450px;
+    }
+  }
   @media screen and (max-width: 768px) {
     padding-right: 0;
     padding-bottom: 50px;
