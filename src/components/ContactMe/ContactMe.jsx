@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './styles/ContactMe.module.scss';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import fetchApi from '../../axios/axios';
 
 function ContactMe() {
   const validationSchema = Yup.object().shape({
@@ -9,6 +10,10 @@ function ContactMe() {
     email: Yup.string().email().required(),
     message: Yup.string().required(),
   });
+  async function handleSubmit(values) {
+    // Should add some UI feedback for the petition result
+    fetchApi({ url: '/contacts', method: 'post', data: values });
+  }
   return (
     <div className={styles.layout}>
       <div className={styles.asideColumn}>
@@ -29,10 +34,7 @@ function ContactMe() {
             message: '',
           }}
           validationSchema={validationSchema}
-          onSubmit={async (values) => {
-            //Integrate with api once ready
-            console.log(values);
-          }}>
+          onSubmit={handleSubmit}>
           {({
             values,
             errors,
