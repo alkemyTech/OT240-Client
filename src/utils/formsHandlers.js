@@ -29,6 +29,7 @@ export const handleDelete = async (navigate, { type, id, name, url }) => {
     if (result.isConfirmed) {
       try {
         const { data } = await fetchApi({ method: 'delete', url });
+        sessionStorage.removeItem('token');
         window.location.reload();
       } catch (err) {
         window.alert(err);
