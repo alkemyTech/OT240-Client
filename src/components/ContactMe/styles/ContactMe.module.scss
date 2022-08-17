@@ -10,6 +10,14 @@
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
+    font-family: 'Poppins';
+  }
+  button:hover {
+    opacity: 0.8;
+  }
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -27,6 +35,24 @@
   p {
     max-width: 70%;
     margin-top: 2em;
+  }
+  @media screen and (max-width: 1024px) {
+    padding-right: 30px;
+    padding-bottom: 50px;
+    text-align: right;
+    align-items: flex-end;
+    p {
+      max-width: 450px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    padding-right: 0;
+    padding-bottom: 50px;
+    align-items: flex-start;
+    text-align: left;
+    p {
+      max-width: 450px;
+    }
   }
 }
 
