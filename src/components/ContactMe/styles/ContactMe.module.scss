@@ -10,6 +10,10 @@
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
+    font-family: 'Poppins';
+  }
+  button:hover {
+    opacity: 0.8;
   }
   @media screen and (max-width: 768px) {
     display: flex;
