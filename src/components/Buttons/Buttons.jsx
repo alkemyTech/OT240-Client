@@ -29,6 +29,11 @@ const Buttons = () => {
           <Link to='/registro'>Registrate</Link>
         </div>
       )}
+      <RequireAuth>
+        <div className={style.btn}>
+          <Link to='/miperfil'>Mi perfil</Link>
+        </div>
+      </RequireAuth>
       <RequireAuth allowedRoles={[1]}>
         <div className={style.btn}>
           <Link to={'/backoffice'}>Backoffice</Link>
