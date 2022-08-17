@@ -1,77 +1,67 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import fetchApi from '../../axios/axios';
-import style from "./styles/testimonialBackoffice.module.scss";
-
+import Table from '../Table/Table';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchTestimonial } from '../../redux/actions/testimonial.action';
 
 export const TestimonialBackoffice = () => {
 
   const navigate = useNavigate();
   const location = useLocation();  
-  const [testimonials, setTestimonials] = React.useState([]);
+  //const [testimonials, setTestimonials] = React.useState([]);
+  const dispatch = useDispatch();
+  const { entries, loading, error } = useSelector((state) => state.testimonial);
 
   React.useEffect(() => {    
-    const getTestimonials = async () => {
-      try {
-        const { data } = await fetchApi({ method: 'get', url: '/testimonials' });
-        setTestimonials(data);
-      } catch (err) {
-        console.log("Error en el get");        
-      }  
-    };
-    getTestimonials();    
-  }, []);
-  
+    dispatch(fetchTestimonial({ url: '/testimonials' }));      
+  }, [dispatch]);  
 
-  const handleEdit = ({id, fields}) => {       
+  const handleEdit = (fields) => {       
+    const { name, content, image, id } = fields;
     navigate("editar", {
       state: {
         id,
         title: 'Editar Testimonio',
+        fields: { name, content, image },
         options: { method: 'put', url: `/testimonials/${id}` },
         from: location,
-        fields
       },
     });    
   };
   
-  const handleDelete = async(id) => {
-    try {      
-      await fetchApi({method: 'delete', url: `/testimonials/${id}`});
-      alert("Testimonio eliminada");
-    } catch (error) {      
-      alert(error.response.data.error)
+  const handleDelete = async(fields) => {
+    const confirmDelete = window.confirm(
+      `Desea borrar el testimonio "${fields.name}"?\nEsta operación no puede deshacerse!`
+    );
+    if (confirmDelete) {
+      dispatch(fetchTestimonial({ url: `/testimonials/${fields.id}`, method: 'delete' }));
     }
+  };
+  const handleAdd = () => {
+    navigate("crear", {
+      state: {
+        title: 'Crear Testimonio',
+        options: { method: 'post', url: `/testimonials` },
+        from: location,
+        fields: { name: "", image: '', content: "" },
+      },
+    });
   };
 
   return (
+    <Table
+      title='Testimonios'
+      tableHeader={['Titulo', 'Contenido']}
+      tableRowsData={entries}
+      tableRowsProperties={['name', 'content']}
+      buttons={[
+        { title: 'Editar', handler: handleEdit, className: 'white' },
+        { title: 'Eliminar', handler: handleDelete, className: 'orange' },
+      ]}
+      loading={loading}
+      addBtnHandler={handleAdd}
+    />
     
-    <div className={style.container}>
-      <h2>Testimonios</h2>
-
-      <table className={style.table}>        
-        <thead>
-            <tr className={style.tr}>                            
-                <th className={style.nameHeader}>Nombre</th>           
-                <th className={style.optHeader}>Opciones</th>            
-            </tr>
-        </thead>
-        <tbody>
-          {
-            testimonials.map( ({id, name, image, content})=>(
-              <tr key={id} className={style.tr}>
-                  <td className={style.name}>{name}</td>                                  
-                  <td className={style.options}>
-                      <button className={style.buttonEdit} onClick={()=>handleEdit({id, fields:{name, image, content}})}>Editar</button>
-                      <button className={style.buttonDelete} onClick={()=>handleDelete(id)}>Eliminar</button>
-                  </td>
-              </tr> 
-              ) )
-          }
-        </tbody>      
-      </table>     
-    
-    </div>
 
   )
 }
