@@ -36,6 +36,9 @@ const Buttons = () => {
       </RequireAuth>
       <RequireAuth>
         <div className={style.btn}>
+          <Link to={'/miperfil'}>Perfil</Link>
+        </div>
+        <div className={style.btn}>
           <Link onClick={handleLogOut} to={'/login'}>
             Log out
           </Link>

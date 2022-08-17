@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Banner from '../../../components/Banner/Banner';
 import MembersList from './MembersList/MembersList';
 import style from './styles/Members.module.scss';
+import { loadMembers } from '../../../redux/actions/member.actions';
 
 const Members = ({ quantity }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [error, setError] = useState('');
+  const dispatch = useDispatch();
+
   const { members, loading } = useSelector((state) => state.members);
+
+  useEffect(() => {
+    dispatch(loadMembers({ method: 'get', url: '/members' }));
+  }, [dispatch]);
 
   return (
     <div className={style.container}>

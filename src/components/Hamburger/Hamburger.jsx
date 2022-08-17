@@ -10,9 +10,24 @@ const Hamburger = ({ menuIsOpen, setMenuIsOpen }) => {
     <div className={style.hamburgerContainer}>
       <input className={style.checkbox} type='checkbox' name='' id='' onClick={onClickHanddler} />
       <div className={style.hamburgerLines}>
-        <span className={`${style.line} ${style.line1}`}></span>
-        <span className={`${style.line} ${style.line2}`}></span>
-        <span className={`${style.line} ${style.line3}`}></span>
+        <span
+          className={
+            !menuIsOpen
+              ? `${style.line} ${style.line1}`
+              : `${style.line} ${style.line1} ${style.line1rot}`
+          }></span>
+        <span
+          className={
+            !menuIsOpen
+              ? `${style.line} ${style.line2}`
+              : `${style.line} ${style.line2} ${style.line2rot}`
+          }></span>
+        <span
+          className={
+            !menuIsOpen
+              ? `${style.line} ${style.line3}`
+              : `${style.line} ${style.line3} ${style.line3rot}`
+          }></span>
       </div>
     </div>
   );

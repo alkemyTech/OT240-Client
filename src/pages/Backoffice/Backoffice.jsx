@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-
 import Contacts from '../../components/Contacts/Contacts';
 import Header from '../../components/Header/Header';
 import BackofficeCards from '../../components/BackofficeCards/BackofficeCards.jsx';
@@ -11,6 +10,7 @@ import Organization from './Organization/Organization';
 import Form from '../../components/Form/Form';
 import ActivitiesRoutes from './subroutes/ActivityRoutes';
 import TestimonialRoutes from './subroutes/TestimonialRoutes';
+import MembersBackoffice from './MembersBackoffice/MembersBackoffice';
 
 const Backoffice = () => {
   return (
@@ -25,6 +25,7 @@ const Backoffice = () => {
         <Route path='/actividades/*' element={<ActivitiesRoutes />} />
         <Route path='/usuarios' element={<UsersBackoffice />} />
         <Route path='/organizacion/*' element={<Organization />} />
+        <Route path='/miembros/*' element={<MembersBackoffice />} />
         <Route path='/usuarios/editar' element={<Form />} />
       </Routes>
     </>
