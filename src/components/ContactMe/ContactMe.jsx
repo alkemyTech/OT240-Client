@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import fetchApi from '../../axios/axios';
 import { Link } from 'react-router-dom';
+import showAlert from '../../services/alert';
 
 function ContactMe() {
   const validationSchema = Yup.object().shape({
@@ -13,7 +14,18 @@ function ContactMe() {
   });
   async function handleSubmit(values) {
     // Should add some UI feedback for the petition result
-    fetchApi({ url: '/contacts', method: 'post', data: values });
+    try {
+      const response = await fetchApi({ url: '/contacts', method: 'post', data: values });
+      if (response.status === 200) {
+        return showAlert({ title: 'Contacto enviado exitosamente', text: '', icon: 'success' });
+      }
+    } catch (e) {
+      return showAlert({
+        title: 'Hubo un problema al enviar el contacto',
+        text: '',
+        icon: 'error',
+      });
+    }
   }
   return (
     <div className={styles.layout}>
