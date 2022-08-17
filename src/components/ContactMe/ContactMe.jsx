@@ -3,6 +3,7 @@ import styles from './styles/ContactMe.module.scss';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import fetchApi from '../../axios/axios';
+import { Link } from 'react-router-dom';
 
 function ContactMe() {
   const validationSchema = Yup.object().shape({
@@ -71,7 +72,9 @@ function ContactMe() {
                 <button className={styles.submitBtn} type='submit'>
                   Enviar Contacto
                 </button>
-                <button>Ir a Inicio</button>
+                <Link to='/'>
+                  <button>Ir a Inicio</button>
+                </Link>
               </div>
             </form>
           )}
