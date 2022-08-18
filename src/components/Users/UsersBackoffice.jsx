@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import fetchApi from '../../axios/axios';
+import { loadUsers } from '../../redux/actions/user.actions';
 import { handleCreate, handleDelete, handleEdit } from '../../utils/formsHandlers';
 import Table from '../Table/Table';
 import usersBackoffice from './styles/UsersBackoffice.module.scss';
@@ -11,24 +12,12 @@ import usersBackoffice from './styles/UsersBackoffice.module.scss';
 const UsersBackoffice = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [userData, setUserData] = useState([]);
-  const [getError, setGetError] = useState('Loading...');
+  const dispatch = useDispatch();
+  const { users, loading, error } = useSelector((state) => state.users);
 
   useEffect(() => {
-    const getUsers = async () => {
-      try {
-        const { data } = await fetchApi({ method: 'get', url: '/users' });
-        const mapping = data.users.map(({ firstName, lastName, email, id, roleId }) => {
-          return { firstName, lastName, email, id, roleId };
-        });
-        setUserData(mapping);
-        setGetError('');
-      } catch (err) {
-        setGetError('Ocurrió un error');
-      }
-    };
-    getUsers();
-  }, []);
+    dispatch(loadUsers({ method: 'get', url: '/users' }));
+  }, [dispatch]);
 
   const editHandler = (user) => {
     handleEdit(navigate, {
@@ -58,30 +47,26 @@ const UsersBackoffice = () => {
       title: 'Crear usuario',
       options: { method: 'post', url: '/auth/register' },
       from: location,
-      fields: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        roleId: '',
-      },
+
+      fields: { firstName: '', lastName: '', email: '', password: '', roleId: '' },
     });
   };
 
-  return getError == '' ? (
+  return error ? (
+    <p className={usersBackoffice.errorMessage}> Algo salió mal..</p>
+  ) : (
     <Table
       title='Usuarios'
       tableHeader={['Nombre', 'Apellido', 'Email']}
-      tableRowsData={userData}
+      tableRowsData={users}
       tableRowsProperties={['firstName', 'lastName', 'email']}
       buttons={[
         { title: 'Editar', handler: editHandler, className: 'orange' },
         { title: 'Eliminar', handler: deleteHandler, className: 'white' },
       ]}
+      loading={loading}
       addBtnHandler={createHandler}
     />
-  ) : (
-    <p className={usersBackoffice.errorMessage}> {getError} </p>
   );
 };
 
