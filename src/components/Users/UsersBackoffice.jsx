@@ -47,6 +47,7 @@ const UsersBackoffice = () => {
       title: 'Crear usuario',
       options: { method: 'post', url: '/auth/register' },
       from: location,
+
       fields: { firstName: '', lastName: '', email: '', password: '', roleId: '' },
     });
   };

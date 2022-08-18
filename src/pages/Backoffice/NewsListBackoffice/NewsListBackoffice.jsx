@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import Swal from 'sweetalert2';
 
 import style from './styles/NewsListBackoffice.module.scss';
 import Form from '../../../components/Form/Form';
@@ -27,10 +28,16 @@ function NewsTable() {
   const { entries, loading, error } = useSelector((state) => state.news);
 
   const handleDelete = async (fields) => {
-    const confirmDelete = window.confirm(
-      `Desea borrar la novedad "${fields.name}"?\nEsta operación no puede deshacerse!`
-    );
-    if (confirmDelete) {
+    const result = await Swal.fire({
+      title: `Borrar novedad ${fields.name.replace(/\W/, '')}?`,
+      text: `Esta operación no puede deshacerse!`,
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonColor: 'red',
+      confirmButtonColor: 'green',
+      iconColor: 'red',
+    });
+    if (result.isConfirmed) {
       dispatch(fetchNews({ url: `/news/${fields.id}`, method: 'delete' }));
     }
   };
