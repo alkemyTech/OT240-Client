@@ -3,7 +3,7 @@ import Table from '../Table/Table';
 import styles from './styles/Contacts.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { loadContacts, deleteContact } from '../../../../redux/actions/categories.actions';
+import { loadContacts, deleteContact } from '../../redux/actions/contacts.actions';
 
 function Contacts() {
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ function Contacts() {
         title={'Contactos'}
         tableHeader={['Nombre', 'Email', 'Mensaje']}
         tableRowsProperties={['name', 'email', 'message']}
-        tableRowsData={contacts || []}
+        tableRowsData={contacts}
         buttons={[
           { title: 'Editar', handler: handleEdit, className: 'white' },
           { title: 'Eliminar', handler: handleDelete, className: 'orange' },
