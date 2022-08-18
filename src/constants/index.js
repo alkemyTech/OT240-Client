@@ -6,7 +6,7 @@ export const CONSTANTS = {
       { text: 'Categorias', route: '/backoffice/categorias' },
       { text: 'Testimonios', route: '/backoffice/testimonios' },
       { text: 'Organización', route: '/backoffice/organizacion' },
-      // { text: 'Slides', route: '/backoffice/slides' },
+      { text: 'Contactos', route: '/backoffice/contactos' },
       { text: 'Usuarios', route: '/backoffice/usuarios' },
       { text: 'Miembros', route: '/backoffice/miembros' },
     ],
