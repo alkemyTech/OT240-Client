@@ -1,88 +1,108 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import Table from '../Table/Table';
 import styles from './styles/Contacts.module.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { loadContacts, deleteContact } from '../../../../redux/actions/categories.actions';
 
 function Contacts() {
-  //This should be replaced with Redux state logic once it is available
-  const [contacts, setContacts] = useState(mockContacts);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch = useDispatch();
 
-  function deleteContact(id) {
-    setContacts(contacts.filter((contact) => contact.id !== id));
-  }
+  const { contacts, loading, error } = useSelector((state) => state.contacts);
+
+  const handleDelete = async (fields) => {
+    const confirmDelete = window.confirm(
+      `Desea borrar el contacto de "${fields.name}"?\nEsta operación no puede deshacerse!`
+    );
+    if (confirmDelete) {
+      dispatch(deleteContact({ url: `/contacts/${fields.id}`, method: 'delete' }));
+    }
+  };
+
+  const handleEdit = async (fields) => {
+    const { name, description, id } = fields;
+    navigate('editar', {
+      state: {
+        title: 'Editar Contacto',
+        fields: { name, description },
+        options: { method: 'put', url: `/contacts/${id}` },
+        from: location,
+      },
+    });
+  };
+
+  const handleCreate = async () => {
+    navigate('crear', {
+      state: {
+        title: 'Crear Contacto',
+        options: { method: 'post', url: `/contacts` },
+        from: location,
+        fields: { name: '', description: '' },
+      },
+    });
+  };
+
+  useEffect(() => {
+    dispatch(loadContacts({ method: 'get', url: '/contacts' }));
+  }, [dispatch]);
 
   return (
     <div className={styles.layout}>
-      <h1>Contactos</h1>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Telefono</th>
-            <th>Email</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {contacts.length > 0 ? (
-            contacts.map(({ name, phone, email, message, id }) => (
-              //Pending: add expandable message section
-              <tr key={id}>
-                <td>{name}</td>
-                <td>{phone}</td>
-                <td>{email}</td>
-                <td>
-                  <button className={styles.messageBtn}>Ver Mensaje</button>
-                  <button onClick={() => deleteContact(id)} className={styles.deleteBtn}>
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <p>No hay contactos guardados aún.</p>
-          )}
-        </tbody>
-      </table>
+      <Table
+        title={'Contactos'}
+        tableHeader={['Nombre', 'Email', 'Mensaje']}
+        tableRowsProperties={['name', 'email', 'message']}
+        tableRowsData={contacts || []}
+        buttons={[
+          { title: 'Editar', handler: handleEdit, className: 'white' },
+          { title: 'Eliminar', handler: handleDelete, className: 'orange' },
+        ]}
+        loading={loading}
+        addBtnHandler={handleCreate}
+      />
     </div>
   );
 }
 
-const mockContacts = [
-  {
-    name: 'Juan Perez',
-    phone: '+543795854695',
-    email: 'juan@hotmail.com',
-    id: 1,
-  },
-  {
-    name: 'Natalia Fernandez',
-    phone: '+543794254595',
-    email: 'natif@hotmail.com',
-    id: 2,
-  },
-  {
-    name: 'Romina Gutierrez',
-    phone: '+543395854885',
-    email: 'rominaa@yahoo.com.ar',
-    id: 3,
-  },
-  {
-    name: 'Matias Gomez',
-    phone: '+543394564585',
-    email: 'matiasg@outlook.com',
-    id: 4,
-  },
-  {
-    name: 'Juan Bautista',
-    phone: '+543542854885',
-    email: 'jbmautista@hotmail.com',
-    id: 5,
-  },
-  {
-    name: 'Romina Alarcon',
-    phone: '+543395854885',
-    email: 'romiAaa@yahoo.com.ar',
-    id: 6,
-  },
-];
+// const mockContacts = [
+//   {
+//     name: 'Juan Perez',
+//     phone: '+543795854695',
+//     email: 'juan@hotmail.com',
+//     id: 1,
+//   },
+//   {
+//     name: 'Natalia Fernandez',
+//     phone: '+543794254595',
+//     email: 'natif@hotmail.com',
+//     id: 2,
+//   },
+//   {
+//     name: 'Romina Gutierrez',
+//     phone: '+543395854885',
+//     email: 'rominaa@yahoo.com.ar',
+//     id: 3,
+//   },
+//   {
+//     name: 'Matias Gomez',
+//     phone: '+543394564585',
+//     email: 'matiasg@outlook.com',
+//     id: 4,
+//   },
+//   {
+//     name: 'Juan Bautista',
+//     phone: '+543542854885',
+//     email: 'jbmautista@hotmail.com',
+//     id: 5,
+//   },
+//   {
+//     name: 'Romina Alarcon',
+//     phone: '+543395854885',
+//     email: 'romiAaa@yahoo.com.ar',
+//     id: 6,
+//   },
+// ];
 
 export default Contacts;
