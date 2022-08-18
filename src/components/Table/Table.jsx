@@ -37,15 +37,17 @@ const generateRows = (tableRowsData, tableRowsProperties, buttons, isOrganizatio
           key={tableRow.id}
           id={tableRow.id}
           className={isOrganization && `${styles.organization}`}>
-          {Object.entries(tableRow).map(([property, value]) => {
+          {Object.entries(tableRow).map(([property, value], index) => {
             const isDateValue = property === 'createdAt';
             if (propertyIsIncluded(tableRowsProperties, property)) {
-              return <td>{isDateValue ? new Date(value).toLocaleDateString() : value}</td>;
+              return (
+                <td key={index}>{isDateValue ? new Date(value).toLocaleDateString() : value}</td>
+              );
             }
           })}
           <td className={styles.buttons}>
-            {buttons.map(({ title, handler, className }) => (
-              <button onClick={() => handler(tableRow)} className={styles[className]}>
+            {buttons.map(({ title, handler, className }, index) => (
+              <button key={index} onClick={() => handler(tableRow)} className={styles[className]}>
                 {title}
               </button>
             ))}
@@ -61,8 +63,8 @@ function generateTableHead(theadColumns, isOrganization) {
     <>
       {!isOrganization && (
         <tr>
-          {theadColumns.map((columnData) => (
-            <td>{columnData}</td>
+          {theadColumns.map((columnData, index) => (
+            <td key={index}>{columnData}</td>
           ))}
           <td>Acciones</td>
         </tr>
