@@ -130,6 +130,20 @@
       margin: 0;
     }
   }
+
+  .checkbox {
+    display: flex;
+
+    input {
+      margin: 0;
+      margin-left: 5px;
+    }
+
+    p {
+      display: inline-block;
+      margin: 5px 15px;
+    }
+  }
 }
 
 @media all and (max-width: 700px) {
