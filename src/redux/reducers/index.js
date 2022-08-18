@@ -7,6 +7,7 @@ import membersReducer from './member.reducer';
 import categoriesReducer from './categories.reducer';
 import activityReducer from './activity.reducer';
 import testimonialReducer from './testimonial.reducer';
+import contactsReducer from './contacts.reducer';
 
 export default combineReducers({
   auth: authReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
   members: membersReducer,
   categories: categoriesReducer,
   activity: activityReducer,
-  testimonial: testimonialReducer 
+  testimonial: testimonialReducer ,
+  contacts: contactsReducer
 });

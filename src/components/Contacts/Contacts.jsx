@@ -22,11 +22,11 @@ function Contacts() {
   };
 
   const handleEdit = async (fields) => {
-    const { name, description, id } = fields;
+    const { name, email, message, id } = fields;
     navigate('editar', {
       state: {
         title: 'Editar Contacto',
-        fields: { name, description },
+        fields: { name, email, message },
         options: { method: 'put', url: `/contacts/${id}` },
         from: location,
       },
@@ -65,44 +65,5 @@ function Contacts() {
     </div>
   );
 }
-
-// const mockContacts = [
-//   {
-//     name: 'Juan Perez',
-//     phone: '+543795854695',
-//     email: 'juan@hotmail.com',
-//     id: 1,
-//   },
-//   {
-//     name: 'Natalia Fernandez',
-//     phone: '+543794254595',
-//     email: 'natif@hotmail.com',
-//     id: 2,
-//   },
-//   {
-//     name: 'Romina Gutierrez',
-//     phone: '+543395854885',
-//     email: 'rominaa@yahoo.com.ar',
-//     id: 3,
-//   },
-//   {
-//     name: 'Matias Gomez',
-//     phone: '+543394564585',
-//     email: 'matiasg@outlook.com',
-//     id: 4,
-//   },
-//   {
-//     name: 'Juan Bautista',
-//     phone: '+543542854885',
-//     email: 'jbmautista@hotmail.com',
-//     id: 5,
-//   },
-//   {
-//     name: 'Romina Alarcon',
-//     phone: '+543395854885',
-//     email: 'romiAaa@yahoo.com.ar',
-//     id: 6,
-//   },
-// ];
 
 export default Contacts;
