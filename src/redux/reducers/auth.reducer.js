@@ -7,7 +7,7 @@ import {
 } from '../types/auth.types';
 
 const initialState = {
-  loading: false,
+  loading: true,
   error: null,
   user: null,
   token: sessionStorage.getItem('token'),

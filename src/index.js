@@ -5,11 +5,14 @@ import App from './App';
 import store from './redux/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
+import CustomProvider from './context/OrganizationContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <CustomProvider>
+        <App />
+      </CustomProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

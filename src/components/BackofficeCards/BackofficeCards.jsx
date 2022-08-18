@@ -14,7 +14,7 @@ const BackofficeCards = () => {
       { text: 'Categorias', route: '/backoffice/categorias', img: 'categories.png' },
       { text: 'Testimonios', route: '/backoffice/testimonios', img: 'testimonial.png' },
       { text: 'Organización', route: '/backoffice/organizacion', img: 'organization.png' },
-      // { text: 'Slides', route: '/backoffice/slides', img: 'slides.png' },
+      { text: 'Contactos', route: '/backoffice/contactos', img: 'slides.png' },
       { text: 'Usuarios', route: '/backoffice/usuarios', img: 'usuarios.png' },
       { text: 'Miembros', route: '/backoffice/miembros', img: 'miembros.png' },
     ]);

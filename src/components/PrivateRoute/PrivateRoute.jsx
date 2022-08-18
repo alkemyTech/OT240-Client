@@ -1,16 +1,24 @@
-import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchUser } from '../../redux/actions/auth.action';
 
 const PrivateRoute = ({ allowedRoles }) => {
-  const user = useSelector((store) => store.auth.user);
-  return user && !allowedRoles ? (
-    <Outlet />
-  ) : user && allowedRoles && allowedRoles.includes(user.roleId) ? (
-    <Outlet />
-  ) : (
-    <Navigate to={'/login'} />
-  );
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user, loading } = useSelector((store) => store.auth);
+
+  useEffect(() => {
+    if (!user && !loading) {
+      navigate('/login');
+    }
+    if (user && !allowedRoles.includes(user.roleId)) {
+      navigate('/');
+    }
+  }, [user, loading]);
+
+  return <Outlet />;
 };
 
 export default PrivateRoute;

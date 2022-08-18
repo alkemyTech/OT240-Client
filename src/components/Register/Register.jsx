@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-
 import register from './styles/Register.module.scss';
 import InputField from '../InputField/InputField';
-import fetchApi from '../../axios/axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { registerAction } from '../../redux/actions/auth.action';
 
 const Register = () => {
   const [errors, setErrors] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { user, loading } = useSelector((store) => store.auth);
+
+  useEffect(() => {
+    if (user && !loading) {
+      navigate('/');
+    }
+  }, [user, loading]);
 
   const validate = Yup.object({
     registerFirstName: Yup.string()

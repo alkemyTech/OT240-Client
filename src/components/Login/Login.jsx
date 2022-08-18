@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from '../../redux/actions/auth.action';
 
 import login from './styles/Login.module.scss';
@@ -12,6 +12,13 @@ const Login = () => {
   const [errors, setErrors] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { user, loading } = useSelector((store) => store.auth);
+
+  useEffect(() => {
+    if (user && !loading) {
+      navigate('/');
+    }
+  }, [user, loading]);
 
   const validate = Yup.object({
     loginEmail: Yup.string().required('El email es requerido').email('El email es invalido'),

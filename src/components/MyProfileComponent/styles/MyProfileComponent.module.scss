@@ -38,6 +38,18 @@
     background-color: rgb(216, 213, 213);
     cursor: pointer;
 }
+.deleteButton {
+    margin-left: 1rem;
+    background-color: red;
+    border-radius: 4px;
+    border: 1px solid red;
+    color: white;
+}
+.deleteButton:hover {
+    cursor: pointer;
+    background-color: #fd4646;
+    color: black;
+}
 .labelsContainer {
     p{
         font-weight: 600;
