@@ -44,7 +44,7 @@ const translateFieldName = (recievedName) => {
   }
 };
 
-const FieldSwitch = ({ field, options }) => {
+const FieldSwitch = ({ field }) => {
   switch (field) {
     case 'image':
       return <FileField field={field} />;
@@ -53,8 +53,7 @@ const FieldSwitch = ({ field, options }) => {
     case 'description':
       return <TextEditor field={field} />;
     case 'roleId':
-      const options = { Admin: 1, User: 2 };
-      return <CheckboxField field={field} options={options} />;
+      return <CheckboxField field={field} checkboxes={{ Admin: 1, User: 2 }} />;
     default:
       return <TextField field={field} />;
   }
@@ -70,7 +69,7 @@ const FieldMap = ({ fields }) => {
             <label className={style.label} htmlFor={key}>
               {translateFieldName(key)}
             </label>
-            <FieldSwitch field={key} options={value} />
+            <FieldSwitch field={key} />
           </div>
         ))}
     </>
