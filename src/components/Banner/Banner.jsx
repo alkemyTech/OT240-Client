@@ -35,7 +35,7 @@ const Banner = () => {
       }>
       <div className={style.description}>
         <h2 className={style.title}>{data.name}</h2>
-        <p>{organization.welcomeText || ''}</p>
+        <div dangerouslySetInnerHTML={{ __html: organization.welcomeText } || ''}></div>
         <Link to='/contacto' className={style.link}>
           ¡Quiero ser parte!
         </Link>
