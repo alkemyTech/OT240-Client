@@ -24,9 +24,10 @@ const Backoffice = () => {
         <Route path='/contactos' element={<Contacts />} />
         <Route path='/actividades/*' element={<ActivitiesRoutes />} />
         <Route path='/usuarios' element={<UsersBackoffice />} />
-        <Route path='/organizacion/*' element={<Organization />} />
-        <Route path='/miembros/*' element={<MembersBackoffice />} />
         <Route path='/usuarios/editar' element={<Form />} />
+        <Route path='/usuarios/crear' element={<Form />} />
+        <Route path='/miembros/*' element={<MembersBackoffice />} />
+        <Route path='/organizacion/*' element={<Organization />} />
       </Routes>
     </>
   );
