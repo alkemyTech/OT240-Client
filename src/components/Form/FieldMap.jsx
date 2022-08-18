@@ -5,6 +5,7 @@ import style from './styles/Form.module.scss';
 import TextField from './TextField';
 import FileField from './FileField';
 import TextEditor from './TextEditor';
+import CheckboxField from './CheckboxField';
 
 const translateFieldName = (recievedName) => {
   switch (recievedName) {
@@ -34,6 +35,10 @@ const translateFieldName = (recievedName) => {
       return 'Apellido';
     case 'roleId':
       return 'Rol';
+    case 'email':
+      return 'Email';
+    case 'password':
+      return 'Password';
     default:
       return recievedName;
   }
@@ -47,6 +52,8 @@ const FieldSwitch = ({ field }) => {
     case 'welcomeText':
     case 'description':
       return <TextEditor field={field} />;
+    case 'roleId':
+      return <CheckboxField field={field} checkboxes={{ Admin: 1, User: 2 }} />;
     default:
       return <TextField field={field} />;
   }
