@@ -9,8 +9,8 @@
   align-items: flex-end;
   justify-content: center;
   flex: 1;
-  min-width: 240px;
-  min-height: 254px;
+  min-width: 220px;
+  min-height: 234px;
   max-height: 400px;
   max-width: 400px;
   span {
@@ -22,6 +22,7 @@
     color: wheat;
     text-shadow: 3px 3px 3px rgb(40, 40, 40);
     text-align: center;
+    max-width: 85%;
   }
   @media screen and (max-width: 750px) {
     min-width: 140px;
