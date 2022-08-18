@@ -1,13 +1,17 @@
 .card {
   border-radius: 20px;
-  width: 234px;
-  height: 234px;
+  // height: 234px;  width: 234px;
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  flex: 1;
+  min-width: 220px;
+  min-height: 234px;
+  max-width: 400px;
 
   span {
     font-size: 24px;
@@ -16,5 +20,11 @@
     font-weight: 700;
     letter-spacing: -0.015em;
     color: wheat;
+    text-shadow: 3px 3px 3px rgb(40, 40, 40);
   }
+  // @media screen and (max-width: 768px) {
+  //   flex: 1;
+  //   min-width: 220px;
+  //   min-height: 234px;
+  // }
 }
