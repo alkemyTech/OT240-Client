@@ -5,6 +5,7 @@ import style from './styles/Form.module.scss';
 import TextField from './TextField';
 import FileField from './FileField';
 import TextEditor from './TextEditor';
+import CheckboxField from './CheckboxField';
 
 const translateFieldName = (recievedName) => {
   switch (recievedName) {
@@ -34,12 +35,16 @@ const translateFieldName = (recievedName) => {
       return 'Apellido';
     case 'roleId':
       return 'Rol';
+    case 'email':
+      return 'Email';
+    case 'password':
+      return 'Password';
     default:
       return recievedName;
   }
 };
 
-const FieldSwitch = ({ field }) => {
+const FieldSwitch = ({ field, options }) => {
   switch (field) {
     case 'image':
       return <FileField field={field} />;
@@ -47,6 +52,9 @@ const FieldSwitch = ({ field }) => {
     case 'welcomeText':
     case 'description':
       return <TextEditor field={field} />;
+    case 'roleId':
+      const options = { Admin: 1, User: 2 };
+      return <CheckboxField field={field} options={options} />;
     default:
       return <TextField field={field} />;
   }
@@ -62,7 +70,7 @@ const FieldMap = ({ fields }) => {
             <label className={style.label} htmlFor={key}>
               {translateFieldName(key)}
             </label>
-            <FieldSwitch field={key} />
+            <FieldSwitch field={key} options={value} />
           </div>
         ))}
     </>
