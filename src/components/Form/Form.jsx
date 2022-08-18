@@ -31,12 +31,20 @@ const Form = () => {
   const handleCloseSuccess = () => {
     dispatch(formFields({}));
     dispatch(formSuccess(null));
+    dispatch(formError(null));
     navigate(prevLocation);
   };
 
-  const handleCloseError = () => dispatch(formError(null));
+  const handleCloseError = () => {
+    dispatch(formError(null));
+    dispatch(formSuccess(null));
+  };
 
-  const handleCloseForm = () => navigate(prevLocation);
+  const handleCloseForm = () => {
+    dispatch(formError(null));
+    dispatch(formSuccess(null));
+    navigate(prevLocation);
+  };
 
   return (
     <article className={style.container}>
