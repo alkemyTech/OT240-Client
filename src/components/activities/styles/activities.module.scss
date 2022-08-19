@@ -3,8 +3,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  margin-bottom: 30px;
+  width: 90%;
+  margin: auto;
+  //margin-bottom: 30px;
 
   .title {
     font-size: 2rem;
@@ -21,7 +22,16 @@
 
 .cards {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  margin-bottom: 20px;
+
+  @media screen and (max-width: 786px) {
+    justify-content: center;
+
+  }
+  
 }
+

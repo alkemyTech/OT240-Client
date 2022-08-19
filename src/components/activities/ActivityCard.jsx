@@ -16,7 +16,7 @@ export const ActivityCard = ({image, name, content, id}) => {
     <div className={styles.card}>
 
         <img src={image} alt="actividad" className={styles.image}/>
-        <h3>{name}</h3>
+        <h3 className={styles.title}>{name}</h3>
         <p className={styles.content}>{content}</p>
         <button className={styles.button} onClick={()=>handleClick()}>Ver Actividad</button>
 

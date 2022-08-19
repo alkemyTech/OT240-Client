@@ -28,12 +28,12 @@ export const Activities = () => {
     <div className={styles.container}>
 
         <h2 className={styles.title}>Actividades</h2>
-        <div className={styles.cards}>
-        {
-            activities.map( (el) => (
-                <ActivityCard  key={el.id} {...el}/>
-            ) )
-        }
+        <div className={styles.cards}>          
+            {
+                activities.map( (el) => (
+                    <ActivityCard  key={el.id} {...el}/>
+                ) )
+            }          
         </div>
 
     </div>
