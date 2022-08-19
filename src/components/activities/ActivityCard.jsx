@@ -12,7 +12,7 @@ export const ActivityCard = ({ image, name, content, id }) => {
   return (
     <div className={styles.card}>
       <img src={image} alt='actividad' className={styles.image} />
-      <h3>{name}</h3>
+      <h3 className={styles.title}>{name}</h3>
       <div className={styles.content} dangerouslySetInnerHTML={{ __html: content } || ''}></div>
       <button className={styles.button} onClick={() => handleClick()}>
         Ver Actividad

@@ -9,9 +9,10 @@
 }
 
 .image {
-    height: 400px;
+    height: 300px;
     width: 400px;
     margin-bottom: 10px;
+    object-fit: contain;    
 
     @media screen and (max-width: 450px) {
         height: 250px;
@@ -21,11 +22,18 @@
 
 .name {
     margin: 10px;
+    //font-family: 'Mullish';
+    @media screen and (max-width: 450px) {
+        text-align: center;
+    }
 }
 
 .content {
     width: 60%;
     margin: 10px;    
+    @media screen and (max-width: 600px) {
+        width: 80%;;
+    }
 }
 
 .error {       
