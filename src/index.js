@@ -9,11 +9,7 @@ import CustomProvider from './context/OrganizationContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <CustomProvider>
-        <App />
-      </CustomProvider>
-    </Provider>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
