@@ -20,5 +20,5 @@ export default combineReducers({
   activity: activityReducer,
   testimonial: testimonialReducer,
   contacts: contactsReducer,
-  user: userReducer,
+  users: userReducer,
 });
