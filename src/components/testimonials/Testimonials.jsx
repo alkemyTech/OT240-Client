@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import styles from './styles/testimonials.module.scss';
 import { TestimonialCard } from './TestimonialCard';
@@ -13,7 +13,7 @@ export const Testimonials = ({ quantity }) => {
   const { entries, loading, error } = useSelector((state) => state.testimonial);
   
   React.useEffect(() => {    
-    dispatch(fetchTestimonial({ url: '/testimonials' }));      
+    dispatch(fetchTestimonial({ method:'get', url: '/testimonials' }));      
   }, [dispatch]);
 
   const handleAdd = () => {
@@ -27,7 +27,6 @@ export const Testimonials = ({ quantity }) => {
     });
   };
 
-  //testimonialsMock.slice(0, quantity)
   return (
     <div className={styles.container}>
       <div

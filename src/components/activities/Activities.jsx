@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import { ActivityCard } from './ActivityCard';
 import styles from "./styles/activities.module.scss";
 import { useSelector, useDispatch } from 'react-redux';
@@ -12,7 +12,7 @@ export const Activities = () => {
     const { entries, loading, error } = useSelector((state) => state.activity);
         
     React.useEffect(() => {    
-      dispatch(fetchAcivities({ url: '/activities' }));      
+      dispatch(fetchAcivities({method: 'get', url: '/activities' }));      
     }, [dispatch]);
 
 

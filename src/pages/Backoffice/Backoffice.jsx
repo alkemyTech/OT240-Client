@@ -11,6 +11,7 @@ import Form from '../../components/Form/Form';
 import ActivitiesRoutes from './subroutes/ActivityRoutes';
 import TestimonialRoutes from './subroutes/TestimonialRoutes';
 import MembersBackoffice from './MembersBackoffice/MembersBackoffice';
+import ContactsBackoffice from './Contacts/Contacts';
 
 const Backoffice = () => {
   return (
@@ -21,7 +22,7 @@ const Backoffice = () => {
         <Route path='/novedades/*' element={<NewsListBackoffice />} />
         <Route path='/testimonios/*' element={<TestimonialRoutes />} />
         <Route path='/categorias/*' element={<Categories />} />
-        <Route path='/contactos' element={<Contacts />} />
+        <Route path='/contactos/*' element={<ContactsBackoffice />} />
         <Route path='/actividades/*' element={<ActivitiesRoutes />} />
         <Route path='/usuarios' element={<UsersBackoffice />} />
         <Route path='/usuarios/editar' element={<Form />} />
