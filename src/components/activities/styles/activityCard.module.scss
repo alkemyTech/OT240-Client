@@ -22,11 +22,18 @@
 
 .title {  
     margin: 5px;
+    font-family: 'Indie Flower', cursive;
+    font-weight: 800;
+    font-style: normal;    
 }
 
 .content {
+    height: 97px;
     margin-top: 5px;
-    overflow: hidden;        
+    overflow: hidden;      
+    font-family: 'Poppins';
+    font-style: normal;  
+    font-size: 15px;  
 }
 
 .button {
@@ -41,7 +48,7 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    //color: white;
+    color: white;
 }
 
 .image {
