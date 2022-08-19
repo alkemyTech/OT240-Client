@@ -5,93 +5,106 @@
   align-items: center;
   width: 80%;
   margin: auto;
+  margin-bottom: 50px;
+}
 
-  .header {
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  .title {
+    font-size: 2rem;
+    margin: 2rem 0 2rem;
+    font-style: normal;
+    font-weight: 600;
+
+    @media screen and (min-width: 769px) {
+      font-size: 3rem;
+      margin: 1rem 0 2rem;
+    }
+  }
+}
+.headerCentered {
+  justify-content: center;
+
+  .title {
+    font-size: 2rem;
+    margin: 2rem 0 2rem;
+    font-style: normal;
+    font-weight: 600;
+
+    @media screen and (min-width: 769px) {
+      font-size: 3rem;
+      margin: 1rem 0 2rem;
+    }
+  }
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.buttonsContainer {
+  width: 100%;
+  padding: 20px;
+  .buttons {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
-    width: 100%;
+    gap: 20px;
 
-    .title {
-      font-size: 2rem;
-      margin: 2rem 0 2rem;
+    .button1 {
+      background: #ff0000;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      width: 429px;
+      height: 68px;
+      border-radius: 15px;
+      border: none;
+      padding: 10px 25px;
+      color: white;
+      font-family: 'Poppins';
       font-style: normal;
       font-weight: 600;
-
-      @media screen and (min-width: 769px) {
-        font-size: 3rem;
-        margin: 1rem 0 2rem;
+      font-size: 20px;
+      cursor: pointer;
+      @media screen and (max-width: 600px) {
+        width: 250px;
       }
     }
-  }
-  .headerCentered {
-    justify-content: center;
 
-    .title {
-      font-size: 2rem;
-      margin: 2rem 0 2rem;
+    .button2 {
+      width: 200px;
+      height: 68px;
+      padding: 5px 20px;
+      background: #f7f7f7;
+      border: 1px solid #000000;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 15px;
+      border: none;        
+      font-family: 'Poppins';
       font-style: normal;
       font-weight: 600;
-
-      @media screen and (min-width: 769px) {
-        font-size: 3rem;
-        margin: 1rem 0 2rem;
-      }
+      font-size: 20px;
+      cursor: pointer;
     }
   }
+}
 
-  .cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 15px;
-    width: 100%;
-  }
-
-  .buttonsContainer {
-    width: 100%;
-    padding: 20px;
-    .buttons {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 20px;
-
-      .button1 {
-        background: #ff0000;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        width: 429px;
-        height: 68px;
-        border-radius: 15px;
-        border: none;
-        padding: 10px 25px;
-        color: white;
-        font-family: 'Poppins';
-        font-style: normal;
-        font-weight: 600;
-        font-size: 20px;
-        cursor: pointer;
-        @media screen and (max-width: 600px) {
-          width: 250px;
-        }
-      }
-
-      .button2 {
-        width: 200px;
-        height: 68px;
-        padding: 5px 20px;
-        background: #f7f7f7;
-        border: 1px solid #000000;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 15px;
-        border: none;        
-        font-family: 'Poppins';
-        font-style: normal;
-        font-weight: 600;
-        font-size: 20px;
-        cursor: pointer;
-      }
-    }
-  }
+.loaderContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+  margin-top: 100px;
 }

@@ -1,41 +1,37 @@
 import React from 'react'
 import { ActivityCard } from './ActivityCard';
 import styles from "./styles/activities.module.scss";
-import { useNavigate, useLocation } from 'react-router-dom';
-import fetchApi from '../../axios/axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchAcivities } from '../../redux/actions/activity.action';
+import { Loader } from '../loader/Loader';
 
 
 export const Activities = () => {
-
-    const navigate = useNavigate();
-    const location = useLocation();
-    const [activities, setActivities] = React.useState([]);
     
+    const dispatch = useDispatch();
+    const { entries, loading, error } = useSelector((state) => state.activity);
+        
     React.useEffect(() => {    
-        const getActivities = async () => {
-          try {
-            const { data } = await fetchApi({ method: 'get', url: '/activities' });
-            setActivities(data);
-          } catch (err) {
-            console.log("Error en el get");        
-          }  
-        };
-        getActivities();    
-      }, []);
+      dispatch(fetchAcivities({ url: '/activities' }));      
+    }, [dispatch]);
 
 
   return (
-    <div className={styles.container}>
 
-        <h2 className={styles.title}>Actividades</h2>
-        <div className={styles.cards}>          
-            {
-                activities.map( (el) => (
-                    <ActivityCard  key={el.id} {...el}/>
-                ) )
-            }          
-        </div>
-
-    </div>
+      <div className={styles.container}>
+          <h2 className={styles.title}>Actividades</h2>
+          <div className={styles.cards}>  
+              {
+                  (loading)? 
+                    <div className={styles.loaderContainer}>
+                      <Loader />
+                    </div>    
+                    :        
+                  entries.map( (el) => (
+                      <ActivityCard  key={el.id} {...el}/>
+                  ) )
+              }          
+          </div>
+      </div>
   )
 }
