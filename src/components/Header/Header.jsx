@@ -48,7 +48,7 @@ const Header = () => {
           onClick={onClickHanddler}>
           <img src={logo} alt='somos_mas_logo' />
           <Links navigationItems={navigationItems} />
-          <Buttons menuIsOpen={menuIsOpen} setMenuIsOpen={setMenuIsOpen} />
+          <Buttons lateralBtn={true} />
         </div>
       </header>
     </>

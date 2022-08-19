@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteMember } from '../../../../redux/actions/member.actions';
 import Table from '../../../../components/Table/Table';
 import { loadMembers } from '../../../../redux/actions/member.actions';
+import Swal from 'sweetalert2';
 
 const MembersTable = () => {
   const navigate = useNavigate();
@@ -13,10 +14,16 @@ const MembersTable = () => {
   const { members, loading, error } = useSelector((state) => state.members);
 
   const handleDelete = async (fields) => {
-    const confirmDelete = window.confirm(
-      `Desea borrar el miembro "${fields.name}"?\nEsta operación no puede deshacerse!`
-    );
-    if (confirmDelete) {
+    const result = await Swal.fire({
+      title: `Borrar miembro ${fields.name.replace(/\W/, '')}?`,
+      text: `Esta operación no puede deshacerse!`,
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonColor: 'red',
+      confirmButtonColor: 'green',
+      iconColor: 'red',
+    });
+    if (result.isConfirmed) {
       dispatch(deleteMember({ url: `/members/${fields.id}`, method: 'delete' }));
     }
   };

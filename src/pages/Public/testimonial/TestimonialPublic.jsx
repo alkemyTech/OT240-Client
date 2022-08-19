@@ -7,7 +7,7 @@ import PrivateRoute from '../../../components/PrivateRoute/PrivateRoute';
 const TestimonialPublic = () => {
   return (
     <Routes>
-      <Route element={<PrivateRoute />}>
+      <Route element={<PrivateRoute allowedRoles={[1, 2]} />}>
         <Route path='/crear' element={<Form />} />
       </Route>
       <Route path='/' element={<Testimonials />} />

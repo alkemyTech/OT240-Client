@@ -20,6 +20,9 @@ const Form = () => {
 
   React.useEffect(() => {
     dispatch(formFields(recievedFields));
+    return () => {
+      dispatch(formFields({}));
+    };
   }, [dispatch, recievedFields]);
 
   const handleSubmit = (e) => {
@@ -29,7 +32,6 @@ const Form = () => {
   };
 
   const handleCloseSuccess = () => {
-    dispatch(formFields({}));
     dispatch(formSuccess(null));
     dispatch(formError(null));
     navigate(prevLocation);

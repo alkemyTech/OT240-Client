@@ -1,27 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import styles from './styles/testimonials.module.scss';
 import { TestimonialCard } from './TestimonialCard';
-//import testimonialsMock from '../../testimonials.mock';
-import fetchApi from '../../axios/axios';
+import { fetchTestimonial } from '../../redux/actions/testimonial.action';
+import { useSelector, useDispatch } from 'react-redux';
+import { Loader } from '../loader/Loader';
 
 export const Testimonials = ({ quantity }) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const [testimonials, setTestimonials] = React.useState([]);
-
-  React.useEffect(() => {
-    const getTestimonials = async () => {
-      try {
-        const { data } = await fetchApi({ method: 'get', url: '/testimonials' });
-
-        setTestimonials(data);
-      } catch (err) {
-        console.log('Error en el get');
-      }
-    };
-    getTestimonials();
-  }, []);
+  const location = useLocation();  
+  const dispatch = useDispatch();
+  const { entries, loading, error } = useSelector((state) => state.testimonial);
+  
+  React.useEffect(() => {    
+    dispatch(fetchTestimonial({ method:'get', url: '/testimonials' }));      
+  }, [dispatch]);
 
   const handleAdd = () => {
     navigate('crear', {
@@ -34,7 +27,6 @@ export const Testimonials = ({ quantity }) => {
     });
   };
 
-  //testimonialsMock.slice(0, quantity)
   return (
     <div className={styles.container}>
       <div
@@ -47,9 +39,16 @@ export const Testimonials = ({ quantity }) => {
         {!location.pathname.includes('testimonios') && <Link to='/testimonios'>{`Ver mas >`}</Link>}
       </div>
       <div className={styles.cards}>
-        {testimonials.map((el) => (
-          <TestimonialCard key={el.id} {...el} />
-        ))}
+        {
+          (loading)? 
+          <div className={styles.loaderContainer}>
+            <Loader />
+          </div>    
+          :
+          entries.map((el) => (
+            <TestimonialCard key={el.id} {...el} />
+          ))
+        }
       </div>
       {location.pathname.includes('testimonios') && (
         <div className={styles.buttonsContainer}>
