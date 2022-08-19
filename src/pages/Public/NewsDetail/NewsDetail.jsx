@@ -1,36 +1,18 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import { useDispatch, useSelector } from 'react-redux';
 import style from './styles/NewsDetail.module.scss';
-
-import fetchApi from '../../../axios/axios';
+import { getNew } from '../../../redux/actions/news.actions';
 
 const NewsDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
-  const [currentNew, setCurrentNew] = React.useState('');
-  const [error, setError] = React.useState('');
-  const [loading, setLoading] = React.useState(false);
+  const dispatch = useDispatch();
+  const { entrie, error, loading } = useSelector((state) => state.news);
 
   React.useEffect(() => {
-    let isMounted = true;
-    const getNew = async (id) => {
-      setLoading(true);
-      try {
-        const { data } = await fetchApi({ method: 'get', url: `/news/${id}` });
-        isMounted && setCurrentNew(data);
-      } catch (err) {
-        isMounted && setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getNew(id);
-
-    return () => (isMounted = false);
-  }, [id]);
+    dispatch(getNew({ method: 'get', url: `/news/${id}` }));
+  }, [dispatch, id]);
 
   return (
     <>
@@ -40,12 +22,12 @@ const NewsDetail = () => {
         <p>{error}</p>
       ) : (
         <article className={style.container}>
-          <img src={`${currentNew.image}`} alt='' />
+          <img src={`${entrie.image}`} alt='' />
           <div>
-            <h1>{currentNew.name}</h1>
+            <h1>{entrie.name}</h1>
             <div
               className={style.content}
-              dangerouslySetInnerHTML={{ __html: currentNew.content }}></div>
+              dangerouslySetInnerHTML={{ __html: entrie.content }}></div>
             <button onClick={() => navigate('/')}>Ir al inicio</button>
           </div>
         </article>

@@ -10,7 +10,7 @@ export const TestimonialCard = ({ image, name, content }) => {
         className={styles.profilePic}
       />
       <span className={styles.span}>{name}</span>
-      <p className={styles.p}>{content}</p>
+      <div className={styles.p} dangerouslySetInnerHTML={{ __html: content } || ''}></div>
     </div>
   );
 };

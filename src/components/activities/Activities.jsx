@@ -1,41 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import { ActivityCard } from './ActivityCard';
-import styles from "./styles/activities.module.scss";
+import styles from './styles/activities.module.scss';
 import { useNavigate, useLocation } from 'react-router-dom';
-import fetchApi from '../../axios/axios';
-
+import { fetchAcivities } from '../../redux/actions/activity.action';
+import { useSelector, useDispatch } from 'react-redux';
 
 export const Activities = () => {
+  const dispatch = useDispatch();
+  const { entries, loading, error } = useSelector((state) => state.activity);
 
-    const navigate = useNavigate();
-    const location = useLocation();
-    const [activities, setActivities] = React.useState([]);
-    
-    React.useEffect(() => {    
-        const getActivities = async () => {
-          try {
-            const { data } = await fetchApi({ method: 'get', url: '/activities' });
-            setActivities(data);
-          } catch (err) {
-            console.log("Error en el get");        
-          }  
-        };
-        getActivities();    
-      }, []);
-
+  useEffect(() => {
+    dispatch(fetchAcivities({ method: 'get', url: '/activities' }));
+  }, [dispatch]);
 
   return (
     <div className={styles.container}>
-
-        <h2 className={styles.title}>Actividades</h2>
-        <div className={styles.cards}>
-        {
-            activities.map( (el) => (
-                <ActivityCard  key={el.id} {...el}/>
-            ) )
-        }
-        </div>
-
+      <h2 className={styles.title}>Actividades</h2>
+      <div className={styles.cards}>
+        {entries.map((el) => (
+          <ActivityCard key={el.id} {...el} />
+        ))}
+      </div>
     </div>
-  )
-}
+  );
+};

@@ -38,11 +38,13 @@ const Form = () => {
   const handleCloseError = () => {
     dispatch(formError(null));
     dispatch(formSuccess(null));
+    dispatch(formFields({}));
   };
 
   const handleCloseForm = () => {
     dispatch(formError(null));
     dispatch(formSuccess(null));
+    dispatch(formFields({}));
     navigate(prevLocation);
   };
 

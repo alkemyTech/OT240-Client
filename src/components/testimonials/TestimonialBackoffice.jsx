@@ -3,22 +3,22 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Table from '../Table/Table';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchTestimonial } from '../../redux/actions/testimonial.action';
+import Swal from 'sweetalert2';
 
 export const TestimonialBackoffice = () => {
-
   const navigate = useNavigate();
-  const location = useLocation();  
+  const location = useLocation();
   //const [testimonials, setTestimonials] = React.useState([]);
   const dispatch = useDispatch();
   const { entries, loading, error } = useSelector((state) => state.testimonial);
 
-  React.useEffect(() => {    
-    dispatch(fetchTestimonial({ url: '/testimonials' }));      
-  }, [dispatch]);  
+  React.useEffect(() => {
+    dispatch(fetchTestimonial({ url: '/testimonials' }));
+  }, [dispatch]);
 
-  const handleEdit = (fields) => {       
+  const handleEdit = (fields) => {
     const { name, content, image, id } = fields;
-    navigate("editar", {
+    navigate('editar', {
       state: {
         id,
         title: 'Editar Testimonio',
@@ -26,24 +26,31 @@ export const TestimonialBackoffice = () => {
         options: { method: 'put', url: `/testimonials/${id}` },
         from: location,
       },
-    });    
+    });
   };
-  
-  const handleDelete = async(fields) => {
-    const confirmDelete = window.confirm(
-      `Desea borrar el testimonio "${fields.name}"?\nEsta operación no puede deshacerse!`
-    );
-    if (confirmDelete) {
+
+  const handleDelete = async (fields) => {
+    const result = await Swal.fire({
+      title: `Borrar testimonio ${fields.name.replace(/\W/, '')}?`,
+      text: `Esta operación no puede deshacerse!`,
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonColor: 'red',
+      confirmButtonColor: 'green',
+      iconColor: 'red',
+    });
+    if (result.isConfirmed) {
       dispatch(fetchTestimonial({ url: `/testimonials/${fields.id}`, method: 'delete' }));
     }
   };
+
   const handleAdd = () => {
-    navigate("crear", {
+    navigate('crear', {
       state: {
         title: 'Crear Testimonio',
         options: { method: 'post', url: `/testimonials` },
         from: location,
-        fields: { name: "", image: '', content: "" },
+        fields: { name: '', image: '', content: '' },
       },
     });
   };
@@ -61,7 +68,5 @@ export const TestimonialBackoffice = () => {
       loading={loading}
       addBtnHandler={handleAdd}
     />
-    
-
-  )
-}
+  );
+};

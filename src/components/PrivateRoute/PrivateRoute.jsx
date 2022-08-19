@@ -18,7 +18,7 @@ const PrivateRoute = ({ allowedRoles }) => {
     }
   }, [user, loading]);
 
-  return <Outlet />;
+  return user && allowedRoles?.includes(user.roleId) ? <Outlet /> : '';
 };
 
 export default PrivateRoute;

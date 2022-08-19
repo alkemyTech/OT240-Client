@@ -23,8 +23,8 @@ const Public = () => {
         <Route path='/login' element={<Login />} />
         <Route path='/registro' element={<Register />} />
         <Route path='/nosotros' element={<Members />} />
-        <Route path='novedades' element={<News />} />
-        <Route path='novedades/:id' element={<NewsDetail />} />
+        <Route path='/novedades' element={<News />} />
+        <Route path='/novedades/:id' element={<NewsDetail />} />
         <Route path='/testimonios/*' element={<TestimonialPublic />} />
         <Route path='/contacto' element={<ContactMe />} />
         <Route path='/actividades' element={<Activities />} />

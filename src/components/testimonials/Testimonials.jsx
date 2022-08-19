@@ -1,27 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import styles from './styles/testimonials.module.scss';
 import { TestimonialCard } from './TestimonialCard';
-//import testimonialsMock from '../../testimonials.mock';
-import fetchApi from '../../axios/axios';
+import { fetchTestimonial } from '../../redux/actions/testimonial.action';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 export const Testimonials = ({ quantity }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [testimonials, setTestimonials] = React.useState([]);
+  const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    const getTestimonials = async () => {
-      try {
-        const { data } = await fetchApi({ method: 'get', url: '/testimonials' });
+  const { entries, loading, error } = useSelector((state) => state.testimonial);
 
-        setTestimonials(data);
-      } catch (err) {
-        console.log('Error en el get');
-      }
-    };
-    getTestimonials();
-  }, []);
+  useEffect(() => {
+    dispatch(fetchTestimonial({ method: 'get', url: '/testimonials' }));
+  }, [dispatch]);
 
   const handleAdd = () => {
     navigate('crear', {
@@ -34,7 +28,6 @@ export const Testimonials = ({ quantity }) => {
     });
   };
 
-  //testimonialsMock.slice(0, quantity)
   return (
     <div className={styles.container}>
       <div
@@ -47,7 +40,7 @@ export const Testimonials = ({ quantity }) => {
         {!location.pathname.includes('testimonios') && <Link to='/testimonios'>{`Ver mas >`}</Link>}
       </div>
       <div className={styles.cards}>
-        {testimonials.map((el) => (
+        {entries.map((el) => (
           <TestimonialCard key={el.id} {...el} />
         ))}
       </div>
