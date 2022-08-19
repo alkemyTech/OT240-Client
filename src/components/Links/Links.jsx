@@ -21,5 +21,4 @@ const Links = ({ navigationItems }) => {
   );
 };
 
-
 export default Links;
