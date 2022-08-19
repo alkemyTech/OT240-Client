@@ -12,6 +12,14 @@ import Swal from 'sweetalert2';
  * @param {object} extraConfig - Object with any valid sweetalert2 fire() arguments.
  */
 
+const SuccessToast = Swal.mixin({
+  timer: 3000,
+  toast: true,
+  position: 'top-right',
+  timerProgressBar: true,
+  showConfirmButton: false,
+});
+
 const showAlert = ({ title, text, icon }, extraParams = {}) => {
   return Swal.fire({
     title,
@@ -20,5 +28,15 @@ const showAlert = ({ title, text, icon }, extraParams = {}) => {
     ...extraParams,
   });
 };
+
+export const successAlert = ({ title, text, icon }, extraParams = {}) => {
+  return SuccessToast.fire({
+    title,
+    text,
+    icon,
+    ...extraParams
+  });
+};
+
 
 export default showAlert;
