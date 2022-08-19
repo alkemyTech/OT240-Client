@@ -31,7 +31,7 @@ export const Activity = () => {
                 <>
                     <img src={activity.image} alt='actividad' className={styles.image} /> 
                     <h2 className={styles.name}>{activity.name}</h2> 
-                    <p className={styles.content}>{activity.content}</p> 
+                    <p className={styles.content} dangerouslySetInnerHTML={{ __html: activity.content }}></p> 
                 </>
                 : <p className={styles.error}>Error: no se encontró la actividad</p>                
             }             

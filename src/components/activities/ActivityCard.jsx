@@ -17,7 +17,7 @@ export const ActivityCard = ({image, name, content, id}) => {
 
         <img src={image} alt="actividad" className={styles.image}/>
         <h3 className={styles.title}>{name}</h3>
-        <p className={styles.content}>{content}</p>
+        <p className={styles.content} dangerouslySetInnerHTML={{ __html: content }}></p>
         <button className={styles.button} onClick={()=>handleClick()}>Ver Actividad</button>
 
     </div>
