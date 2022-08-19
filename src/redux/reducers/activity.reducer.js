@@ -1,15 +1,23 @@
-import { ACTIVITY_ENTRIES, ACTIVITY_ERROR, ACTIVITY_LOADING } from '../types/activity.types';
+import {
+  ACTIVITY_ENTRIES,
+  ACTIVITY_ERROR,
+  ACTIVITY_LOADING,
+  GET_ACTIVITY,
+} from '../types/activity.types';
 
 const initialState = {
   loading: false,
   error: null,
   entries: [],
+  activity: {},
 };
 
 const activityReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case ACTIVITY_ENTRIES:
-      return { ...state, entries: [...payload] }
+      return { ...state, entries: [...payload] };
+    case GET_ACTIVITY:
+      return { ...state, activity: payload };
     case ACTIVITY_ERROR:
       return { ...state, error: payload };
     case ACTIVITY_LOADING:
