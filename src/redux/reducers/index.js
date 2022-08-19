@@ -8,6 +8,7 @@ import categoriesReducer from './categories.reducer';
 import activityReducer from './activity.reducer';
 import testimonialReducer from './testimonial.reducer';
 import userReducer from './user.reducer';
+import contactsReducer from './contacts.reducer';
 
 export default combineReducers({
   auth: authReducer,
@@ -18,5 +19,6 @@ export default combineReducers({
   categories: categoriesReducer,
   activity: activityReducer,
   testimonial: testimonialReducer,
-  users: userReducer
+  contacts: contactsReducer,
+  user: userReducer,
 });
