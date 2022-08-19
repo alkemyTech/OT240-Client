@@ -20,6 +20,9 @@ const Form = () => {
 
   React.useEffect(() => {
     dispatch(formFields(recievedFields));
+    return () => {
+      dispatch(formFields({}));
+    };
   }, [dispatch, recievedFields]);
 
   const handleSubmit = (e) => {
@@ -29,7 +32,6 @@ const Form = () => {
   };
 
   const handleCloseSuccess = () => {
-    dispatch(formFields({}));
     dispatch(formSuccess(null));
     dispatch(formError(null));
     navigate(prevLocation);
@@ -38,13 +40,11 @@ const Form = () => {
   const handleCloseError = () => {
     dispatch(formError(null));
     dispatch(formSuccess(null));
-    dispatch(formFields({}));
   };
 
   const handleCloseForm = () => {
     dispatch(formError(null));
     dispatch(formSuccess(null));
-    dispatch(formFields({}));
     navigate(prevLocation);
   };
 
