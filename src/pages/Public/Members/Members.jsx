@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useLocation, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Banner from '../../../components/Banner/Banner';
 import MembersList from './MembersList/MembersList';
@@ -7,7 +7,6 @@ import style from './styles/Members.module.scss';
 import { loadMembers } from '../../../redux/actions/member.actions';
 
 const Members = ({ quantity }) => {
-  const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
 
