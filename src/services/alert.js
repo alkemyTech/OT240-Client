@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 const SuccessToast = Swal.mixin({
   timer: 3000,
   toast: true,
-  position: 'top-right',
+  position: 'bottom-right',
   timerProgressBar: true,
   showConfirmButton: false,
 });
