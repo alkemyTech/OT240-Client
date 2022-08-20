@@ -86,7 +86,7 @@ function OrganizationCard({ org, handleEdit }) {
           <span className={style.header}> Linkedin </span>
           <span className={style.content}> {org?.linkedin}</span>
         </article>
-        <button className={style.button} onClick={handleEdit}>
+        <button className={style.button} onClick={() => handleEdit(org)}>
           Editar
         </button>
       </div>
