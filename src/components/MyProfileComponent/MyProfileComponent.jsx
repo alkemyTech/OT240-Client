@@ -50,14 +50,13 @@ const MyProfileComponent = () => {
     <>
       {!fetchError ? (
         <article className={style.articleDiv}>
-          <h1></h1>
           <div>
-            <p className={style.title}>Mi perfil</p>
+            <h1>Mi perfil</h1>
             <div className={style.tableContainer}>
               <div className={style.labelsContainer}>
-                <p> Nombre: </p>
-                <p> Apellido: </p>
-                <p> Email: </p>
+                <p> Nombre </p>
+                <p> Apellido </p>
+                <p> Email </p>
               </div>
               <div className={style.userData}>
                 <p> {userData.firstName}</p>
