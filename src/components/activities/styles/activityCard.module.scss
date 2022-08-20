@@ -1,62 +1,86 @@
-
 .card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin: 10px 10px;
-    padding: 16px;    
-    background: #FDFFA4;
-    border: 1px solid #F9FE00;
-    border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 10px;
+  padding: 15px;
+  background: #fdffa4;
+  border: 1px solid #f9fe00;
+  border-radius: 15px;
 
-    width: 300px;
-    height: 350px;
-    font-family: 'Poppins';
-    font-weight: 500;    
+  width: 260px;
+  height: 350px;
+  font-family: 'Poppins';
 
-    @media screen and (max-width: 786px)  {
-        width: 250px;
-    }
-
+  @media screen and (max-width: 786px) {
+    width: 250px;
+  }
 }
 
-.title {  
-    margin: 5px;
-    font-family: 'Indie Flower', cursive;
-    font-weight: 800;
-    font-style: normal;    
+.title {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-family: Poppins, cursive;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+  line-height: 1.2;
 }
 
 .content {
-    height: 97px;
-    margin-top: 5px;
-    overflow: hidden;      
-    font-family: 'Poppins';
-    font-style: normal;  
-    font-size: 15px;  
+  position: relative;
+  height: 97px;
+  overflow: hidden;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.583);
+  padding: 0 10px;
+  mix-blend-mode: hard-light;
+  text-align: center;
+
+  &::after {
+    position: absolute;
+    content: '';
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(transparent, gray);
+    pointer-events: none;
+  }
 }
 
 .button {
-    width: 196px;
-    height: 38px;
-    padding: 10px;
-    background: orange;
-    border: none;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-    cursor: pointer;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    color: white;
+  width: fit-content;
+  padding: 10px 30px;
+  margin-top: 15px;
+  align-self: center;
+  background: orange;
+  border: none;
+  box-shadow: var(--buttonShadow);
+  border-radius: 10px;
+  font-family: 'Poppins';
+  font-weight: 400;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .image {
-    height: 152px;
-    margin-bottom: 5px;
-    border-radius: 10px;
-    @media screen and (max-width: 786px)  {
-        height: 130px;
-    }
+  max-height: 152px;
+  width: 100%;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  object-fit: cover;
+
+  @media screen and (max-width: 786px) {
+    height: 130px;
+  }
 }

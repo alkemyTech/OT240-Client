@@ -64,16 +64,16 @@
     font-family: Mulish, sans-serif;
     font-size: calc(2 * var(--mod));
     font-weight: 800;
-    width: calc(20 * var(--mod));
+    width: fit-content;
     background-color: yellowgreen;
     border: none;
-    border-radius: calc(1 * var(--mod));
-    padding: calc(0.8 * var(--mod));
+    border-radius: 15px;
+    padding: 10px 30px;
     margin: calc(1.2 * var(--mod));
     margin-bottom: 0;
     color: white;
     cursor: pointer;
-    box-shadow: 5px 5px 10px -1px rgba(0, 0, 0, 0.222);
+    box-shadow: var(--buttonShadow);
 
     &:hover {
       opacity: 0.8;
