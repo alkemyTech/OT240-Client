@@ -6,6 +6,7 @@ import {
   FORM_FIELD,
 } from '../types/form.types';
 import fetchApi from '../../axios/axios';
+import successAlert from '../../services/alert';
 
 export const submitForm = (options) => async (dispatch, state) => {
   dispatch(formLoading(true));
@@ -14,9 +15,16 @@ export const submitForm = (options) => async (dispatch, state) => {
   try {
     await fetchApi(options);
     dispatch(formSuccess('Formulario enviado exitosamente!'));
+    successAlert({
+      title: 'Formulario enviado exitosamente!',
+      icon: 'success',
+    })
   } catch (err) {
-    console.log(err);
     dispatch(formError(err.message));
+    successAlert({
+      title: `Error al enviar el formulario\n ${err.message}`,
+      icon: 'error',
+    })
   } finally {
     dispatch(formLoading(false));
   }
