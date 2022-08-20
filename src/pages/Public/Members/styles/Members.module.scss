@@ -32,3 +32,12 @@
     flex-direction: column;
   }
 }
+
+.loader{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 70px;
+  margin-top: 70px;
+}
