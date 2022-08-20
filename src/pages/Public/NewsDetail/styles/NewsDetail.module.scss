@@ -5,22 +5,20 @@
   max-width: 600px;
   margin: calc(6 * var(--mod)) auto;
 
-  div {
-    margin: calc(6 * var(--mod)) auto;
-  }
-
   h1 {
-    font-size: calc(4 * var(--mod));
+    font-size: 40px;
     font-weight: 700;
-    margin: calc(2 * var(--mod)) auto;
+    margin: 40px auto;
   }
 
   .content {
-    text-align: center;
     width: fit-content;
-    font-size: calc(2 * var(--mod));
+    font-size: 20px;
     font-weight: 400;
-    padding: 0 calc(3 * var(--mod));
+
+    p {
+      margin: 0;
+    }
   }
 
   img {
@@ -31,6 +29,7 @@
   }
 
   button {
+    margin-top: 40px;
     font-family: Poppins;
     font-weight: 600;
     font-size: 24px;
