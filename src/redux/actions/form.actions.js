@@ -6,25 +6,28 @@ import {
   FORM_FIELD,
 } from '../types/form.types';
 import fetchApi from '../../axios/axios';
-import successAlert from '../../services/alert';
+import alert from '../../services/alert';
 
-export const submitForm = (options) => async (dispatch, state) => {
-  dispatch(formLoading(true));
+export const submitForm = (options, successCallback, errorCallback) => async (dispatch, state) => {
   dispatch(formError(null));
   dispatch(formSuccess(null));
   try {
+    dispatch(formLoading(true));
     await fetchApi(options);
+    dispatch(formLoading(false));
     dispatch(formSuccess('Formulario enviado exitosamente!'));
-    successAlert({
+    const result = await alert({
       title: 'Formulario enviado exitosamente!',
       icon: 'success',
-    })
+    });
+    result.isConfirmed && successCallback();
   } catch (err) {
+    dispatch(formLoading(false));
     dispatch(formError(err.message));
-    successAlert({
+    alert({
       title: `Error al enviar el formulario\n ${err.message}`,
       icon: 'error',
-    })
+    });
   } finally {
     dispatch(formLoading(false));
   }

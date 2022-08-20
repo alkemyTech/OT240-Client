@@ -27,7 +27,7 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(submitForm({ ...options, data: fields }));
+    dispatch(submitForm({ ...options, data: fields }, () => navigate(prevLocation)));
   };
 
   const handleCloseForm = () => {
