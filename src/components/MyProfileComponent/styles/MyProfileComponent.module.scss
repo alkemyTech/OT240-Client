@@ -5,10 +5,10 @@
   margin-top: 1.5rem;
   width: 100%;
 
-  .title {
+  h1 {
     display: flex;
     justify-content: center;
-    font-size: 24px;
+    font-size: 40px !important;
     font-weight: 600;
   }
 
@@ -17,23 +17,28 @@
     display: flex;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 10px -4px rgba(202, 202, 202, 0.994);
     justify-content: center;
-    margin-bottom: 1rem;
-    padding: 15px;
+    margin: 40px;
+    padding: 15px 30px;
 
     p {
       margin: 5px;
+      margin-left: 0;
+      font-family: Mulish;
+      font-size: 18px;
     }
 
     .labelsContainer {
       p {
-        font-weight: 600;
+        font-weight: 800;
+        text-align: right;
       }
     }
 
     .userData {
-      margin-left: 1rem;
+      margin-left: 10px;
+      color: gray;
     }
   }
 
@@ -46,6 +51,7 @@
       font-weight: 800;
       font-size: 16px;
       cursor: pointer;
+      box-shadow: 5px 5px 10px -4px rgba(191, 191, 191, 0.994);
 
       &:hover {
         opacity: 0.8;
@@ -55,7 +61,7 @@
     .editButton {
       font-family: Mulish;
       background-color: white;
-      border: 1px solid black;
+      border: 1px solid rgb(94, 94, 94);
       border-radius: 10px;
       color: black;
       font-weight: bold;
@@ -85,11 +91,5 @@
       padding-left: 10px;
       padding-right: 10px;
     }
-  }
-}
-
-@media (min-width: 1100px) {
-  .tableContainer {
-    width: 40vw;
   }
 }

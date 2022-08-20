@@ -76,13 +76,13 @@
     box-shadow: 5px 5px 10px -1px rgba(0, 0, 0, 0.222);
 
     &:hover {
-      opacity: 0.9;
+      opacity: 0.8;
     }
   }
 
   .cancelBtn {
     @extend .submitBtn;
-    background-color: rgb(227, 51, 51);
+    background-color: var(--btnPrimaryColor);
   }
 
   .field {
