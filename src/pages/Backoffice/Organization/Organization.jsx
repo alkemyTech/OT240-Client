@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
+
+import style from './styles/Organization.module.scss';
+
 import Form from '../../../components/Form/Form';
 import Table from '../../../components/Table/Table';
+
 import fetchApi from '../../../axios/axios';
 import { handleEdit, handleDelete, handleCreate } from '../../../utils/formsHandlers';
 
@@ -54,38 +58,38 @@ const Organization = () => {
       <Route path='/editar' element={<Form />} />
       <Route
         path='/'
-        element={
-          <Table
-            title='Organización'
-            tableHeader={[
-              'Nombre',
-              'Teléfono',
-              'Dirección',
-              'Texto de Bienvenida',
-              'Facebook',
-              'Linkedin',
-              'Instagram',
-              'Imagen',
-            ]}
-            tableRowsData={organization}
-            tableRowsProperties={[
-              'name',
-              'phone',
-              'address',
-              'welcomeText',
-              'facebook',
-              'linkedin',
-              'instagram',
-              'image',
-            ]}
-            buttons={[{ title: 'Editar', handler: editHandler, className: 'orange' }]}
-            loading={loading}
-            isOrganization={location.pathname.includes('organizacion')}
-          />
-        }
+        element={<OrganizationCard org={organization[0]} handleEdit={editHandler} />}
       />
     </Routes>
   );
 };
+
+function OrganizationCard({ org, handleEdit }) {
+  return (
+    <div className={style.container}>
+      <div>
+        <article>
+          <span className={style.header}> Logo </span>
+          <img className={style.content} src={org?.image} alt='' />
+          <span className={style.header}> Organización </span>
+          <span className={style.content}> {org?.name}</span>
+          <span className={style.header}> Descripción </span>
+          <span className={style.content}> {org?.welcomeText}</span>
+          <span className={style.header}> Dirección </span>
+          <span className={style.content}> {org?.address}</span>
+          <span className={style.header}> Teléfono </span>
+          <span className={style.content}> {org?.phone}</span>
+          <span className={style.header}> Intagram </span>
+          <span className={style.content}> {org?.instagram}</span>
+          <span className={style.header}> Facebook </span>
+          <span className={style.content}> {org?.facebook}</span>
+        </article>
+        <button className={style.button} onClick={handleEdit}>
+          Editar
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export default Organization;

@@ -26,11 +26,14 @@
 
 #slider .error {
   display: block;
+  margin: auto;
+  width: 80%;
   text-align: center;
-  color: rgb(203, 135, 135) !important;
+  color: grey !important;
   font-style: italic;
-  padding: var(--mod) calc(5 * var(--mod));
+  padding: var(--mod);
   border-radius: calc(0.5 * var(--mod));
+  background-color: rgb(236, 185, 185);
   box-sizing: border-box;
 }
 
