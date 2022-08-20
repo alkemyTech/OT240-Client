@@ -3,6 +3,7 @@ import {
   ACTIVITY_ERROR,
   ACTIVITY_LOADING,
   GET_ACTIVITY,
+  CLEAR_ACTIVITY,
 } from '../types/activity.types';
 
 const initialState = {
@@ -18,6 +19,8 @@ const activityReducer = (state = initialState, { type, payload }) => {
       return { ...state, entries: [...payload] };
     case GET_ACTIVITY:
       return { ...state, activity: payload };
+    case CLEAR_ACTIVITY:
+      return { ...state, activity: {} };
     case ACTIVITY_ERROR:
       return { ...state, error: payload };
     case ACTIVITY_LOADING:

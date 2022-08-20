@@ -3,6 +3,7 @@ import {
   ACTIVITY_ERROR,
   ACTIVITY_LOADING,
   GET_ACTIVITY,
+  CLEAR_ACTIVITY,
 } from '../types/activity.types';
 import fetchApi from '../../axios/axios';
 
@@ -35,7 +36,20 @@ export const loadActivity = (options) => async (dispatch, state) => {
   }
 };
 
+export const cleanActivity = (options) => async (dispatch, state) => {
+  dispatch(activitiesLoading(true));
+  dispatch(activitiesError(null));
+  try {
+    dispatch(clearActivity(options));
+  } catch (err) {
+    dispatch(activitiesError(err.message));
+  } finally {
+    dispatch(activitiesLoading(false));
+  }
+};
+
 const activitiesLoading = (payload) => ({ type: ACTIVITY_LOADING, payload });
 const activitiesError = (payload) => ({ type: ACTIVITY_ERROR, payload });
 const activitiesEntries = (payload) => ({ type: ACTIVITY_ENTRIES, payload });
 const getActivity = (payload) => ({ type: GET_ACTIVITY, payload });
+const clearActivity = (payload) => ({ type: CLEAR_ACTIVITY, payload });

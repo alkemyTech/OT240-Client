@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router';
 import styles from './styles/activity.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadActivity } from '../../redux/actions/activity.action';
+import { loadActivity, cleanActivity } from '../../redux/actions/activity.action';
 
 export const Activity = () => {
   const { id } = useParams();
@@ -12,6 +12,9 @@ export const Activity = () => {
 
   React.useEffect(() => {
     dispatch(loadActivity({ method: 'get', url: `/activities/${id}` }));
+    return () => {
+      dispatch(cleanActivity({}));
+    };
   }, []);
 
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import style from './styles/NewsDetail.module.scss';
-import { getNew } from '../../../redux/actions/news.actions';
+import { getNew, cleanNew } from '../../../redux/actions/news.actions';
 
 const NewsDetail = () => {
   const { id } = useParams();
@@ -12,6 +12,9 @@ const NewsDetail = () => {
 
   React.useEffect(() => {
     dispatch(getNew({ method: 'get', url: `/news/${id}` }));
+    return () => {
+      dispatch(cleanNew({}));
+    };
   }, [dispatch, id]);
 
   return (
