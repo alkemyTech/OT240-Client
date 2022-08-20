@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import styles from './styles/activity.module.scss';
 import { loadActivity, cleanActivity } from '../../redux/actions/activity.action';
+import { Loader } from '../loader/Loader';
 
 export const Activity = () => {
   const navigate = useNavigate();
@@ -21,7 +22,13 @@ export const Activity = () => {
 
   return (
     <div className={styles.container}>
-      {activity != undefined ? (
+      {loading ? (
+        <div className={activity.loader}>
+          <Loader />
+        </div>
+      ) : error ? (
+        <p className={styles.error}>Error: no se encontró la actividad</p>
+      ) : (
         <>
           <img src={activity.image} alt='actividad' className={styles.image} />
           <h2 className={styles.name}>{activity.name}</h2>
@@ -29,8 +36,6 @@ export const Activity = () => {
             className={styles.content}
             dangerouslySetInnerHTML={{ __html: activity.content } || ''}></div>
         </>
-      ) : (
-        <p className={styles.error}>Error: no se encontró la actividad</p>
       )}
       <button onClick={() => navigate('/')}>Ir al inicio</button>
     </div>
