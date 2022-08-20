@@ -41,7 +41,6 @@ const generateRows = (tableRowsData, tableRowsProperties, buttons, isOrganizatio
           {Object.entries(tableRow).map(([property, value]) => {
             const isDateValue = property === 'createdAt';
             const isHtml = property === "content" || property === "description" || property === "welcomeText";
-            isHtml&&console.log(property, value);
             if (propertyIsIncluded(tableRowsProperties, property)) {
               return (
                 <td key={property}>{
