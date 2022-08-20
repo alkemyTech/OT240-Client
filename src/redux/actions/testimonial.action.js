@@ -9,7 +9,7 @@ export const fetchTestimonial = (options) => async (dispatch, state) => {
   dispatch(TestimonialLoading(true));
   dispatch(TestimonialError(null));
   try {
-    //await fetchApi(options);
+    await fetchApi(options);
     // Re-fetch and set fresh data after operation
     const { data } = await fetchApi({ url: '/testimonials' });
     dispatch(TestimonialEntries(data));
