@@ -2,23 +2,11 @@
   --mod: 10px;
   width: 80%;
   margin: auto;
-  margin-bottom: calc(4 * var(--mod));
+  margin-bottom: 60px;
 
   h1 {
-    margin: calc(2 * var(--mod)) auto;
+    margin: 40px auto;
     text-align: center;
-    font-size: calc(4 * var(--mod));
-  }
-}
-
-@media all and (max-width: 600px) {
-  .container {
-    --mod: 6px;
-  }
-}
-
-@media all and (min-width: 900px) {
-  .container {
-    --mod: 12px;
+    font-size: 36px;
   }
 }

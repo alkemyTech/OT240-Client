@@ -2,7 +2,7 @@
   --mod: 10px;
 
   font-family: Mulish, sans-serif;
-  font-size: calc(1.6 * var(--mod));
+  font-size: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,7 +13,7 @@
     // font-family: Poppins;
     text-align: center;
     margin: calc(3 * var(--mod)) auto;
-    font-size: calc(3 * var(--mod));
+    font-size: 36px;
   }
 
   form {
@@ -62,14 +62,14 @@
   .submitBtn {
     display: block;
     font-family: Mulish, sans-serif;
-    font-size: calc(2 * var(--mod));
-    font-weight: 800;
+    font-size: 16px;
+    font-weight: 600;
     width: fit-content;
     background-color: yellowgreen;
     border: none;
-    border-radius: 15px;
-    padding: 10px 30px;
-    margin: calc(1.2 * var(--mod));
+    border-radius: 7px;
+    padding: 7px 15px;
+    margin: 5px;
     margin-bottom: 0;
     color: white;
     cursor: pointer;
@@ -86,22 +86,22 @@
   }
 
   .field {
-    margin-bottom: calc(2 * var(--mod));
+    margin-bottom: 20px;
 
     input {
       font-family: Mulish !important;
-      padding: calc(0.6 * var(--mod));
-      border-radius: calc(0.3 * var(--mod));
+      padding: 6px;
+      border-radius: 5px;
       border: 1px solid lightgray;
     }
   }
 
   .label {
     display: inline-block;
-    width: calc(8 * var(--mod));
-    padding: calc(0.5 * var(--mod));
+    width: 80px;
+    padding: 5px;
     margin: 0;
-    margin-right: var(--mod);
+    margin-right: 10px;
   }
 
   .image {
@@ -110,7 +110,7 @@
   }
 
   .imgPreview {
-    margin-top: calc(2 * var(--mod));
+    margin-top: 20px;
     background-color: black;
     min-height: 130px;
     aspect-ratio: 2 / 1;
@@ -122,7 +122,7 @@
   }
 
   .content {
-    margin-top: calc(0.5 * var(--mod));
+    margin-top: 5px;
     vertical-align: top;
     z-index: -1;
 
@@ -144,12 +144,5 @@
       display: inline-block;
       margin: 5px 15px;
     }
-  }
-}
-
-@media all and (max-width: 700px) {
-  .container {
-    --mod: 6px;
-    align-items: start;
   }
 }

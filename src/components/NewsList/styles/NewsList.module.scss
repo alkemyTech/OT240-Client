@@ -81,6 +81,7 @@
         border: none;
         box-shadow: var(--buttonShadow);
         cursor: pointer;
+        line-height: 1;
 
         &:hover {
           opacity: 0.8;
@@ -90,7 +91,7 @@
   }
 }
 
-.loaderDiv{
+.loaderDiv {
   width: 100%;
   display: flex;
   justify-content: center;
