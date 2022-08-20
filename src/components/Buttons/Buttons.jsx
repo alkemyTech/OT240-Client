@@ -24,29 +24,28 @@ const Buttons = ({ lateralBtn }) => {
   return (
     <div className={style.buttons}>
       {!user && !pathname.includes('login') && (
-        <div className={styleBtn}>
-          <Link to='/login'>Log in</Link>
-        </div>
+        <Link to='/login'>
+          <div className={styleBtn}>Log in</div>
+        </Link>
       )}
       {!user && !pathname.includes('registro') && (
-        <div className={styleBtnRegister}>
-          <Link to='/registro'>Registrate</Link>
-        </div>
+        <Link to='/registro'>
+          <div className={styleBtnRegister}>Registrate</div>
+        </Link>
       )}
       <RequireAuth allowedRoles={[1]}>
-        <div className={styleBtn}>
-          <Link to={'/backoffice'}>Backoffice</Link>
-        </div>
+        <Link to={'/backoffice'}>
+          <div className={styleBtn}>Backoffice</div>
+        </Link>
       </RequireAuth>
       <RequireAuth>
-        <div className={styleBtn}>
-          <Link to={'/miperfil'}>Perfil</Link>
-        </div>
-        <div className={styleBtn}>
-          <Link onClick={handleLogOut} to={'/login'}>
-            Log out
-          </Link>
-        </div>
+        <Link to={'/miperfil'}>
+          {' '}
+          <div className={styleBtn}>Perfil</div>
+        </Link>
+        <Link onClick={handleLogOut} to={'/login'}>
+          <div className={styleBtn}>Log out</div>{' '}
+        </Link>
       </RequireAuth>
     </div>
   );
