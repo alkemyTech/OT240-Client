@@ -58,9 +58,9 @@ export const ActivitiesBackoffice = () => {
   return (
     <Table
       title='Actividades'
-      tableHeader={['Titulo', 'Fecha']}
+      tableHeader={['Titulo',"Descripción", 'Fecha']}
       tableRowsData={entries}
-      tableRowsProperties={['name', 'createdAt']}
+      tableRowsProperties={['name', "content",'createdAt']}
       buttons={[
         { title: 'Editar', handler: handleEdit, className: 'white' },
         { title: 'Eliminar', handler: handleDelete, className: 'orange' },
