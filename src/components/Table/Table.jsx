@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import { Loader } from '../loader/Loader';
 import styles from './styles/Table.module.scss';
 
 const Table = ({
@@ -26,7 +27,9 @@ const Table = ({
       )}
     </div>
   ) : (
-    <p>Loading... </p>
+    <div className={styles.loader}>
+      <Loader/>
+    </div>
   );
 };
 const generateRows = (tableRowsData, tableRowsProperties, buttons, isOrganization) => {
