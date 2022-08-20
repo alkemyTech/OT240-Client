@@ -30,6 +30,7 @@ const Table = ({
   );
 };
 const generateRows = (tableRowsData, tableRowsProperties, buttons, isOrganization) => {
+  
   return (
     <>
       {tableRowsData.map((tableRow) => (
@@ -39,9 +40,16 @@ const generateRows = (tableRowsData, tableRowsProperties, buttons, isOrganizatio
           className={isOrganization && `${styles.organization}`}>
           {Object.entries(tableRow).map(([property, value]) => {
             const isDateValue = property === 'createdAt';
+            const isHtml = property === "content" || property === "description" || property === "welcomeText";
+            isHtml&&console.log(property, value);
             if (propertyIsIncluded(tableRowsProperties, property)) {
               return (
-                <td key={property}>{isDateValue ? new Date(value).toLocaleDateString() : value}</td>
+                <td key={property}>{
+                  isDateValue
+                  ? new Date(value).toLocaleDateString()
+                  : isHtml ? (<div dangerouslySetInnerHTML={{ __html: value } || ''}></div>)
+                  : value}
+                </td>
               );
             }
           })}
