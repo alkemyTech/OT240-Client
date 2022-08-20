@@ -6,6 +6,12 @@
   width: 80%;
   margin: calc(6 * var(--mod)) auto;
 
+  .loader {
+    width: 100%;
+    display: flex;
+    justify-content: center !important;
+  }
+
   h1 {
     font-size: 40px;
     font-weight: 700;
@@ -13,9 +19,10 @@
   }
 
   .content {
-    width: fit-content;
+    width: 100%;
     font-size: 20px;
     font-weight: 400;
+    text-align: center;
 
     p {
       margin: 0;

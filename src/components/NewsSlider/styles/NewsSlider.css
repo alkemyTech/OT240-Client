@@ -24,6 +24,12 @@
   --mod: 10px;
 }
 
+#slider .container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 #slider .error {
   display: block;
   margin: auto;
