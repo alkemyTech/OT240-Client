@@ -1,10 +1,9 @@
 .container {
-  --mod: 10px;
   text-align: center;
   font-family: Mulish;
   max-width: 600px;
   width: 80%;
-  margin: calc(6 * var(--mod)) auto;
+  margin: 60px auto;
 
   .loader {
     width: 100%;
@@ -52,11 +51,5 @@
     &:hover {
       opacity: 0.8;
     }
-  }
-}
-
-@media all and (max-width: 600px) {
-  .container {
-    --mod: 8px;
   }
 }
