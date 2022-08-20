@@ -1,79 +1,95 @@
 .articleDiv {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 4rem;
-    margin-top: 1.5rem;
-    width: 100%;
-}
-.title{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4rem;
+  margin-top: 1.5rem;
+  width: 100%;
+
+  .title {
     display: flex;
     justify-content: center;
     font-size: 24px;
     font-weight: 600;
-}
-.tableContainer{
-  align-items: stretch;
-  display: flex;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  justify-content: center;
-  margin-bottom: 1rem;
-  padding: 10px;
-}
-.buttonContainer{
+  }
+
+  .tableContainer {
+    align-items: stretch;
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    justify-content: center;
+    margin-bottom: 1rem;
+    padding: 15px;
+
+    p {
+      margin: 5px;
+    }
+
+    .labelsContainer {
+      p {
+        font-weight: 600;
+      }
+    }
+
+    .userData {
+      margin-left: 1rem;
+    }
+  }
+
+  .buttonContainer {
     display: flex;
     justify-content: center;
-}
-.editButton {
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 4px;
-  color: black;
-  font-weight: bold;
-  height: 2rem;
-  width: 8rem;
-}
-.editButton:hover {
-    background-color: rgb(216, 213, 213);
-    cursor: pointer;
-}
-.deleteButton {
-    margin-left: 1rem;
-    background-color: red;
-    border-radius: 4px;
-    border: 1px solid red;
-    color: white;
-}
-.deleteButton:hover {
-    cursor: pointer;
-    background-color: #fd4646;
-    color: black;
-}
-.labelsContainer {
-    p{
-        font-weight: 600;
+
+    button {
+      padding: 10px 20px;
+      font-weight: 800;
+      font-size: 16px;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
-}
-.userData{
-    margin-left: 1rem;
-}
-.error {
+
+    .editButton {
+      font-family: Mulish;
+      background-color: white;
+      border: 1px solid black;
+      border-radius: 10px;
+      color: black;
+      font-weight: bold;
+    }
+
+    .deleteButton {
+      font-family: Mulish;
+      margin-left: 1rem;
+      background-color: red;
+      border-radius: 10px;
+      border: 1px solid red;
+      color: white;
+    }
+  }
+
+  .error {
     display: flex;
     justify-content: center;
     padding-top: 5rem;
     padding-bottom: 10rem;
     font-size: 30px;
+
     p {
-        background-color: rgb(235, 12, 12);
-        border-radius: 10px;
-        padding: 5px;
-        padding-left: 10px;
-        padding-right: 10px;
+      background-color: rgb(235, 12, 12);
+      border-radius: 10px;
+      padding: 5px;
+      padding-left: 10px;
+      padding-right: 10px;
     }
+  }
 }
+
 @media (min-width: 1100px) {
-    .tableContainer{
-        width: 40vw;
-    }
+  .tableContainer {
+    width: 40vw;
+  }
 }

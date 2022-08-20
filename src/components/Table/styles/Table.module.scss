@@ -1,10 +1,12 @@
 .layout {
   --mod: 10px;
   min-height: 60vh;
+  width: 85%;
+  max-width: 900px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px 15px;
+  margin: auto;
 
   h1 {
     text-align: center;
@@ -83,7 +85,7 @@
       }
 
       td {
-        padding: 5px 15px;
+        padding: 10px;
         border-collapse: collapse;
         display: flex;
         align-items: center;
@@ -91,17 +93,15 @@
         justify-content: center;
         line-height: 1;
 
+        p {
+          margin: 0;
+          height: fit-content;
+        }
+
         @media screen and (min-width: 768px) {
           display: table-cell;
           border-top: 1px solid rgb(207, 207, 207);
         }
-      }
-
-      .buttons {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 5px;
-        padding: 5px 15px;
       }
 
       button {
@@ -109,6 +109,7 @@
         border-radius: 7px;
         cursor: pointer;
         font-family: 'Poppins';
+        margin: 3px;
       }
 
       @media screen and (min-width: 768px) {
@@ -135,5 +136,4 @@
   color: black;
   font-weight: bold;
   border: 1px solid black;
-
 }

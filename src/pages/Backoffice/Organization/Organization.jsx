@@ -83,6 +83,8 @@ function OrganizationCard({ org, handleEdit }) {
           <span className={style.content}> {org?.instagram}</span>
           <span className={style.header}> Facebook </span>
           <span className={style.content}> {org?.facebook}</span>
+          <span className={style.header}> Linkedin </span>
+          <span className={style.content}> {org?.linkedin}</span>
         </article>
         <button className={style.button} onClick={handleEdit}>
           Editar
