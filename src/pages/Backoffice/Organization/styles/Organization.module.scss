@@ -52,16 +52,15 @@
   }
 
   .button {
-    color: white;
-    background-color: var(--btnPrimaryColor);
-    border: none;
-    border-radius: 10px;
+    padding: 7px 20px;
+    border-radius: 7px;
+    background-color: white;
+    border: 1px solid black !important;
     font-family: Poppins;
-    padding: 7px 25px;
-    font-weight: 600;
-    font-size: 16px;
+    font-weight: 400;
+    font-size: 14px;
+    box-shadow: var(--buttonShadow);
     cursor: pointer;
-    box-shadow: 5px 5px 10px -1px rgb(171, 170, 170);
 
     &:hover {
       opacity: 0.8;

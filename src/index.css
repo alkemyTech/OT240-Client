@@ -12,6 +12,7 @@
   --btnSecondaryColor: #0038ff;
   --btnTertiaryColor: #ffff00;
   --footerBackground: #c0c0c0;
+  --buttonShadow: 3px 3px 5px rgba(0, 0, 0, 0.27);
 }
 
 body {

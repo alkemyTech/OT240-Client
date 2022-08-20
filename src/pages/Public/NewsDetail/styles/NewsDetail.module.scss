@@ -31,15 +31,20 @@
   }
 
   button {
+    font-family: Poppins;
     font-weight: 600;
-    font-size: calc(3 * var(--mod));
+    font-size: 24px;
     background-color: #ff0000;
-    border-radius: 20px;
+    border-radius: 15px;
     color: white;
-    padding: var(--mod) calc(2.5 * var(--mod));
+    padding: 10px 30px;
     border: none;
-    align-self: left;
     cursor: pointer;
+    box-shadow: var(--buttonShadow);
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
 

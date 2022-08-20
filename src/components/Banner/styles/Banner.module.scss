@@ -35,10 +35,15 @@
       padding: 10px 30px;
       margin-top: 30px;
       background-color: var(--btnPrimaryColor);
+      box-shadow: var(--buttonShadow);
       border-radius: 15px;
       color: #fff;
       font-weight: 600;
       font-size: 24px;
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 
