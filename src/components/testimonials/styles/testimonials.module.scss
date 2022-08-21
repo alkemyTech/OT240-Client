@@ -14,14 +14,13 @@
     width: 100%;
 
     .title {
-      font-size: 48px;
+      font-size: 32px;
       margin: 2rem 0 2rem;
       font-style: normal;
       font-weight: 600;
 
       @media screen and (min-width: 769px) {
         font-size: 3rem;
-        margin: 60px auto 30px;
       }
     }
   }
