@@ -10,7 +10,8 @@ const PrivateRoute = ({ allowedRoles }) => {
   const { user, loading } = useSelector((store) => store.auth);
 
   useEffect(() => {
-    if (!user && !loading) {
+    if (!user) {
+      console.log('trigger');
       navigate('/login');
     }
     if (user && !allowedRoles.includes(user.roleId)) {
