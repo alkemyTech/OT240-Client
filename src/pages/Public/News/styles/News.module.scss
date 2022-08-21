@@ -8,7 +8,7 @@
     text-align: center;
     font-size: 48px;
 
-    @media all and (max-height: 768px) {
+    @media all and (max-width: 768px) {
       font-size: 32px;
       margin: 32px auto;
     }
