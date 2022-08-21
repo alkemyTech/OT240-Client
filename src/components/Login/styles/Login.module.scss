@@ -10,6 +10,18 @@
     background-size: cover;
     width: 50%;
   }
+
+  .error {
+    display: block;
+    text-align: center;
+    color: grey !important;
+    font-style: italic;
+    padding: 10px 50px;
+    border-radius: 5px;
+    background-color: rgb(236, 185, 185);
+    box-sizing: border-box;
+    margin: 0;
+  }
 }
 
 .formContainer {

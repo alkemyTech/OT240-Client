@@ -28,28 +28,15 @@ const Login = () => {
   });
 
   const handleSubmit = async (values) => {
-    try {
-      const options = {
-        method: 'POST',
-        url: '/auth/login',
-        data: {
-          email: values.loginEmail,
-          password: values.loginPassword,
-        },
-      };
-      dispatch(loginAction(options));
-      navigate('/');
-    } catch (error) {
-      if (
-        error.response.data.msg === "User with that email doesn't exist" ||
-        error.response.data.msg === 'Invalid credentials'
-      ) {
-        setErrors('Contraseña o email incorrecto');
-      } else {
-        setErrors('Ocurrió un error');
-        console.log(error.response.data.msg);
-      }
-    }
+    const options = {
+      method: 'POST',
+      url: '/auth/login',
+      data: {
+        email: values.loginEmail,
+        password: values.loginPassword,
+      },
+    };
+    dispatch(loginAction(options, () => navigate('/'), setErrors));
   };
 
   return (
@@ -68,7 +55,7 @@ const Login = () => {
             <Form onSubmit={formik.handleSubmit}>
               <InputField label='Email' name='loginEmail' type='text' />
               <InputField label='Contraseña' name='loginPassword' type='Password' />
-              {errors ? <p>{errors}</p> : <p></p>}
+              {errors ? <p className={login.error}>{errors}</p> : <p></p>}
               <button type='submit'> Inicia sesión </button>
             </Form>
           )}

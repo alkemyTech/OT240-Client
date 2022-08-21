@@ -36,29 +36,18 @@ const Register = () => {
   });
 
   const handleSubmit = async (values) => {
-    try {
-      const options = {
-        method: 'POST',
-        url: '/auth/register',
-        data: {
-          firstName: values.registerFirstName,
-          lastName: values.registerLastName,
-          email: values.registerEmail,
-          password: values.registerPassword,
-        },
-      };
+    const options = {
+      method: 'POST',
+      url: '/auth/register',
+      data: {
+        firstName: values.registerFirstName,
+        lastName: values.registerLastName,
+        email: values.registerEmail,
+        password: values.registerPassword,
+      },
+    };
 
-      dispatch(registerAction(options));
-
-      navigate('/');
-    } catch (error) {
-      if (error.response.data.msg === 'User already exists with that email') {
-        setErrors('El email ya está en uso');
-      } else {
-        setErrors('Ocurrió un error');
-        console.log(error.response.data.msg);
-      }
-    }
+    dispatch(registerAction(options, () => navigate('/'), setErrors));
   };
 
   return (
@@ -87,7 +76,7 @@ const Register = () => {
                 name='registerConfirmPassword'
                 type='Password'
               />
-              {errors ? <p>{errors}</p> : <p></p>}
+              {errors ? <p className={register.error}>{errors}</p> : <p></p>}
               <button type='submit'> Registrarse </button>
             </Form>
           )}

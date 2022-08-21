@@ -7,29 +7,40 @@ import {
 } from '../types/auth.types';
 import fetchApi from '../../axios/axios';
 
-export const loginAction = (options) => async (dispatch) => {
+export const loginAction = (options, successCallback, errorCallback) => async (dispatch) => {
   dispatch(authLoading(true));
   dispatch(authError(null));
   try {
     const { data } = await fetchApi(options);
     sessionStorage.setItem('token', data.token);
     dispatch(authSuccess(data));
+    successCallback();
   } catch (err) {
     dispatch(authError(err.message));
+    err.response.data.msg === "User with that email doesn't exist" &&
+      errorCallback('Usuario inexistente');
+    err.response.data.msg === 'Invalid credentials' && errorCallback('Contraseña incorrecta');
   } finally {
     dispatch(authLoading(false));
   }
 };
 
-export const registerAction = (options) => async (dispatch) => {
+export const registerAction = (options, successCallback, errorCallback) => async (dispatch) => {
   dispatch(authLoading(true));
   dispatch(authError(null));
   try {
     const { data } = await fetchApi(options);
     sessionStorage.setItem('token', data.token);
     dispatch(authSuccess(data));
+    successCallback();
   } catch (err) {
-    dispatch(authError(err.message));
+    console.log(err);
+    dispatch(authError(err.response.data.msg));
+    errorCallback(
+      err.response.data.msg === 'User already exists with that email'
+        ? 'Email en uso'
+        : err.response.data.msg
+    );
   } finally {
     dispatch(authLoading(false));
   }
