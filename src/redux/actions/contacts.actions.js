@@ -22,7 +22,7 @@ export const deleteContact = (options) => async (dispatch) => {
   dispatch(contactsLoading(true));
   try {
     const { data } = await fetchApi(options);
-    dispatch(delContact(data.contact.id));
+    dispatch(loadContacts({ url: '/contacts' }));
   } catch (error) {
     dispatch(contactsError(error.message));
   } finally {

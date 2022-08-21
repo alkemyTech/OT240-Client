@@ -77,6 +77,13 @@
   gap: 15px;
   font-size: 16px;
 
+  .inputError {
+    color: red;
+    margin: 0;
+    padding-left: 10px;
+    font-family: Mulish;
+  }
+
   input {
     width: 100%;
     max-width: 700px;

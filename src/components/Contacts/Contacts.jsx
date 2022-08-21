@@ -32,29 +32,6 @@ function Contacts() {
     }
   };
 
-  const handleEdit = async (fields) => {
-    const { name, email, message, id } = fields;
-    navigate('editar', {
-      state: {
-        title: 'Editar Contacto',
-        fields: { name, email, message },
-        options: { method: 'put', url: `/contacts/${id}` },
-        from: location,
-      },
-    });
-  };
-
-  const handleCreate = async () => {
-    navigate('crear', {
-      state: {
-        title: 'Crear Contacto',
-        options: { method: 'post', url: `/contacts` },
-        from: location,
-        fields: { name: '', email: '', description: '' },
-      },
-    });
-  };
-
   useEffect(() => {
     dispatch(loadContacts({ method: 'get', url: '/contacts' }));
   }, [dispatch]);
@@ -74,19 +51,12 @@ function Contacts() {
           tableHeader={['Nombre', 'Email', 'Mensaje']}
           tableRowsProperties={['name', 'email', 'message']}
           tableRowsData={contacts}
-          buttons={[
-            // { title: 'Editar', handler: handleEdit, className: 'white' },
-            { title: 'Eliminar', handler: handleDelete, className: 'orange' },
-          ]}
+          buttons={[{ title: 'Eliminar', handler: handleDelete, className: 'orange' }]}
           loading={loading}
-          addBtnHandler={handleCreate}
         />
       ) : (
         <div className={styles.empty}>No se encontraron contactos</div>
       )}
-      {/* <button className='addEntry' onClick={handleCreate}>
-        Agregar Contacto
-      </button> */}
     </div>
   );
 }
