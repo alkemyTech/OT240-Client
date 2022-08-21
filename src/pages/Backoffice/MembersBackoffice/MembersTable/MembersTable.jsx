@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import Swal from 'sweetalert2';
 
 import styles from './styles/MembersTable.module.scss';
 import { deleteMember } from '../../../../redux/actions/member.actions';
 import Table from '../../../../components/Table/Table';
 import { Loader } from '../../../../components/loader/Loader';
 import { loadMembers } from '../../../../redux/actions/member.actions';
+import showAlert from '../../../../services/alert';
 
 const MembersTable = () => {
   const navigate = useNavigate();
@@ -17,15 +17,17 @@ const MembersTable = () => {
   const { members, loading, error } = useSelector((state) => state.members);
 
   const handleDelete = async (fields) => {
-    const result = await Swal.fire({
-      title: `Borrar miembro ${fields.name.replace(/\W/, '')}?`,
-      text: `Esta operación no puede deshacerse!`,
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonColor: 'red',
-      confirmButtonColor: 'green',
-      iconColor: 'red',
-    });
+    const result = await showAlert(
+      {
+        title: `Borrar miembro "${fields.name}"?`,
+        text: `Esta operación no puede deshacerse!`,
+        icon: 'warning',
+      },
+      {
+        showCancelButton: true,
+        iconColor: 'red',
+      }
+    );
     if (result.isConfirmed) {
       dispatch(deleteMember({ url: `/members/${fields.id}`, method: 'delete' }));
     }

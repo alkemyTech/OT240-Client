@@ -9,6 +9,7 @@ import { fetchNews } from '../../../redux/actions/news.actions';
 
 import Table from '../../../components/Table/Table';
 import { Loader } from '../../../components/loader/Loader';
+import showAlert from '../../../services/alert';
 
 const NewsListBackoffice = () => {
   return (
@@ -29,15 +30,17 @@ function NewsTable() {
   const { entries, loading, error } = useSelector((state) => state.news);
 
   const handleDelete = async (fields) => {
-    const result = await Swal.fire({
-      title: `Borrar novedad ${fields.name.replace(/\W/, '')}?`,
-      text: `Esta operación no puede deshacerse!`,
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonColor: 'red',
-      confirmButtonColor: 'green',
-      iconColor: 'red',
-    });
+    const result = await showAlert(
+      {
+        title: `Borrar novedad "${fields.name}"?`,
+        text: `Esta operación no puede deshacerse!`,
+        icon: 'warning',
+      },
+      {
+        showCancelButton: true,
+        iconColor: 'red',
+      }
+    );
     if (result.isConfirmed) {
       dispatch(fetchNews({ url: `/news/${fields.id}`, method: 'delete' }));
     }

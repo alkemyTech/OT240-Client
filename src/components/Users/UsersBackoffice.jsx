@@ -8,6 +8,8 @@ import { handleCreate, handleDelete, handleEdit } from '../../utils/formsHandler
 import Table from '../Table/Table';
 import { Loader } from '../loader/Loader';
 import styles from './styles/UsersBackoffice.module.scss';
+import showAlert from '../../services/alert';
+import fetchApi from '../../axios/axios';
 
 const UsersBackoffice = () => {
   const location = useLocation();
@@ -33,13 +35,27 @@ const UsersBackoffice = () => {
     });
   };
 
-  const deleteHandler = (user) => {
-    handleDelete(navigate, {
-      type: 'usuario',
-      id: user.id,
-      name: `${user.firstName} ${user.lastName}`,
-      url: `/users/${user.id}`,
-    });
+  const deleteHandler = async (fields) => {
+    const result = await showAlert(
+      {
+        title: `Borrar usuario "${fields.email}"?`,
+        text: `Esta operación no puede deshacerse!`,
+        icon: 'warning',
+      },
+      {
+        showCancelButton: true,
+        iconColor: 'red',
+      }
+    );
+    // TODO: REDUX
+    if (result.isConfirmed) {
+      try {
+        await fetchApi({ method: 'delete', url: `users/${fields.id}` });
+        window.location.reload();
+      } catch (err) {
+        window.alert(err);
+      }
+    }
   };
 
   const createHandler = () => {

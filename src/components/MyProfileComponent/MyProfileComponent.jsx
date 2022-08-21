@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import fetchApi from '../../axios/axios';
-import { handleDelete, handleEdit } from '../../utils/formsHandlers';
+import { handleEdit } from '../../utils/formsHandlers';
 import style from './styles/MyProfileComponent.module.scss';
+import showAlert from '../../services/alert';
 
 const MyProfileComponent = () => {
   const location = useLocation();
@@ -37,13 +38,28 @@ const MyProfileComponent = () => {
     });
   };
 
-  const deleteHandler = () => {
-    handleDelete(navigate, {
-      type: 'usuario',
-      id: userData.id,
-      name: `${userData.firstName} ${userData.lastName}`,
-      url: `/users/${userData.id}`,
-    });
+  const deleteHandler = async () => {
+    const result = await showAlert(
+      {
+        title: `Seguro que quieres borrar tu cuenta?`,
+        text: `Esta operación no puede deshacerse!`,
+        icon: 'warning',
+      },
+      {
+        showCancelButton: true,
+        iconColor: 'red',
+      }
+    );
+    // TODO: REDUX
+    if (result.isConfirmed) {
+      try {
+        await fetchApi({ method: 'delete', url: `/users/${userData.id}` });
+        sessionStorage.removeItem('token');
+        window.location.reload();
+      } catch (err) {
+        window.alert(err);
+      }
+    }
   };
 
   return (
@@ -66,11 +82,9 @@ const MyProfileComponent = () => {
             </div>
             <div className={style.buttonContainer}>
               <button onClick={editHandler} className={style.editButton}>
-                {' '}
-                Editar{' '}
+                Editar
               </button>
               <button onClick={deleteHandler} className={style.deleteButton}>
-                {' '}
                 Eliminar
               </button>
             </div>

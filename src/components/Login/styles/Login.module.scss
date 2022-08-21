@@ -37,11 +37,12 @@
       border: 1px solid #b0b0b0;
       border-radius: 8px;
       height: 46px;
-      margin-bottom: 12px;
-      margin-top: 12px;
+      margin: 8px auto;
       padding-left: 15px;
       font-size: 16px;
       font-family: Mulish;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     p {

@@ -2,13 +2,13 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Swal from 'sweetalert2';
 
 import styles from './styles/CategoriesTable.module.scss';
 
 import Table from '../../../../components/Table/Table';
 import { Loader } from '../../../../components/loader/Loader';
 import { loadCategories, deleteCategory } from '../../../../redux/actions/categories.actions';
+import showAlert from '../../../../services/alert';
 
 const CategoriesTable = () => {
   const navigate = useNavigate();
@@ -18,15 +18,17 @@ const CategoriesTable = () => {
   const { categories, loading, error } = useSelector((state) => state.categories);
 
   const handleDelete = async (fields) => {
-    const result = await Swal.fire({
-      title: `Borrar categoria ${fields.name.replace(/\W/, '')}?`,
-      text: `Esta operación no puede deshacerse!`,
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonColor: 'red',
-      confirmButtonColor: 'green',
-      iconColor: 'red',
-    });
+    const result = await showAlert(
+      {
+        title: `Borrar categoría "${fields.name.replace(/\W/, '')}"?`,
+        text: `Esta operación no puede deshacerse!`,
+        icon: 'warning',
+      },
+      {
+        showCancelButton: true,
+        iconColor: 'red',
+      }
+    );
     if (result.isConfirmed) {
       dispatch(deleteCategory({ url: `/categories/${fields.id}`, method: 'delete' }));
     }

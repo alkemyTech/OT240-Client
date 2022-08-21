@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import Swal from 'sweetalert2';
 
 import styles from './styles/activitiesBackoffice.module.scss';
 import Table from '../Table/Table';
 import { Loader } from '../loader/Loader';
 import { fetchAcivities } from '../../redux/actions/activity.action';
+import showAlert from '../../services/alert';
 
 export const ActivitiesBackoffice = () => {
   const navigate = useNavigate();
@@ -32,15 +32,17 @@ export const ActivitiesBackoffice = () => {
   };
 
   const handleDelete = async (fields) => {
-    const result = await Swal.fire({
-      title: `Borrar actividad ${fields.name.replace(/\W/, '')}?`,
-      text: `Esta operación no puede deshacerse!`,
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonColor: 'red',
-      confirmButtonColor: 'green',
-      iconColor: 'red',
-    });
+    const result = await showAlert(
+      {
+        title: `Borrar actividad "${fields.name}"?`,
+        text: `Esta operación no puede deshacerse!`,
+        icon: 'warning',
+      },
+      {
+        showCancelButton: true,
+        iconColor: 'red',
+      }
+    );
     if (result.isConfirmed) {
       dispatch(fetchAcivities({ url: `/activities/${fields.id}`, method: 'delete' }));
     }

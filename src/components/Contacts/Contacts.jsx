@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Swal from 'sweetalert2';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -7,6 +6,7 @@ import Table from '../Table/Table';
 import styles from './styles/Contacts.module.scss';
 import { loadContacts, deleteContact } from '../../redux/actions/contacts.actions';
 import { Loader } from '../loader/Loader';
+import showAlert from '../../services/alert';
 
 function Contacts() {
   const navigate = useNavigate();
@@ -16,15 +16,17 @@ function Contacts() {
   const { contacts, loading, error } = useSelector((state) => state.contacts);
 
   const handleDelete = async (fields) => {
-    const result = await Swal.fire({
-      title: `Borrar contacto ${fields.name.replace(/\W/, '')}?`,
-      text: `Esta operación no puede deshacerse!`,
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonColor: 'red',
-      confirmButtonColor: 'green',
-      iconColor: 'red',
-    });
+    const result = await showAlert(
+      {
+        title: `Borrar el contacto de "${fields.email}"?`,
+        text: `Esta operación no puede deshacerse!`,
+        icon: 'warning',
+      },
+      {
+        showCancelButton: true,
+        iconColor: 'red',
+      }
+    );
     if (result.isConfirmed) {
       dispatch(deleteContact({ url: `/contacts/${fields.id}`, method: 'delete' }));
     }
