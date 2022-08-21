@@ -7,7 +7,7 @@ import { TestimonialCard } from './TestimonialCard';
 import { fetchTestimonial } from '../../redux/actions/testimonial.action';
 import { Loader } from '../loader/Loader';
 
-export const Testimonials = ({ quantity }) => {
+export const Testimonials = ({ quantity, centered }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ export const Testimonials = ({ quantity }) => {
         <h2 className={styles.title}>Testimonios</h2>
         {!location.pathname.includes('testimonios') && <Link to='/testimonios'>{`Ver mas >`}</Link>}
       </div>
-      <div className={styles.cards}>
+      <div className={styles.cards} style={centered && { justifyContent: 'center' }}>
         {loading ? (
           <div className={styles.loaderContainer}>
             <Loader />
