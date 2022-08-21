@@ -67,8 +67,8 @@ const UsersBackoffice = () => {
           tableRowsData={users}
           tableRowsProperties={['firstName', 'lastName', 'email']}
           buttons={[
-            { title: 'Editar', handler: editHandler, className: 'orange' },
-            { title: 'Eliminar', handler: deleteHandler, className: 'white' },
+            { title: 'Editar', handler: editHandler, className: 'white' },
+            { title: 'Eliminar', handler: deleteHandler, className: 'orange' },
           ]}
           loading={loading}
           addBtnHandler={createHandler}
