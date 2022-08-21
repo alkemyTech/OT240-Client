@@ -19,6 +19,9 @@ const SuccessToast = Swal.mixin({
   position: 'bottom-right',
   timerProgressBar: true,
   showConfirmButton: false,
+  customClass: {
+    title: styles.title,
+  },
 });
 
 const showAlert = ({ title, text, icon }, extraParams = {}) => {
@@ -42,9 +45,8 @@ export const successAlert = ({ title, text, icon }, extraParams = {}) => {
     title,
     text,
     icon,
-    ...extraParams
+    ...extraParams,
   });
 };
-
 
 export default showAlert;
