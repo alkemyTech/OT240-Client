@@ -67,27 +67,29 @@ const MyProfileComponent = () => {
       {!fetchError ? (
         <article className={style.articleDiv}>
           <div>
-            <h1>Mi perfil</h1>
-            <div className={style.tableContainer}>
-              <div className={style.labelsContainer}>
-                <p> Nombre </p>
-                <p> Apellido </p>
-                <p> Email </p>
-              </div>
-              <div className={style.userData}>
-                <p> {userData.firstName}</p>
-                <p> {userData.lastName}</p>
-                <p> {userData.email}</p>
+            <div>
+              <h2 className={style.title}>Mi perfil</h2>
+              <div className={style.tableContainer}>
+                <div className={style.labelsContainer}>
+                  <p> Nombre: </p>
+                  <p> Apellido: </p>
+                  <p> Email: </p>
+                </div>
+                <div className={style.userData}>
+                  <p> {userData.firstName}</p>
+                  <p> {userData.lastName}</p>
+                  <p> {userData.email}</p>
+                </div>
               </div>
             </div>
-            <div className={style.buttonContainer}>
-              <button onClick={editHandler} className={style.editButton}>
-                Editar
-              </button>
-              <button onClick={deleteHandler} className={style.deleteButton}>
-                Eliminar
-              </button>
-            </div>
+          </div>
+          <div className={style.buttonContainer}>
+            <button onClick={editHandler} className={style.editButton}>
+              Editar
+            </button>
+            <button onClick={deleteHandler} className={style.deleteButton}>
+              Eliminar
+            </button>
           </div>
         </article>
       ) : (

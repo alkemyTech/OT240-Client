@@ -6,6 +6,7 @@ import {
   AUTH_LOGOUT,
 } from '../types/auth.types';
 import fetchApi from '../../axios/axios';
+import { successAlert } from '../../services/alert';
 
 export const loginAction = (options, successCallback, errorCallback) => async (dispatch) => {
   dispatch(authLoading(true));
@@ -14,12 +15,16 @@ export const loginAction = (options, successCallback, errorCallback) => async (d
     const { data } = await fetchApi(options);
     sessionStorage.setItem('token', data.token);
     dispatch(authSuccess(data));
-    successCallback();
+    successAlert({
+      title: 'Inicio de sesión exitoso',
+      icon: 'success',
+    });
   } catch (err) {
-    dispatch(authError(err.message));
-    err.response.data.msg === "User with that email doesn't exist" &&
-      errorCallback('Usuario inexistente');
-    err.response.data.msg === 'Invalid credentials' && errorCallback('Contraseña incorrecta');
+    dispatch(authError(err.response.data.msg));
+    successAlert({
+      title: err.response.data.msg,
+      icon: 'error',
+    });
   } finally {
     dispatch(authLoading(false));
   }
@@ -32,15 +37,16 @@ export const registerAction = (options, successCallback, errorCallback) => async
     const { data } = await fetchApi(options);
     sessionStorage.setItem('token', data.token);
     dispatch(authSuccess(data));
-    successCallback();
+    successAlert({
+      title: 'Registro exitoso',
+      icon: 'success',
+    });
   } catch (err) {
-    console.log(err);
     dispatch(authError(err.response.data.msg));
-    errorCallback(
-      err.response.data.msg === 'User already exists with that email'
-        ? 'Email en uso'
-        : err.response.data.msg
-    );
+    successAlert({
+      title: err.response.data.msg,
+      icon: 'error',
+    });
   } finally {
     dispatch(authLoading(false));
   }

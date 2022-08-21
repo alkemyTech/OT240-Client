@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { registerAction } from '../../redux/actions/auth.action';
 
 const Register = () => {
-  const [errors, setErrors] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user, loading } = useSelector((store) => store.auth);
@@ -17,7 +16,7 @@ const Register = () => {
     if (user && !loading) {
       navigate('/');
     }
-  }, [user, loading]);
+  }, [user, loading, navigate]);
 
   const validate = Yup.object({
     registerFirstName: Yup.string()
@@ -46,8 +45,7 @@ const Register = () => {
         password: values.registerPassword,
       },
     };
-
-    dispatch(registerAction(options, () => navigate('/'), setErrors));
+    dispatch(registerAction(options, () => navigate('/')));
   };
 
   return (
@@ -76,7 +74,6 @@ const Register = () => {
                 name='registerConfirmPassword'
                 type='Password'
               />
-              {errors ? <p className={register.error}>{errors}</p> : <p></p>}
               <button type='submit'> Registrarse </button>
             </Form>
           )}

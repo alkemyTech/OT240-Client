@@ -9,7 +9,6 @@ import login from './styles/Login.module.scss';
 import InputField from '../InputField/InputField';
 
 const Login = () => {
-  const [errors, setErrors] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user, loading } = useSelector((store) => store.auth);
@@ -18,7 +17,7 @@ const Login = () => {
     if (user && !loading) {
       navigate('/');
     }
-  }, [user, loading]);
+  }, [user, loading, navigate]);
 
   const validate = Yup.object({
     loginEmail: Yup.string().required('El email es requerido').email('El email es invalido'),
@@ -36,7 +35,8 @@ const Login = () => {
         password: values.loginPassword,
       },
     };
-    dispatch(loginAction(options, () => navigate('/'), setErrors));
+    dispatch(loginAction(options, () => navigate('/')));
+    dispatch(loginAction(options));
   };
 
   return (
@@ -55,7 +55,6 @@ const Login = () => {
             <Form onSubmit={formik.handleSubmit}>
               <InputField label='Email' name='loginEmail' type='text' />
               <InputField label='Contraseña' name='loginPassword' type='Password' />
-              {errors ? <p className={login.error}>{errors}</p> : <p></p>}
               <button type='submit'> Inicia sesión </button>
             </Form>
           )}

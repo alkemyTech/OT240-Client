@@ -14,7 +14,9 @@ const CustomProvider = ({ children }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchUser({ url: '/auth/me' }));
+    if (sessionStorage.getItem('token')) {
+      dispatch(fetchUser({ url: '/auth/me' }));
+    };
   }, [dispatch]);
 
   const contextValue = {};
