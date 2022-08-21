@@ -47,8 +47,8 @@
     justify-content: center;
 
     button {
-      padding: 10px 20px;
-      font-weight: 800;
+      padding: 7px 20px;
+      font-weight: 400;
       font-size: 16px;
       cursor: pointer;
       box-shadow: 5px 5px 10px -4px rgba(191, 191, 191, 0.994);
@@ -59,21 +59,21 @@
     }
 
     .editButton {
-      font-family: Mulish;
+      font-family: Poppins;
       background-color: white;
       border: 1px solid rgb(94, 94, 94);
       border-radius: 10px;
       color: black;
-      font-weight: bold;
     }
 
     .deleteButton {
-      font-family: Mulish;
+      font-family: Poppins;
       margin-left: 1rem;
       background-color: red;
       border-radius: 10px;
       border: 1px solid red;
       color: white;
+      font-weight: 400;
     }
   }
 
