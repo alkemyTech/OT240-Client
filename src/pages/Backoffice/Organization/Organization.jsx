@@ -4,10 +4,10 @@ import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import style from './styles/Organization.module.scss';
 
 import Form from '../../../components/Form/Form';
-import Table from '../../../components/Table/Table';
 
 import fetchApi from '../../../axios/axios';
-import { handleEdit, handleDelete, handleCreate } from '../../../utils/formsHandlers';
+import { handleEdit } from '../../../utils/formsHandlers';
+import { Loader } from '../../../components/loader/Loader';
 
 const Organization = () => {
   const location = useLocation();
@@ -58,38 +58,56 @@ const Organization = () => {
       <Route path='/editar' element={<Form />} />
       <Route
         path='/'
-        element={<OrganizationCard org={organization[0]} handleEdit={editHandler} />}
+        element={
+          <OrganizationCard
+            org={organization[0]}
+            handleEdit={editHandler}
+            error={error}
+            loading={loading}
+          />
+        }
       />
     </Routes>
   );
 };
 
-function OrganizationCard({ org, handleEdit }) {
+function OrganizationCard({ org, handleEdit, error, loading }) {
   return (
     <div className={style.container}>
-      <div>
-        <article>
-          <span className={style.header}> Logo </span>
-          <img className={style.content} src={org?.image} alt='' />
-          <span className={style.header}> Organización </span>
-          <span className={style.content}> {org?.name}</span>
-          <span className={style.header}> Descripción </span>
-          <span className={style.content}> {org?.welcomeText}</span>
-          <span className={style.header}> Dirección </span>
-          <span className={style.content}> {org?.address}</span>
-          <span className={style.header}> Teléfono </span>
-          <span className={style.content}> {org?.phone}</span>
-          <span className={style.header}> Intagram </span>
-          <span className={style.content}> {org?.instagram}</span>
-          <span className={style.header}> Facebook </span>
-          <span className={style.content}> {org?.facebook}</span>
-          <span className={style.header}> Linkedin </span>
-          <span className={style.content}> {org?.linkedin}</span>
-        </article>
-        <button className={style.button} onClick={() => handleEdit(org)}>
-          Editar
-        </button>
-      </div>
+      {loading ? (
+        <div className={style.loader}>
+          <Loader />
+        </div>
+      ) : error ? (
+        <p className={style.error}>{error}</p>
+      ) : (
+        <>
+          <h1>Organización</h1>
+          <div className={style.body}>
+            <article>
+              <span className={style.header}> Logo </span>
+              <img className={style.content} src={org?.image} alt='' />
+              <span className={style.header}> Nombre </span>
+              <span className={style.content}> {org?.name}</span>
+              <span className={style.header}> Descripción </span>
+              <span className={style.content}> {org?.welcomeText}</span>
+              <span className={style.header}> Dirección </span>
+              <span className={style.content}> {org?.address}</span>
+              <span className={style.header}> Teléfono </span>
+              <span className={style.content}> {org?.phone}</span>
+              <span className={style.header}> Intagram </span>
+              <span className={style.content}> {org?.instagram}</span>
+              <span className={style.header}> Facebook </span>
+              <span className={style.content}> {org?.facebook}</span>
+              <span className={style.header}> Linkedin </span>
+              <span className={style.content}> {org?.linkedin}</span>
+            </article>
+            <button className={style.button} onClick={() => handleEdit(org)}>
+              Editar
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
