@@ -61,6 +61,7 @@ export const ActivitiesBackoffice = () => {
 
   return (
     <div className={styles.container}>
+      <h1 className='backofficeTableHeader'>Administrar Actividades</h1>
       {loading ? (
         <div className={styles.loader}>
           <Loader />
@@ -83,6 +84,9 @@ export const ActivitiesBackoffice = () => {
       ) : (
         <div className={styles.empty}>No se encontraron actividades</div>
       )}
+      <button className='addEntry' onClick={handleAdd}>
+        Agregar Actividades
+      </button>
     </div>
   );
 };

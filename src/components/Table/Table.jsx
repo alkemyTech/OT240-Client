@@ -17,18 +17,18 @@ const Table = ({
 
   return !loading && tableRowsData.length ? (
     <div className={styles.layout}>
-      <h1>{title}</h1>
+      {/* <h1>{title}</h1> */}
       <table className={styles.table}>
         <thead>{generateTableHead(theadColumns, isOrganization)}</thead>
         <tbody>{generateRows(tableRowsData, tableRowsProperties, buttons, isOrganization)}</tbody>
       </table>
-      {!isOrganization && (
+      {/* {!isOrganization && (
         <button onClick={addBtnHandler} className={styles.addBtn}>{`Agregar ${title}`}</button>
-      )}
+      )} */}
     </div>
   ) : (
     <div className={styles.loader}>
-      <Loader/>
+      <Loader />
     </div>
   );
 };

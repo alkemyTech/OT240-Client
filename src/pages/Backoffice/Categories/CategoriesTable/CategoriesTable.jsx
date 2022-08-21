@@ -63,6 +63,7 @@ const CategoriesTable = () => {
 
   return (
     <div className={styles.container}>
+      <h1 className='backofficeTableHeader'>Administrar Categorias</h1>
       {loading ? (
         <div className={styles.loader}>
           <Loader />
@@ -85,6 +86,9 @@ const CategoriesTable = () => {
       ) : (
         <div className={styles.empty}>No se encontraron categorias</div>
       )}
+      <button className='addEntry' onClick={handleCreate}>
+        Agregar Categoria
+      </button>
     </div>
   );
 };

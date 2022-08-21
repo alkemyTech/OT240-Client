@@ -54,3 +54,27 @@ figure {
   min-height: 100vh;
   width: 100%;
 }
+
+.backofficeTableHeader {
+  font-size: 36px !important;
+  margin: 30px auto 20px !important;
+}
+
+.addEntry {
+  box-shadow: 5px 5px 10px -1px rgba(0, 0, 0, 0.222);
+  cursor: pointer;
+  background-color: yellowgreen;
+  font-size: 20px;
+  font-family: inherit;
+  border-radius: 10px;
+  border: none;
+  padding: 10px 30px;
+  color: white;
+  font-weight: 400;
+  max-width: 300px;
+  margin: 20px auto;
+}
+
+.addEntry:hover {
+  opacity: 0.8;
+}

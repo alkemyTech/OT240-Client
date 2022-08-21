@@ -50,7 +50,7 @@ function Contacts() {
         title: 'Crear Contacto',
         options: { method: 'post', url: `/contacts` },
         from: location,
-        fields: { name: '', description: '' },
+        fields: { name: '', email: '', description: '' },
       },
     });
   };
@@ -61,6 +61,7 @@ function Contacts() {
 
   return (
     <div className={styles.layout}>
+      <h1 className='backofficeTableHeader'>Administrar Contactos</h1>
       {loading ? (
         <div className={styles.loader}>
           <Loader />
@@ -83,6 +84,9 @@ function Contacts() {
       ) : (
         <div className={styles.empty}>No se encontraron contactos</div>
       )}
+      <button className='addEntry' onClick={handleCreate}>
+        Agregar Contacto
+      </button>
     </div>
   );
 }

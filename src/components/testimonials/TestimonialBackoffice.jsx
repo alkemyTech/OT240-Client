@@ -61,6 +61,7 @@ export const TestimonialBackoffice = () => {
 
   return (
     <div className={styles.container}>
+      <h1 className='backofficeTableHeader'>Administrar Testimonios</h1>
       {loading ? (
         <div className={styles.loader}>
           <Loader />
@@ -83,6 +84,9 @@ export const TestimonialBackoffice = () => {
       ) : (
         <p className={styles.empty}>No se encontraron testimonios </p>
       )}
+      <button className='addEntry' onClick={handleAdd}>
+        Agregar Testimonio
+      </button>
     </div>
   );
 };

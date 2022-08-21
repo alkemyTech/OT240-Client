@@ -70,6 +70,7 @@ const UsersBackoffice = () => {
 
   return (
     <div className={styles.container}>
+      <h1 className='backofficeTableHeader'>Administrar Usuarios</h1>
       {loading ? (
         <div className={styles.loader}>
           <Loader />
@@ -92,6 +93,9 @@ const UsersBackoffice = () => {
       ) : (
         <p className={styles.empty}>No se encontraron usuarios</p>
       )}
+      <button className='addEntry' onClick={createHandler}>
+        Agregar Usuario
+      </button>
     </div>
   );
 };

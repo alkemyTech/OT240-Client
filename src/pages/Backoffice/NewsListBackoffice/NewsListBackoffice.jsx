@@ -75,6 +75,7 @@ function NewsTable() {
 
   return (
     <div className={style.container}>
+      <h1 className='backofficeTableHeader'> Administrar Novedades</h1>
       {loading ? (
         <div className={style.error}>
           <Loader />
@@ -97,6 +98,9 @@ function NewsTable() {
       ) : (
         <p className={style.empty}>No se encontraron novedades</p>
       )}
+      <button className='addEntry' onClick={handleCreate}>
+        Agregar Novedades
+      </button>
     </div>
   );
 }

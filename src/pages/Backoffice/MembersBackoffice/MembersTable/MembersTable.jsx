@@ -62,6 +62,7 @@ const MembersTable = () => {
 
   return (
     <div className={styles.container}>
+      <h1 className='backofficeTableHeader'>Administrar Miembros</h1>
       {loading ? (
         <div className={styles.loader}>
           <Loader />
@@ -84,6 +85,9 @@ const MembersTable = () => {
       ) : (
         <div className={styles.empty}>No se encontraron miembros</div>
       )}
+      <button className='addEntry' onClick={handleCreate}>
+        Agregar Miembro
+      </button>
     </div>
   );
 };
