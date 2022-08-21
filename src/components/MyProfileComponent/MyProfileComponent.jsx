@@ -68,7 +68,7 @@ const MyProfileComponent = () => {
         <article className={style.articleDiv}>
           <div>
             <div>
-              <h2 className={style.title}>Mi perfil</h2>
+              <h1 className={style.title}>Mi perfil</h1>
               <div className={style.tableContainer}>
                 <div className={style.labelsContainer}>
                   <p> Nombre: </p>

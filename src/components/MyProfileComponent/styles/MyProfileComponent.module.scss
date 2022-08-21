@@ -1,9 +1,9 @@
 .articleDiv {
   display: flex;
   justify-content: center;
-  margin-bottom: 100px;
-  margin-top: 1.5rem;
-  width: 100%;
+  flex-direction: column;
+  margin: 0 auto 100px;
+  width: fit-content;
 
   h1 {
     display: flex;
