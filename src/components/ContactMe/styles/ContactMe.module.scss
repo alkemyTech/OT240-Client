@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-gap: 10px;
-  padding: 20px;
+  width: 80%;
   margin: 60px auto 100px;
 
   h1 {
@@ -73,11 +73,14 @@
 .contactMeForm {
   display: flex;
   flex-direction: column;
+
   gap: 15px;
   font-size: 16px;
 
   input {
-    width: 300px;
+    width: 100%;
+    max-width: 700px;
+    box-sizing: border-box;
   }
 
   input,
@@ -87,6 +90,7 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
     font-family: 'Poppins';
+    box-sizing: border-box;
   }
 
   textarea {

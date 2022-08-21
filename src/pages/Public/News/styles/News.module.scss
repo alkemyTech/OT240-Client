@@ -7,5 +7,10 @@
     margin: 60px auto 30px;
     text-align: center;
     font-size: 48px;
+
+    @media all and (max-height: 768px) {
+      font-size: 32px;
+      margin: 32px auto;
+    }
   }
 }
