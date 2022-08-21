@@ -13,10 +13,10 @@ const Home = () => {
       <Banner />
       <NewsSlider />
       <div className={style.members}>
-        <Members quantity={5} />
+        <Members quantity={3} />
       </div>
       <div className={style.testimonials}>
-        <Testimonials quantity={5} />
+        <Testimonials quantity={4} />
       </div>
       <div className={style.news}>
         <div className={style.newsHeader}>

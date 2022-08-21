@@ -45,7 +45,7 @@ export const Testimonials = ({ quantity, centered }) => {
             <Loader />
           </div>
         ) : (
-          entries.map((el) => <TestimonialCard key={el.id} {...el} />)
+          entries.slice(0, quantity).map((el) => <TestimonialCard key={el.id} {...el} />)
         )}
       </div>
       {location.pathname.includes('testimonios') && (
