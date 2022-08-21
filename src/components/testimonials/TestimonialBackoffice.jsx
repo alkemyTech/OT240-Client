@@ -1,9 +1,12 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Table from '../Table/Table';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchTestimonial } from '../../redux/actions/testimonial.action';
 import Swal from 'sweetalert2';
+
+import styles from './styles/testimonialBackoffice.module.scss';
+import Table from '../Table/Table';
+import { Loader } from '../loader/Loader';
+import { fetchTestimonial } from '../../redux/actions/testimonial.action';
 
 export const TestimonialBackoffice = () => {
   const navigate = useNavigate();
@@ -56,17 +59,29 @@ export const TestimonialBackoffice = () => {
   };
 
   return (
-    <Table
-      title='Testimonios'
-      tableHeader={['Titulo', 'Contenido']}
-      tableRowsData={entries}
-      tableRowsProperties={['name', 'content']}
-      buttons={[
-        { title: 'Editar', handler: handleEdit, className: 'white' },
-        { title: 'Eliminar', handler: handleDelete, className: 'orange' },
-      ]}
-      loading={loading}
-      addBtnHandler={handleAdd}
-    />
+    <div className={styles.container}>
+      {loading ? (
+        <div className={styles.loader}>
+          <Loader />
+        </div>
+      ) : error ? (
+        <p className={styles.error}>{error}</p>
+      ) : entries.length ? (
+        <Table
+          title='Testimonios'
+          tableHeader={['Titulo', 'Contenido']}
+          tableRowsData={entries}
+          tableRowsProperties={['name', 'content']}
+          buttons={[
+            { title: 'Editar', handler: handleEdit, className: 'white' },
+            { title: 'Eliminar', handler: handleDelete, className: 'orange' },
+          ]}
+          loading={loading}
+          addBtnHandler={handleAdd}
+        />
+      ) : (
+        <p className={styles.empty}>No se encontraron testimonios </p>
+      )}
+    </div>
   );
 };

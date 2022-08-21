@@ -6,6 +6,28 @@
   align-items: center;
   font-family: Mulish;
 
+  .loader {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .empty {
+    margin-top: 40px;
+    display: block;
+    color: grey !important;
+    font-style: italic;
+    padding: 10px 50px;
+    border-radius: 5px;
+    background-color: floralwhite;
+    box-sizing: border-box;
+  }
+
+  .error {
+    @extend .empty;
+    background-color: rgb(236, 185, 185);
+  }
+
   h1 {
     font-size: 31px;
     margin: 20px auto;
@@ -23,7 +45,7 @@
     max-width: 600px;
     padding: 20px;
     border-radius: 10px;
-    margin: auto;
+    margin: 0 auto;
     text-align: center;
 
     article {

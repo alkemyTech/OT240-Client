@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import fetchApi from '../../axios/axios';
 import { loadUsers } from '../../redux/actions/user.actions';
 import { handleCreate, handleDelete, handleEdit } from '../../utils/formsHandlers';
 import Table from '../Table/Table';
-import usersBackoffice from './styles/UsersBackoffice.module.scss';
+import { Loader } from '../loader/Loader';
+import styles from './styles/UsersBackoffice.module.scss';
 
 const UsersBackoffice = () => {
   const location = useLocation();
@@ -52,21 +52,31 @@ const UsersBackoffice = () => {
     });
   };
 
-  return error ? (
-    <p className={usersBackoffice.errorMessage}> Algo salió mal..</p>
-  ) : (
-    <Table
-      title='Usuarios'
-      tableHeader={['Nombre', 'Apellido', 'Email']}
-      tableRowsData={users}
-      tableRowsProperties={['firstName', 'lastName', 'email']}
-      buttons={[
-        { title: 'Editar', handler: editHandler, className: 'orange' },
-        { title: 'Eliminar', handler: deleteHandler, className: 'white' },
-      ]}
-      loading={loading}
-      addBtnHandler={createHandler}
-    />
+  return (
+    <div className={styles.container}>
+      {loading ? (
+        <div className={styles.loader}>
+          <Loader />
+        </div>
+      ) : error ? (
+        <div className={styles.error}>{error}</div>
+      ) : users.length ? (
+        <Table
+          title='Usuarios'
+          tableHeader={['Nombre', 'Apellido', 'Email']}
+          tableRowsData={users}
+          tableRowsProperties={['firstName', 'lastName', 'email']}
+          buttons={[
+            { title: 'Editar', handler: editHandler, className: 'orange' },
+            { title: 'Eliminar', handler: deleteHandler, className: 'white' },
+          ]}
+          loading={loading}
+          addBtnHandler={createHandler}
+        />
+      ) : (
+        <p className={styles.empty}>No se encontraron usuarios</p>
+      )}
+    </div>
   );
 };
 

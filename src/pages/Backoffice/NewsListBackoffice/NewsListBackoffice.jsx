@@ -8,6 +8,7 @@ import Form from '../../../components/Form/Form';
 import { fetchNews } from '../../../redux/actions/news.actions';
 
 import Table from '../../../components/Table/Table';
+import { Loader } from '../../../components/loader/Loader';
 
 const NewsListBackoffice = () => {
   return (
@@ -69,20 +70,30 @@ function NewsTable() {
     dispatch(fetchNews({ url: '/news' }));
   }, [dispatch]);
 
-  return error ? (
-    <p>Algo salió mal..</p>
-  ) : (
-    <Table
-      title='Novedades'
-      tableHeader={['Titulo', "Descripción", 'Fecha']}
-      tableRowsData={entries}
-      tableRowsProperties={['name','content' , 'createdAt']}
-      buttons={[
-        { title: 'Editar', handler: handleEdit, className: 'white' },
-        { title: 'Eliminar', handler: handleDelete, className: 'orange' },
-      ]}
-      loading={loading}
-      addBtnHandler={handleCreate}
-    />
+  return (
+    <div className={style.container}>
+      {loading ? (
+        <div className={style.error}>
+          <Loader />
+        </div>
+      ) : error ? (
+        <p className={style.error}></p>
+      ) : entries.length ? (
+        <Table
+          title='Novedades'
+          tableHeader={['Titulo', 'Descripción', 'Fecha']}
+          tableRowsData={entries}
+          tableRowsProperties={['name', 'content', 'createdAt']}
+          buttons={[
+            { title: 'Editar', handler: handleEdit, className: 'white' },
+            { title: 'Eliminar', handler: handleDelete, className: 'orange' },
+          ]}
+          loading={loading}
+          addBtnHandler={handleCreate}
+        />
+      ) : (
+        <p className={style.empty}>No se encontraron novedades</p>
+      )}
+    </div>
   );
 }

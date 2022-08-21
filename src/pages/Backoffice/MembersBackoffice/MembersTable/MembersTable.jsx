@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import Swal from 'sweetalert2';
+
+import styles from './styles/MembersTable.module.scss';
 import { deleteMember } from '../../../../redux/actions/member.actions';
 import Table from '../../../../components/Table/Table';
+import { Loader } from '../../../../components/loader/Loader';
 import { loadMembers } from '../../../../redux/actions/member.actions';
-import Swal from 'sweetalert2';
 
 const MembersTable = () => {
   const navigate = useNavigate();
@@ -55,21 +58,31 @@ const MembersTable = () => {
     dispatch(loadMembers({ method: 'get', url: '/members' }));
   }, [dispatch]);
 
-  return error ? (
-    <p>Algo salió mal..</p>
-  ) : (
-    <Table
-      title='Miembros'
-      tableHeader={['Nombre']}
-      tableRowsData={members}
-      tableRowsProperties={['name']}
-      buttons={[
-        { title: 'Editar', handler: handleEdit, className: 'white' },
-        { title: 'Eliminar', handler: handleDelete, className: 'orange' },
-      ]}
-      loading={loading}
-      addBtnHandler={handleCreate}
-    />
+  return (
+    <div className={styles.container}>
+      {loading ? (
+        <div className={styles.loader}>
+          <Loader />
+        </div>
+      ) : error ? (
+        <p className={styles.error}>{error}</p>
+      ) : members.length ? (
+        <Table
+          title='Miembros'
+          tableHeader={['Nombre']}
+          tableRowsData={members}
+          tableRowsProperties={['name']}
+          buttons={[
+            { title: 'Editar', handler: handleEdit, className: 'white' },
+            { title: 'Eliminar', handler: handleDelete, className: 'orange' },
+          ]}
+          loading={loading}
+          addBtnHandler={handleCreate}
+        />
+      ) : (
+        <div className={styles.empty}>No se encontraron miembros</div>
+      )}
+    </div>
   );
 };
 

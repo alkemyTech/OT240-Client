@@ -1,10 +1,14 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Table from '../../../../components/Table/Table';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadCategories, deleteCategory } from '../../../../redux/actions/categories.actions';
 import Swal from 'sweetalert2';
+
+import styles from './styles/CategoriesTable.module.scss';
+
+import Table from '../../../../components/Table/Table';
+import { Loader } from '../../../../components/loader/Loader';
+import { loadCategories, deleteCategory } from '../../../../redux/actions/categories.actions';
 
 const CategoriesTable = () => {
   const navigate = useNavigate();
@@ -55,21 +59,31 @@ const CategoriesTable = () => {
     dispatch(loadCategories({ method: 'get', url: '/categories' }));
   }, [dispatch]);
 
-  return error ? (
-    <p>Algo salió mal..</p>
-  ) : (
-    <Table
-      title='Categorias'
-      tableHeader={['Titulo', 'Descripción']}
-      tableRowsData={categories}
-      tableRowsProperties={['name', 'description']}
-      buttons={[
-        { title: 'Editar', handler: handleEdit, className: 'white' },
-        { title: 'Eliminar', handler: handleDelete, className: 'orange' },
-      ]}
-      loading={loading}
-      addBtnHandler={handleCreate}
-    />
+  return (
+    <div className={styles.container}>
+      {loading ? (
+        <div className={styles.loader}>
+          <Loader />
+        </div>
+      ) : error ? (
+        <div className={styles.error}>{error}</div>
+      ) : categories.length ? (
+        <Table
+          title='Categorias'
+          tableHeader={['Titulo', 'Descripción']}
+          tableRowsData={categories}
+          tableRowsProperties={['name', 'description']}
+          buttons={[
+            { title: 'Editar', handler: handleEdit, className: 'white' },
+            { title: 'Eliminar', handler: handleDelete, className: 'orange' },
+          ]}
+          loading={loading}
+          addBtnHandler={handleCreate}
+        />
+      ) : (
+        <div className={styles.empty}>No se encontraron categorias</div>
+      )}
+    </div>
   );
 };
 

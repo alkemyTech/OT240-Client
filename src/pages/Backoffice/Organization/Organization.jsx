@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 
-import style from './styles/Organization.module.scss';
+import styles from './styles/Organization.module.scss';
 
 import Form from '../../../components/Form/Form';
 
@@ -73,40 +73,42 @@ const Organization = () => {
 
 function OrganizationCard({ org, handleEdit, error, loading }) {
   return (
-    <div className={style.container}>
+    <div className={styles.container}>
       {loading ? (
-        <div className={style.loader}>
+        <div className={styles.loader}>
           <Loader />
         </div>
       ) : error ? (
-        <p className={style.error}>{error}</p>
-      ) : (
+        <p className={styles.error}>{error}</p>
+      ) : org ? (
         <>
           <h1>Organización</h1>
-          <div className={style.body}>
+          <div className={styles.body}>
             <article>
-              <span className={style.header}> Logo </span>
-              <img className={style.content} src={org?.image} alt='' />
-              <span className={style.header}> Nombre </span>
-              <span className={style.content}> {org?.name}</span>
-              <span className={style.header}> Descripción </span>
-              <span className={style.content}> {org?.welcomeText}</span>
-              <span className={style.header}> Dirección </span>
-              <span className={style.content}> {org?.address}</span>
-              <span className={style.header}> Teléfono </span>
-              <span className={style.content}> {org?.phone}</span>
-              <span className={style.header}> Intagram </span>
-              <span className={style.content}> {org?.instagram}</span>
-              <span className={style.header}> Facebook </span>
-              <span className={style.content}> {org?.facebook}</span>
-              <span className={style.header}> Linkedin </span>
-              <span className={style.content}> {org?.linkedin}</span>
+              <span className={styles.header}> Logo </span>
+              <img className={styles.content} src={org?.image} alt='' />
+              <span className={styles.header}> Nombre </span>
+              <span className={styles.content}> {org?.name}</span>
+              <span className={styles.header}> Descripción </span>
+              <span className={styles.content}> {org?.welcomeText}</span>
+              <span className={styles.header}> Dirección </span>
+              <span className={styles.content}> {org?.address}</span>
+              <span className={styles.header}> Teléfono </span>
+              <span className={styles.content}> {org?.phone}</span>
+              <span className={styles.header}> Intagram </span>
+              <span className={styles.content}> {org?.instagram}</span>
+              <span className={styles.header}> Facebook </span>
+              <span className={styles.content}> {org?.facebook}</span>
+              <span className={styles.header}> Linkedin </span>
+              <span className={styles.content}> {org?.linkedin}</span>
             </article>
-            <button className={style.button} onClick={() => handleEdit(org)}>
+            <button className={styles.button} onClick={() => handleEdit(org)}>
               Editar
             </button>
           </div>
         </>
+      ) : (
+        <div className={styles.empty}>No se encontro detalles de la organizacion</div>
       )}
     </div>
   );

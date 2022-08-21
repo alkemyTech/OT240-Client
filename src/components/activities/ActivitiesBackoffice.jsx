@@ -1,14 +1,16 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Table from '../Table/Table';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchAcivities } from '../../redux/actions/activity.action';
 import Swal from 'sweetalert2';
+
+import styles from './styles/activitiesBackoffice.module.scss';
+import Table from '../Table/Table';
+import { Loader } from '../loader/Loader';
+import { fetchAcivities } from '../../redux/actions/activity.action';
 
 export const ActivitiesBackoffice = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  //const [activities, setActivities] = React.useState([]);
   const dispatch = useDispatch();
   const { entries, loading, error } = useSelector((state) => state.activity);
 
@@ -56,17 +58,29 @@ export const ActivitiesBackoffice = () => {
   };
 
   return (
-    <Table
-      title='Actividades'
-      tableHeader={['Titulo',"Descripción", 'Fecha']}
-      tableRowsData={entries}
-      tableRowsProperties={['name', "content",'createdAt']}
-      buttons={[
-        { title: 'Editar', handler: handleEdit, className: 'white' },
-        { title: 'Eliminar', handler: handleDelete, className: 'orange' },
-      ]}
-      loading={loading}
-      addBtnHandler={handleAdd}
-    />
+    <div className={styles.container}>
+      {loading ? (
+        <div className={styles.loader}>
+          <Loader />
+        </div>
+      ) : error ? (
+        <div className={styles.error}>{error}</div>
+      ) : entries.length ? (
+        <Table
+          title='Actividades'
+          tableHeader={['Titulo', 'Descripción', 'Fecha']}
+          tableRowsData={entries}
+          tableRowsProperties={['name', 'content', 'createdAt']}
+          buttons={[
+            { title: 'Editar', handler: handleEdit, className: 'white' },
+            { title: 'Eliminar', handler: handleDelete, className: 'orange' },
+          ]}
+          loading={loading}
+          addBtnHandler={handleAdd}
+        />
+      ) : (
+        <div className={styles.empty}>No se encontraron actividades</div>
+      )}
+    </div>
   );
 };

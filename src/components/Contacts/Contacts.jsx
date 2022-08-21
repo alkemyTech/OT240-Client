@@ -6,6 +6,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Table from '../Table/Table';
 import styles from './styles/Contacts.module.scss';
 import { loadContacts, deleteContact } from '../../redux/actions/contacts.actions';
+import { Loader } from '../loader/Loader';
 
 function Contacts() {
   const navigate = useNavigate();
@@ -58,18 +59,28 @@ function Contacts() {
 
   return (
     <div className={styles.layout}>
-      <Table
-        title={'Contactos'}
-        tableHeader={['Nombre', 'Email', 'Mensaje']}
-        tableRowsProperties={['name', 'email', 'message']}
-        tableRowsData={contacts}
-        buttons={[
-          { title: 'Editar', handler: handleEdit, className: 'white' },
-          { title: 'Eliminar', handler: handleDelete, className: 'orange' },
-        ]}
-        loading={loading}
-        addBtnHandler={handleCreate}
-      />
+      {loading ? (
+        <div className={styles.loader}>
+          <Loader />
+        </div>
+      ) : error ? (
+        <div className={styles.error}>{error}</div>
+      ) : contacts.length ? (
+        <Table
+          title={'Contactos'}
+          tableHeader={['Nombre', 'Email', 'Mensaje']}
+          tableRowsProperties={['name', 'email', 'message']}
+          tableRowsData={contacts}
+          buttons={[
+            { title: 'Editar', handler: handleEdit, className: 'white' },
+            { title: 'Eliminar', handler: handleDelete, className: 'orange' },
+          ]}
+          loading={loading}
+          addBtnHandler={handleCreate}
+        />
+      ) : (
+        <div className={styles.empty}>No se encontraron contactos</div>
+      )}
     </div>
   );
 }
