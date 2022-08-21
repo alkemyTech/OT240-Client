@@ -84,7 +84,9 @@ function OrganizationCard() {
               <span className={styles.header}> Nombre </span>
               <span className={styles.content}> {organization?.name}</span>
               <span className={styles.header}> Descripción </span>
-              <span className={styles.content}> {organization?.welcomeText}</span>
+              <span className={styles.content}>
+                <div dangerouslySetInnerHTML={{ __html: organization?.welcomeText } || ''}></div>
+              </span>
               <span className={styles.header}> Dirección </span>
               <span className={styles.content}> {organization?.address}</span>
               <span className={styles.header}> Teléfono </span>
