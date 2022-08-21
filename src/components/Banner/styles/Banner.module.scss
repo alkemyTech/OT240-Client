@@ -5,24 +5,21 @@
   margin-bottom: 40px;
 
   .description {
-    width: 100%;
+    width: 100% !important;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 2rem;
+    margin: 0 auto 2rem;
     text-align: center;
     padding: 0 15px;
 
-    @media all and (min-width: 768px) {
-      width: 50%;
+    @media all and (min-width: 1024px) {
+      max-width: 50%;
     }
 
     .title {
-      display: none;
-
       @media all and (min-width: 768px) {
         font-size: 3rem;
-        display: block;
         margin: 60px auto 30px;
       }
     }
@@ -57,7 +54,7 @@
     border-radius: 50px;
     margin: 0 20px 20px 20px;
 
-    @media all and (min-width: 768px) {
+    @media all and (min-width: 1024px) {
       display: block;
       width: 50%;
     }
