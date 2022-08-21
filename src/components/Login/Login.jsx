@@ -38,15 +38,6 @@ const Login = () => {
         },
       };
       dispatch(loginAction(options));
-      // const fetchApiData = await fetchApi({
-      //   method: 'POST',
-      //   url: '/auth/login',
-      //   data: {
-      //     email: values.loginEmail,
-      //     password: values.loginPassword,
-      //   },
-      // });
-      // sessionStorage.setItem('token', fetchApiData.data.token);
       navigate('/');
     } catch (error) {
       if (
