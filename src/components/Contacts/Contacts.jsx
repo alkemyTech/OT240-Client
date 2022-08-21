@@ -75,7 +75,7 @@ function Contacts() {
           tableRowsProperties={['name', 'email', 'message']}
           tableRowsData={contacts}
           buttons={[
-            { title: 'Editar', handler: handleEdit, className: 'white' },
+            // { title: 'Editar', handler: handleEdit, className: 'white' },
             { title: 'Eliminar', handler: handleDelete, className: 'orange' },
           ]}
           loading={loading}
@@ -84,9 +84,9 @@ function Contacts() {
       ) : (
         <div className={styles.empty}>No se encontraron contactos</div>
       )}
-      <button className='addEntry' onClick={handleCreate}>
+      {/* <button className='addEntry' onClick={handleCreate}>
         Agregar Contacto
-      </button>
+      </button> */}
     </div>
   );
 }
