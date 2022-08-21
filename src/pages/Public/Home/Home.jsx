@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import style from './styles/Home.module.scss';
 import { Link } from 'react-router-dom';
 import NewsSlider from '../../../components/NewsSlider/NewsSlider';
@@ -9,7 +9,7 @@ import Banner from '../../../components/Banner/Banner';
 
 const Home = () => {
   return (
-    <div>
+    <div className={style.container}>
       <Banner />
       <NewsSlider />
       <div className={style.members}>

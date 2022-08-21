@@ -22,6 +22,8 @@
 
 #slider {
   --mod: 10px;
+  max-width: 1120px;
+  margin: auto;
 }
 
 #slider .container {
@@ -38,7 +40,7 @@
   color: grey !important;
   font-style: italic;
   padding: var(--mod);
-  border-radius: calc(0.5 * var(--mod));
+  border-radius: 5px;
   background-color: rgb(236, 185, 185);
   box-sizing: border-box;
 }
@@ -48,8 +50,8 @@
   text-align: center;
   color: grey !important;
   font-style: italic;
-  padding: var(--mod) calc(5 * var(--mod));
-  border-radius: calc(0.5 * var(--mod));
+  padding: 10px 50px;
+  border-radius: 5px;
   box-sizing: border-box;
 }
 
