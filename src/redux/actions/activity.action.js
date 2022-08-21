@@ -11,7 +11,7 @@ export const fetchAcivities = (options) => async (dispatch, state) => {
   dispatch(activitiesLoading(true));
   dispatch(activitiesError(null));
   try {
-    //await fetchApi(options);
+    await fetchApi(options);
     // Re-fetch and set fresh data after operation
     const { data } = await fetchApi({ url: '/activities' });
     dispatch(activitiesEntries(data));
