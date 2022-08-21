@@ -9,7 +9,6 @@ import fetchApi from '../../axios/axios';
 
 export const loadOrganization = (options) => async (dispatch) => {
   dispatch(organizationLoading(true));
-
   try {
     const { data } = await fetchApi(options);
     dispatch(getOrganization(data[0]));
