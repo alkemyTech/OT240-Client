@@ -13,7 +13,9 @@ const FileField = ({ field }) => {
 
   const handlePreview = async (image) => {
     const result = await convertToBase64(image);
-    imgPreviewRef.current.style.backgroundImage = `url('${result}')`;
+    value &&
+      imgPreviewRef?.current?.style &&
+      (imgPreviewRef.current.style.backgroundImage = `url('${result}')`);
   };
 
   React.useEffect(() => {

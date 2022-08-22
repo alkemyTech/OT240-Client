@@ -24,10 +24,11 @@ export const submitForm = (options, successCallback, errorCallback) => async (di
   } catch (err) {
     dispatch(formLoading(false));
     dispatch(formError(err.message));
-    alert({
+    const result = await alert({
       title: `Error al enviar el formulario\n ${err.message}`,
       icon: 'error',
     });
+    result.isConfirmed && errorCallback();
   } finally {
     dispatch(formLoading(false));
   }

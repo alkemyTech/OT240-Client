@@ -6,6 +6,17 @@
   align-items: center;
   margin-bottom: 60px;
 
+  .error {
+    display: block;
+    color: grey !important;
+    font-style: italic;
+    padding: 10px 50px;
+    border-radius: 5px;
+    background-color: floralwhite;
+    box-sizing: border-box;
+    background-color: rgb(236, 185, 185);
+  }
+
   h1 {
     display: block;
     text-align: center;

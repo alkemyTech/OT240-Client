@@ -27,7 +27,13 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(submitForm({ ...options, data: fields }, () => navigate(prevLocation)));
+    dispatch(
+      submitForm(
+        { ...options, data: fields },
+        () => navigate(prevLocation),
+        () => navigate(prevLocation)
+      )
+    );
   };
 
   const handleCloseForm = () => {
