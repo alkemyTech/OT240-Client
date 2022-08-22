@@ -38,7 +38,7 @@ const Footer = () => {
 //Fetches public organization data for social media links
 async function fetchSocialMediaLinks() {
   try {
-    const response = await fetchApi('/organization/public');
+    const response = await fetchApi({ url: '/organization/public' });
     const { instagram, linkedin, facebook } = response.data;
     return { instagram, linkedin, facebook };
   } catch (error) {

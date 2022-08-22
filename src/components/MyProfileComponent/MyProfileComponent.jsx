@@ -1,85 +1,94 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import fetchApi from '../../axios/axios';
-import { handleDelete, handleEdit } from '../../utils/formsHandlers';
+import { fetchUser, logout } from '../../redux/actions/auth.action';
 import style from './styles/MyProfileComponent.module.scss';
+import showAlert from '../../services/alert';
+import { useSelector, useDispatch } from 'react-redux';
 
 const MyProfileComponent = () => {
-
   const location = useLocation();
-  const navigate = useNavigate();  
-  const [userData, setUserData] = useState({});
-  const [fetchError, setFetchError] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
 
-  useEffect(() => {
-    const getUsers = async() => {
-      try {
-        const {data} = await fetchApi({method: 'get', url: '/auth/me'});
-        setUserData(data.user);
-      } catch (err) {
-        console.log(err);
-        setFetchError(true);
-      };
-    };
-    getUsers();
+  React.useEffect(() => {
+    dispatch(fetchUser({ url: '/auth/me' }));
   }, []);
 
-  const editHandler = () => {
-    handleEdit(navigate, {
-      title: 'Editar mi perfil', 
-      fields: {
-        firstName: userData.firstName, 
-        lastName: userData.lastName, 
-        email: userData.email
+  const handleEdit = () => {
+    const fields = {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+    };
+
+    user.roleId == 1 && (fields.roleId = user.roleId);
+
+    navigate('editar', {
+      state: {
+        title: 'Editar mi perfil',
+        fields,
+        options: { method: 'put', url: `/users/${user.id}` },
+        from: location,
       },
-      options: {method: 'put', url: `/users/${userData.id}`},
-      from: location
     });
   };
 
-  const deleteHandler = () => {
-    handleDelete(navigate, {
-      type: 'usuario',
-      id: userData.id,
-      name: `${userData.firstName} ${userData.lastName}`,
-      url: `/users/${userData.id}`
-    });
+  const deleteHandler = async () => {
+    const result = await showAlert(
+      {
+        title: `Seguro que quieres borrar tu cuenta?`,
+        text: `Esta operación no puede deshacerse!`,
+        icon: 'warning',
+      },
+      {
+        showCancelButton: true,
+        iconColor: 'red',
+      }
+    );
+    // TODO: REDUX
+    if (result.isConfirmed) {
+      try {
+        await fetchApi({ method: 'delete', url: `/users/${user.id}` });
+        dispatch(logout());
+        sessionStorage.removeItem('token');
+        navigate('/login');
+      } catch (err) {
+        window.alert(err);
+      }
+    }
   };
 
   return (
-    <>
-      {
-        !fetchError ? 
-          <article className={style.articleDiv}>
-              <h1></h1>
-              <div>
-                  <p className={style.title}>Mi perfil</p>
-                  <div className={style.tableContainer}>
-                      <div className={style.labelsContainer}>
-                          <p> Nombre: </p>
-                          <p> Apellido: </p>
-                          <p> Email: </p>
-                      </div>
-                      <div className={style.userData}>
-                          <p> {userData.firstName}</p>
-                          <p> {userData.lastName}</p>
-                          <p> {userData.email}</p>
-                      </div>
-                  </div>
-                  <div className={style.buttonContainer}>
-                    <button onClick={editHandler} className={style.editButton}> Editar </button>
-                    <button onClick={deleteHandler} className={style.deleteButton}> Eliminar mi cuenta</button>
-                  </div>
-              </div>
-          </article>
-        
-        :
-        <div className={style.error}>
-          <p> Ocurrió un error</p>
+    <article className={style.articleDiv}>
+      <div>
+        <div>
+          <h1 className={style.title}>Mi perfil</h1>
+          <div className={style.tableContainer}>
+            <div className={style.labelsContainer}>
+              <p> Nombre: </p>
+              <p> Apellido: </p>
+              <p> Email: </p>
+            </div>
+            <div className={style.userData}>
+              <p> {user.firstName}</p>
+              <p> {user.lastName}</p>
+              <p> {user.email}</p>
+            </div>
+          </div>
         </div>
-      }
-    </>
+      </div>
+      <div className={style.buttonContainer}>
+        <button onClick={handleEdit} className={style.editButton}>
+          Editar
+        </button>
+        <button onClick={deleteHandler} className={style.deleteButton}>
+          Eliminar
+        </button>
+      </div>
+    </article>
   );
 };
 

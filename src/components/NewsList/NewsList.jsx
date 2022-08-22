@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from './styles/NewsList.module.scss';
 
 import { fetchNews } from '../../redux/actions/news.actions';
+import { Loader } from '../loader/Loader';
 
-const NewsList = ({ quantity }) => {
+const NewsList = ({ quantity, centered }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { entries: news, error, loading } = useSelector((state) => state.news);
@@ -16,9 +17,11 @@ const NewsList = ({ quantity }) => {
   }, [dispatch]);
 
   return (
-    <ul className={style.container}>
+    <ul className={`${style.container}`} style={centered && { justifyContent: 'center' }}>
       {loading ? (
-        <></>
+        <div className={style.loaderDiv}>
+          <Loader />
+        </div>
       ) : error ? (
         <p className={style.error}>{error}</p>
       ) : !news.length ? (

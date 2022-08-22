@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+
+import styles from './styles/MembersTable.module.scss';
 import { deleteMember } from '../../../../redux/actions/member.actions';
 import Table from '../../../../components/Table/Table';
+import { Loader } from '../../../../components/loader/Loader';
 import { loadMembers } from '../../../../redux/actions/member.actions';
-import Swal from 'sweetalert2';
+import showAlert from '../../../../services/alert';
 
 const MembersTable = () => {
   const navigate = useNavigate();
@@ -14,15 +17,17 @@ const MembersTable = () => {
   const { members, loading, error } = useSelector((state) => state.members);
 
   const handleDelete = async (fields) => {
-    const result = await Swal.fire({
-      title: `Borrar miembro ${fields.name.replace(/\W/, '')}?`,
-      text: `Esta operación no puede deshacerse!`,
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonColor: 'red',
-      confirmButtonColor: 'green',
-      iconColor: 'red',
-    });
+    const result = await showAlert(
+      {
+        title: `Borrar miembro "${fields.name}"?`,
+        text: `Esta operación no puede deshacerse!`,
+        icon: 'warning',
+      },
+      {
+        showCancelButton: true,
+        iconColor: 'red',
+      }
+    );
     if (result.isConfirmed) {
       dispatch(deleteMember({ url: `/members/${fields.id}`, method: 'delete' }));
     }
@@ -55,21 +60,35 @@ const MembersTable = () => {
     dispatch(loadMembers({ method: 'get', url: '/members' }));
   }, [dispatch]);
 
-  return error ? (
-    <p>Algo salió mal..</p>
-  ) : (
-    <Table
-      title='Miembros'
-      tableHeader={['Nombre']}
-      tableRowsData={members}
-      tableRowsProperties={['name']}
-      buttons={[
-        { title: 'Editar', handler: handleEdit, className: 'white' },
-        { title: 'Eliminar', handler: handleDelete, className: 'orange' },
-      ]}
-      loading={loading}
-      addBtnHandler={handleCreate}
-    />
+  return (
+    <div className={styles.container}>
+      <h1 className='backofficeTableHeader'>Administrar Miembros</h1>
+      {loading ? (
+        <div className={styles.loader}>
+          <Loader />
+        </div>
+      ) : error ? (
+        <p className={styles.error}>{error}</p>
+      ) : members.length ? (
+        <Table
+          title='Miembros'
+          tableHeader={['Nombre']}
+          tableRowsData={members}
+          tableRowsProperties={['name']}
+          buttons={[
+            { title: 'Editar', handler: handleEdit, className: 'white' },
+            { title: 'Eliminar', handler: handleDelete, className: 'orange' },
+          ]}
+          loading={loading}
+          addBtnHandler={handleCreate}
+        />
+      ) : (
+        <div className={styles.empty}>No se encontraron miembros</div>
+      )}
+      <button className='addEntry' onClick={handleCreate}>
+        Agregar Miembro
+      </button>
+    </div>
   );
 };
 

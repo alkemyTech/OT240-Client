@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { registerAction } from '../../redux/actions/auth.action';
 
 const Register = () => {
-  const [errors, setErrors] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user, loading } = useSelector((store) => store.auth);
@@ -17,7 +16,7 @@ const Register = () => {
     if (user && !loading) {
       navigate('/');
     }
-  }, [user, loading]);
+  }, [user, loading, navigate]);
 
   const validate = Yup.object({
     registerFirstName: Yup.string()
@@ -36,29 +35,17 @@ const Register = () => {
   });
 
   const handleSubmit = async (values) => {
-    try {
-      const options = {
-        method: 'POST',
-        url: '/auth/register',
-        data: {
-          firstName: values.registerFirstName,
-          lastName: values.registerLastName,
-          email: values.registerEmail,
-          password: values.registerPassword,
-        },
-      };
-
-      dispatch(registerAction(options));
-
-      navigate('/');
-    } catch (error) {
-      if (error.response.data.msg === 'User already exists with that email') {
-        setErrors('El email ya está en uso');
-      } else {
-        setErrors('Ocurrió un error');
-        console.log(error.response.data.msg);
-      }
-    }
+    const options = {
+      method: 'POST',
+      url: '/auth/register',
+      data: {
+        firstName: values.registerFirstName,
+        lastName: values.registerLastName,
+        email: values.registerEmail,
+        password: values.registerPassword,
+      },
+    };
+    dispatch(registerAction(options, () => navigate('/')));
   };
 
   return (
@@ -87,7 +74,6 @@ const Register = () => {
                 name='registerConfirmPassword'
                 type='Password'
               />
-              {errors ? <p>{errors}</p> : <p></p>}
               <button type='submit'> Registrarse </button>
             </Form>
           )}

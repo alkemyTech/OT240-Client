@@ -1,4 +1,4 @@
-import { NEWS_LOADING, NEWS_ERROR, NEWS_ENTRIES, GET_NEW } from '../types/news.types';
+import { NEWS_LOADING, NEWS_ERROR, NEWS_ENTRIES, GET_NEW, CLEAR_NEW } from '../types/news.types';
 
 const initialState = {
   loading: false,
@@ -13,6 +13,8 @@ const newsReducer = (state = initialState, { type, payload }) => {
       return { ...state, loading: payload };
     case GET_NEW:
       return { ...state, entrie: payload };
+    case CLEAR_NEW:
+      return { ...state, entrie: {} };
     case NEWS_ERROR:
       return { ...state, error: payload };
     case NEWS_ENTRIES:

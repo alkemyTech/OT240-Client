@@ -1,18 +1,20 @@
 import React from 'react';
 import styles from './styles/ContactMe.module.scss';
-import { Formik } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import fetchApi from '../../axios/axios';
 import { Link } from 'react-router-dom';
 import showAlert from '../../services/alert';
 
 function ContactMe() {
-  const validationSchema = Yup.object().shape({
+  const validationSchema = Yup.object({
     name: Yup.string().required(),
     email: Yup.string().email().required(),
     message: Yup.string().required(),
   });
-  async function handleSubmit(values) {
+
+  const handleSubmit = async (values) => {
+    console.log(values);
     // Should add some UI feedback for the petition result
     try {
       const response = await fetchApi({ url: '/contacts', method: 'post', data: values });
@@ -26,7 +28,8 @@ function ContactMe() {
         icon: 'error',
       });
     }
-  }
+  };
+
   return (
     <div className={styles.layout}>
       <div className={styles.asideColumn}>
@@ -68,6 +71,7 @@ function ContactMe() {
                 placeholder='Nombre y apellido'
                 required
               />
+              <ErrorMessage name='name' component='p' className={styles.inputError} />
               <input
                 name='email'
                 value={values.email}
@@ -75,6 +79,7 @@ function ContactMe() {
                 placeholder='Email'
                 required
               />
+              <ErrorMessage name='email' component='p' className={styles.inputError} />
               <textarea
                 name='message'
                 value={values.message}
@@ -82,6 +87,7 @@ function ContactMe() {
                 placeholder='Escribe tu mensaje...'
                 required
               />
+              <ErrorMessage name='message' component='p' className={styles.inputError} />
               <div className={styles.actionsContainer}>
                 <button className={styles.submitBtn} type='submit'>
                   Enviar Contacto

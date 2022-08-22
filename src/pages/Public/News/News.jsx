@@ -8,7 +8,7 @@ const News = () => {
   return (
     <section className={style.container}>
       <h1>Novedades</h1>
-      <NewsList />
+      <NewsList centered={true} />
     </section>
   );
 };

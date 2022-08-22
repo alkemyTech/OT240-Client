@@ -1,19 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
 import styles from './styles/testimonials.module.scss';
 import { TestimonialCard } from './TestimonialCard';
 import { fetchTestimonial } from '../../redux/actions/testimonial.action';
-import { useSelector, useDispatch } from 'react-redux';
 import { Loader } from '../loader/Loader';
 
-export const Testimonials = ({ quantity }) => {
+export const Testimonials = ({ quantity, centered }) => {
   const navigate = useNavigate();
-  const location = useLocation();  
+  const location = useLocation();
   const dispatch = useDispatch();
   const { entries, loading, error } = useSelector((state) => state.testimonial);
-  
-  React.useEffect(() => {    
-    dispatch(fetchTestimonial({ method:'get', url: '/testimonials' }));      
+
+  React.useEffect(() => {
+    dispatch(fetchTestimonial({ method: 'get', url: '/testimonials' }));
   }, [dispatch]);
 
   const handleAdd = () => {
@@ -38,17 +39,14 @@ export const Testimonials = ({ quantity }) => {
         <h2 className={styles.title}>Testimonios</h2>
         {!location.pathname.includes('testimonios') && <Link to='/testimonios'>{`Ver mas >`}</Link>}
       </div>
-      <div className={styles.cards}>
-        {
-          (loading)? 
+      <div className={styles.cards} style={centered && { justifyContent: 'center' }}>
+        {loading ? (
           <div className={styles.loaderContainer}>
             <Loader />
-          </div>    
-          :
-          entries.map((el) => (
-            <TestimonialCard key={el.id} {...el} />
-          ))
-        }
+          </div>
+        ) : (
+          entries.slice(0, quantity).map((el) => <TestimonialCard key={el.id} {...el} />)
+        )}
       </div>
       {location.pathname.includes('testimonios') && (
         <div className={styles.buttonsContainer}>

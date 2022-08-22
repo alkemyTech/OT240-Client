@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import style from './styles/Banner.module.scss';
 import { loadOrganization } from '../../redux/actions/organization.action';
+import { Loader } from '../loader/Loader';
 
 const Banner = () => {
   const location = useLocation();
@@ -35,7 +36,9 @@ const Banner = () => {
       }>
       <div className={style.description}>
         <h2 className={style.title}>{data.name}</h2>
-        <div dangerouslySetInnerHTML={{ __html: organization.welcomeText } || ''}></div>
+        <div
+          className={style.body}
+          dangerouslySetInnerHTML={{ __html: organization.welcomeText } || ''}></div>
         <Link to='/contacto' className={style.link}>
           ¡Quiero ser parte!
         </Link>
@@ -43,7 +46,9 @@ const Banner = () => {
       <div className={style.image} style={{ backgroundImage: `url(${data.image})` }}></div>
     </div>
   ) : (
-    <p>loading</p>
+    <div className={style.loader}>
+      <Loader />
+    </div>
   );
 };
 

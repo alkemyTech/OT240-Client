@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2';
+import styles from './alert.module.scss';
 
 /**
  * Fires a Swal alert.
@@ -12,8 +13,35 @@ import Swal from 'sweetalert2';
  * @param {object} extraConfig - Object with any valid sweetalert2 fire() arguments.
  */
 
+const SuccessToast = Swal.mixin({
+  timer: 3000,
+  toast: true,
+  position: 'bottom-right',
+  timerProgressBar: true,
+  showConfirmButton: false,
+  customClass: {
+    title: styles.title,
+  },
+});
+
 const showAlert = ({ title, text, icon }, extraParams = {}) => {
   return Swal.fire({
+    title,
+    text,
+    icon,
+    customClass: {
+      cancelButton: styles.cancelButton,
+      confirmButton: styles.confirmButton,
+      title: styles.title,
+      container: styles.container,
+    },
+    buttonsStyling: false,
+    ...extraParams,
+  });
+};
+
+export const successAlert = ({ title, text, icon }, extraParams = {}) => {
+  return SuccessToast.fire({
     title,
     text,
     icon,

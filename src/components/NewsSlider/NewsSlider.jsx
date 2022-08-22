@@ -5,6 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 import css from './styles/NewsSlider.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchNews } from '../../redux/actions/news.actions';
+import { Loader } from '../loader/Loader';
 
 const NewsSlider = ({ limit }) => {
   const dispatch = useDispatch();
@@ -17,7 +18,9 @@ const NewsSlider = ({ limit }) => {
   return (
     <article id='slider'>
       {loading ? (
-        <></>
+        <div className='container'>
+          <Loader />
+        </div>
       ) : error ? (
         <p className='error'>{error}</p>
       ) : !entries.length ? (

@@ -8,6 +8,8 @@ import Form from '../../../components/Form/Form';
 import { fetchNews } from '../../../redux/actions/news.actions';
 
 import Table from '../../../components/Table/Table';
+import { Loader } from '../../../components/loader/Loader';
+import showAlert from '../../../services/alert';
 
 const NewsListBackoffice = () => {
   return (
@@ -28,15 +30,17 @@ function NewsTable() {
   const { entries, loading, error } = useSelector((state) => state.news);
 
   const handleDelete = async (fields) => {
-    const result = await Swal.fire({
-      title: `Borrar novedad ${fields.name.replace(/\W/, '')}?`,
-      text: `Esta operación no puede deshacerse!`,
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonColor: 'red',
-      confirmButtonColor: 'green',
-      iconColor: 'red',
-    });
+    const result = await showAlert(
+      {
+        title: `Borrar novedad "${fields.name}"?`,
+        text: `Esta operación no puede deshacerse!`,
+        icon: 'warning',
+      },
+      {
+        showCancelButton: true,
+        iconColor: 'red',
+      }
+    );
     if (result.isConfirmed) {
       dispatch(fetchNews({ url: `/news/${fields.id}`, method: 'delete' }));
     }
@@ -69,20 +73,34 @@ function NewsTable() {
     dispatch(fetchNews({ url: '/news' }));
   }, [dispatch]);
 
-  return error ? (
-    <p>Algo salió mal..</p>
-  ) : (
-    <Table
-      title='Novedades'
-      tableHeader={['Titulo', 'Fecha']}
-      tableRowsData={entries}
-      tableRowsProperties={['name', 'createdAt']}
-      buttons={[
-        { title: 'Editar', handler: handleEdit, className: 'white' },
-        { title: 'Eliminar', handler: handleDelete, className: 'orange' },
-      ]}
-      loading={loading}
-      addBtnHandler={handleCreate}
-    />
+  return (
+    <div className={style.container}>
+      <h1 className='backofficeTableHeader'> Administrar Novedades</h1>
+      {loading ? (
+        <div className={style.error}>
+          <Loader />
+        </div>
+      ) : error ? (
+        <p className={style.error}></p>
+      ) : entries.length ? (
+        <Table
+          title='Novedades'
+          tableHeader={['Titulo', 'Descripción', 'Fecha']}
+          tableRowsData={entries}
+          tableRowsProperties={['name', 'content', 'createdAt']}
+          buttons={[
+            { title: 'Editar', handler: handleEdit, className: 'white' },
+            { title: 'Eliminar', handler: handleDelete, className: 'orange' },
+          ]}
+          loading={loading}
+          addBtnHandler={handleCreate}
+        />
+      ) : (
+        <p className={style.empty}>No se encontraron novedades</p>
+      )}
+      <button className='addEntry' onClick={handleCreate}>
+        Agregar Novedades
+      </button>
+    </div>
   );
 }

@@ -10,7 +10,7 @@ const TestimonialPublic = () => {
       <Route element={<PrivateRoute allowedRoles={[1, 2]} />}>
         <Route path='/crear' element={<Form />} />
       </Route>
-      <Route path='/' element={<Testimonials />} />
+      <Route path='/' element={<Testimonials centered={true} />} />
     </Routes>
   );
 };

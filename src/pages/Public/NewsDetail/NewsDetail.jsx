@@ -1,8 +1,10 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
 import style from './styles/NewsDetail.module.scss';
-import { getNew } from '../../../redux/actions/news.actions';
+import { getNew, cleanNew } from '../../../redux/actions/news.actions';
+import { Loader } from '../../../components/loader/Loader';
 
 const NewsDetail = () => {
   const { id } = useParams();
@@ -12,16 +14,21 @@ const NewsDetail = () => {
 
   React.useEffect(() => {
     dispatch(getNew({ method: 'get', url: `/news/${id}` }));
+    return () => {
+      dispatch(cleanNew({}));
+    };
   }, [dispatch, id]);
 
   return (
-    <>
+    <article className={style.container}>
       {loading ? (
-        <></>
+        <div className={style.loader}>
+          <Loader />
+        </div>
       ) : error ? (
         <p>{error}</p>
       ) : (
-        <article className={style.container}>
+        <>
           <img src={`${entrie.image}`} alt='' />
           <div>
             <h1>{entrie.name}</h1>
@@ -30,9 +37,9 @@ const NewsDetail = () => {
               dangerouslySetInnerHTML={{ __html: entrie.content }}></div>
             <button onClick={() => navigate('/')}>Ir al inicio</button>
           </div>
-        </article>
+        </>
       )}
-    </>
+    </article>
   );
 };
 

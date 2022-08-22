@@ -1,14 +1,16 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Table from '../Table/Table';
 import { useSelector, useDispatch } from 'react-redux';
+
+import styles from './styles/activitiesBackoffice.module.scss';
+import Table from '../Table/Table';
+import { Loader } from '../loader/Loader';
 import { fetchAcivities } from '../../redux/actions/activity.action';
-import Swal from 'sweetalert2';
+import showAlert from '../../services/alert';
 
 export const ActivitiesBackoffice = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  //const [activities, setActivities] = React.useState([]);
   const dispatch = useDispatch();
   const { entries, loading, error } = useSelector((state) => state.activity);
 
@@ -30,15 +32,17 @@ export const ActivitiesBackoffice = () => {
   };
 
   const handleDelete = async (fields) => {
-    const result = await Swal.fire({
-      title: `Borrar actividad ${fields.name.replace(/\W/, '')}?`,
-      text: `Esta operación no puede deshacerse!`,
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonColor: 'red',
-      confirmButtonColor: 'green',
-      iconColor: 'red',
-    });
+    const result = await showAlert(
+      {
+        title: `Borrar actividad "${fields.name}"?`,
+        text: `Esta operación no puede deshacerse!`,
+        icon: 'warning',
+      },
+      {
+        showCancelButton: true,
+        iconColor: 'red',
+      }
+    );
     if (result.isConfirmed) {
       dispatch(fetchAcivities({ url: `/activities/${fields.id}`, method: 'delete' }));
     }
@@ -56,17 +60,33 @@ export const ActivitiesBackoffice = () => {
   };
 
   return (
-    <Table
-      title='Actividades'
-      tableHeader={['Titulo', 'Fecha']}
-      tableRowsData={entries}
-      tableRowsProperties={['name', 'createdAt']}
-      buttons={[
-        { title: 'Editar', handler: handleEdit, className: 'white' },
-        { title: 'Eliminar', handler: handleDelete, className: 'orange' },
-      ]}
-      loading={loading}
-      addBtnHandler={handleAdd}
-    />
+    <div className={styles.container}>
+      <h1 className='backofficeTableHeader'>Administrar Actividades</h1>
+      {loading ? (
+        <div className={styles.loader}>
+          <Loader />
+        </div>
+      ) : error ? (
+        <div className={styles.error}>{error}</div>
+      ) : entries.length ? (
+        <Table
+          title='Actividades'
+          tableHeader={['Titulo', 'Descripción', 'Fecha']}
+          tableRowsData={entries}
+          tableRowsProperties={['name', 'content', 'createdAt']}
+          buttons={[
+            { title: 'Editar', handler: handleEdit, className: 'white' },
+            { title: 'Eliminar', handler: handleDelete, className: 'orange' },
+          ]}
+          loading={loading}
+          addBtnHandler={handleAdd}
+        />
+      ) : (
+        <div className={styles.empty}>No se encontraron actividades</div>
+      )}
+      <button className='addEntry' onClick={handleAdd}>
+        Agregar Actividades
+      </button>
+    </div>
   );
 };

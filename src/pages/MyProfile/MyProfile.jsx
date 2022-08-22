@@ -8,14 +8,14 @@ import Header from '../../components/Header/Header.jsx';
 
 const MyProfile = () => {
   return (
-  <>
-    <Header />
-    <Routes>
-      <Route path='/' element={<MyProfileComponent />} />
-      <Route path='//editar' element={<Form />} />
-    </Routes>
-    <Footer/>
-  </>
+    <>
+      <Header />
+      <Routes>
+        <Route path='/' element={<MyProfileComponent />} />
+        <Route path='/editar' element={<Form />} />
+      </Routes>
+      <Footer />
+    </>
   );
 };
 

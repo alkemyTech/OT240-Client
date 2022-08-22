@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import style from './styles/Home.module.scss';
 import { Link } from 'react-router-dom';
 import NewsSlider from '../../../components/NewsSlider/NewsSlider';
@@ -9,14 +9,14 @@ import Banner from '../../../components/Banner/Banner';
 
 const Home = () => {
   return (
-    <div>
+    <div className={style.container}>
       <Banner />
       <NewsSlider />
       <div className={style.members}>
-        <Members quantity={5} />
+        <Members quantity={3} />
       </div>
       <div className={style.testimonials}>
-        <Testimonials quantity={5} />
+        <Testimonials quantity={4} />
       </div>
       <div className={style.news}>
         <div className={style.newsHeader}>

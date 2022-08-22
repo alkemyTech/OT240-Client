@@ -1,26 +1,31 @@
 .container {
-  --mod: 10px;
   text-align: center;
   font-family: Mulish;
   max-width: 600px;
-  margin: calc(6 * var(--mod)) auto;
+  width: 80%;
+  margin: 60px auto;
 
-  div {
-    margin: calc(6 * var(--mod)) auto;
+  .loader {
+    width: 100%;
+    display: flex;
+    justify-content: center !important;
   }
 
   h1 {
-    font-size: calc(4 * var(--mod));
+    font-size: 40px;
     font-weight: 700;
-    margin: calc(2 * var(--mod)) auto;
+    margin: 40px auto;
   }
 
   .content {
-    text-align: center;
-    width: fit-content;
-    font-size: calc(2 * var(--mod));
+    width: 100%;
+    font-size: 20px;
     font-weight: 400;
-    padding: 0 calc(3 * var(--mod));
+    text-align: center;
+
+    p {
+      margin: 0;
+    }
   }
 
   img {
@@ -31,20 +36,20 @@
   }
 
   button {
+    margin-top: 40px;
+    font-family: Poppins;
     font-weight: 600;
-    font-size: calc(3 * var(--mod));
+    font-size: 24px;
     background-color: #ff0000;
-    border-radius: 20px;
+    border-radius: 15px;
     color: white;
-    padding: var(--mod) calc(2.5 * var(--mod));
+    padding: 10px 30px;
     border: none;
-    align-self: left;
     cursor: pointer;
-  }
-}
+    box-shadow: var(--buttonShadow);
 
-@media all and (max-width: 600px) {
-  .container {
-    --mod: 8px;
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }

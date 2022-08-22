@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import { Loader } from '../loader/Loader';
 import styles from './styles/Table.module.scss';
 
 const Table = ({
@@ -16,17 +17,19 @@ const Table = ({
 
   return !loading && tableRowsData.length ? (
     <div className={styles.layout}>
-      <h1>{title}</h1>
+      {/* <h1>{title}</h1> */}
       <table className={styles.table}>
         <thead>{generateTableHead(theadColumns, isOrganization)}</thead>
         <tbody>{generateRows(tableRowsData, tableRowsProperties, buttons, isOrganization)}</tbody>
       </table>
-      {!isOrganization && (
+      {/* {!isOrganization && (
         <button onClick={addBtnHandler} className={styles.addBtn}>{`Agregar ${title}`}</button>
-      )}
+      )} */}
     </div>
   ) : (
-    <p>Loading... </p>
+    <div className={styles.loader}>
+      <Loader />
+    </div>
   );
 };
 const generateRows = (tableRowsData, tableRowsProperties, buttons, isOrganization) => {
@@ -39,9 +42,19 @@ const generateRows = (tableRowsData, tableRowsProperties, buttons, isOrganizatio
           className={isOrganization && `${styles.organization}`}>
           {Object.entries(tableRow).map(([property, value]) => {
             const isDateValue = property === 'createdAt';
+            const isHtml =
+              property === 'content' || property === 'description' || property === 'welcomeText';
             if (propertyIsIncluded(tableRowsProperties, property)) {
               return (
-                <td key={property}>{isDateValue ? new Date(value).toLocaleDateString() : value}</td>
+                <td key={property}>
+                  {isDateValue ? (
+                    new Date(value).toLocaleDateString()
+                  ) : isHtml ? (
+                    <div dangerouslySetInnerHTML={{ __html: value } || ''}></div>
+                  ) : (
+                    value
+                  )}
+                </td>
               );
             }
           })}

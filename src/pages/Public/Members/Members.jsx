@@ -5,6 +5,7 @@ import Banner from '../../../components/Banner/Banner';
 import MembersList from './MembersList/MembersList';
 import style from './styles/Members.module.scss';
 import { loadMembers } from '../../../redux/actions/member.actions';
+import { Loader } from '../../../components/loader/Loader';
 
 const Members = ({ quantity }) => {
   const location = useLocation();
@@ -41,10 +42,12 @@ const Members = ({ quantity }) => {
             <MembersList quantity={quantity} members={members} />
           </>
         ) : (
-          <h1>Todavía no hay miembros cargados a la plataforma</h1>
+          <div className={style.loader}>
+            <Loader />
+          </div>
         )
       ) : (
-        <p>Cargando..</p>
+        <h1>Todavía no hay miembros cargados a la plataforma</h1>
       )}
     </div>
   );

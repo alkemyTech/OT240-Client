@@ -3,43 +3,31 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import style from './styles/Form.module.scss';
-
-import StatusMessage from './StatusMessage';
 import Button from './Button';
 import FieldMap from './FieldMap';
-
+import { Loader } from '../loader/Loader';
 import { submitForm, formFields, formError, formSuccess } from '../../redux/actions/form.actions';
 
 const Form = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { error, success, fields } = useSelector((state) => state.form);
-  const messageRef = React.useRef();
+  const { error, fields, loading } = useSelector((state) => state.form);
   const { fields: recievedFields, options, title, from: prevLocation } = location.state;
 
   React.useEffect(() => {
     dispatch(formFields(recievedFields));
+
     return () => {
       dispatch(formFields({}));
+      dispatch(formSuccess(null));
+      dispatch(formError(null));
     };
   }, [dispatch, recievedFields]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(submitForm({ ...options, data: fields }));
-    window.scrollTo(0, 0);
-  };
-
-  const handleCloseSuccess = () => {
-    dispatch(formSuccess(null));
-    dispatch(formError(null));
-    navigate(prevLocation);
-  };
-
-  const handleCloseError = () => {
-    dispatch(formError(null));
-    dispatch(formSuccess(null));
+    dispatch(submitForm({ ...options, data: fields }, () => navigate(prevLocation)));
   };
 
   const handleCloseForm = () => {
@@ -50,22 +38,24 @@ const Form = () => {
 
   return (
     <article className={style.container}>
-      <h1>{title}</h1>
-      <form>
-        <div ref={messageRef}>
-          {success && (
-            <StatusMessage message={success} style={style.success} onClick={handleCloseSuccess} />
-          )}
-          {error && (
-            <StatusMessage message={error} style={style.error} onClick={handleCloseError} />
-          )}
+      {loading ? (
+        <div className={style.loader}>
+          <Loader />
         </div>
-        <FieldMap fields={fields} />
-        <div className={style.buttonsContainer}>
-          <Button style={style.submitBtn} text='Enviar' onClick={handleSubmit} />
-          <Button style={style.cancelBtn} text='Cancelar' onClick={handleCloseForm} />
-        </div>
-      </form>
+      ) : error ? (
+        <p className={style.error}>{error}</p>
+      ) : (
+        <>
+          <h1>{title}</h1>
+          <form>
+            <FieldMap fields={fields} />
+            <div className={style.buttonsContainer}>
+              <Button style={style.submitBtn} text='Enviar' onClick={handleSubmit} />
+              <Button style={style.cancelBtn} text='Cancelar' onClick={handleCloseForm} />
+            </div>
+          </form>
+        </>
+      )}
     </article>
   );
 };
