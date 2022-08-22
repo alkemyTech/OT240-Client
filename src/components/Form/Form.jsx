@@ -49,7 +49,7 @@ const Form = () => {
           <Loader />
         </div>
       ) : error ? (
-        <p className={style.error}>{error}</p>
+        <></>
       ) : (
         <>
           <h1>{title}</h1>
