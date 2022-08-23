@@ -1,0 +1,57 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 16px;
+  width: 212px;
+  height: 254px;
+  background: #fdffa4;
+  border: 1px solid #f9fe00;
+  border-radius: 20px;
+  overflow-wrap: anywhere;
+
+  @media screen and (max-width: 768px) {
+    width: 180px;
+
+    p {
+      font-size: 14px;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+
+    p {
+      font-size: 16px;
+    }
+  }
+
+  .profilePic {
+    min-height: 75px;
+    min-width: 75px;
+    max-height: 75px;
+    max-width: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .span {
+    width: 200px;
+    height: 20px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .p {
+    font-family: 'Poppins';
+    font-style: normal;
+    color: #000000;
+    overflow: hidden;
+  }
+}

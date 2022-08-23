@@ -1,0 +1,56 @@
+.container {
+  display: flex;
+  max-width: 600px;
+  width: 80%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 60px auto;
+  font-family: 'Mulish';
+
+  h2 {
+    font-size: 40px;
+    font-weight: 700;
+    margin: 40px auto;
+    text-align: center;
+  }
+
+  .image {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+
+    @media screen and (max-width: 450px) {
+      height: 250px;
+      width: 250px;
+    }
+  }
+
+  .content {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .error {
+    text-align: center;
+    margin: 30px 10px;
+  }
+
+  button {
+    margin-top: 40px;
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 24px;
+    background-color: #ff0000;
+    border-radius: 15px;
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--buttonShadow);
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

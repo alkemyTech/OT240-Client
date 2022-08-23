@@ -2,6 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+:root {
+  --primaryColor: #db5752;
+  --secondaryColor: #fafa88;
+  --tertiaryColor: #9ac9fb;
+  --btnPrimaryColor: #ff0000;
+  --btnSecondaryColor: #0038ff;
+  --btnTertiaryColor: #ffff00;
+  --footerBackground: #c0c0c0;
+  --buttonShadow: 3px 3px 5px rgba(0, 0, 0, 0.27);
+}
 
 body {
   box-sizing: border-box;
@@ -12,6 +24,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Indie Flower', cursive;
 }
 
 code {
@@ -32,15 +52,29 @@ figure {
 
 #root {
   min-height: 100vh;
-  width: 100vw;
-  background-color: rgb(230, 231, 251);
+  width: 100%;
 }
 
-/* NEWS */
+.backofficeTableHeader {
+  font-size: 36px !important;
+  margin: 30px auto 20px !important;
+}
 
-/* => SLIDER */
+.addEntry {
+  box-shadow: 5px 5px 10px -1px rgba(0, 0, 0, 0.222);
+  cursor: pointer;
+  background-color: yellowgreen;
+  font-size: 20px;
+  font-family: inherit;
+  border-radius: 10px;
+  border: none;
+  padding: 10px 30px;
+  color: white;
+  font-weight: 400;
+  max-width: 300px;
+  margin: 20px auto;
+}
 
-.legend {
-  bottom: 20px !important;
-  border-radius: 0 !important;
+.addEntry:hover {
+  opacity: 0.8;
 }

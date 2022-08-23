@@ -1,0 +1,96 @@
+.articleDiv {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto 100px;
+  width: fit-content;
+
+  h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 48px !important;
+    font-weight: 600;
+    margin: 60px auto 30px;
+  }
+
+  .tableContainer {
+    align-items: stretch;
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: var(--buttonShadow);
+    justify-content: center;
+    margin: 40px;
+    padding: 15px 30px;
+
+    p {
+      margin: 5px;
+      margin-left: 0;
+      font-family: Mulish;
+      font-size: 18px;
+    }
+
+    .labelsContainer {
+      p {
+        font-weight: 800;
+        text-align: right;
+      }
+    }
+
+    .userData {
+      margin-left: 10px;
+      color: gray;
+    }
+  }
+
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+
+    button {
+      padding: 10px 30px;
+      font-weight: 400;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: var(--buttonShadow);
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .editButton {
+      font-family: Poppins;
+      background-color: white;
+      border: 1px solid rgb(94, 94, 94);
+      border-radius: 10px;
+      color: black;
+    }
+
+    .deleteButton {
+      font-family: Poppins;
+      margin-left: 1rem;
+      background-color: red;
+      border-radius: 10px;
+      border: 1px solid red;
+      color: white;
+      font-weight: 400;
+    }
+  }
+
+  .error {
+    display: flex;
+    justify-content: center;
+    padding-top: 5rem;
+    padding-bottom: 10rem;
+    font-size: 30px;
+
+    p {
+      background-color: rgb(235, 12, 12);
+      border-radius: 10px;
+      padding: 5px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+}

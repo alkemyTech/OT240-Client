@@ -1,0 +1,55 @@
+.container {
+  text-align: center;
+  font-family: Mulish;
+  max-width: 600px;
+  width: 80%;
+  margin: 60px auto;
+
+  .loader {
+    width: 100%;
+    display: flex;
+    justify-content: center !important;
+  }
+
+  h1 {
+    font-size: 40px;
+    font-weight: 700;
+    margin: 40px auto;
+  }
+
+  .content {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+
+  button {
+    margin-top: 40px;
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 24px;
+    background-color: #ff0000;
+    border-radius: 15px;
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--buttonShadow);
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

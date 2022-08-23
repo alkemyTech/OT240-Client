@@ -1,0 +1,28 @@
+.container {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .loader {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .empty {
+    display: block;
+    color: grey !important;
+    font-style: italic;
+    padding: 10px 50px;
+    border-radius: 5px;
+    background-color: floralwhite;
+    box-sizing: border-box;
+  }
+
+  .error {
+    @extend .empty;
+    background-color: rgb(236, 185, 185);
+  }
+}

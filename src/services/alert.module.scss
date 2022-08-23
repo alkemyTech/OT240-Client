@@ -1,0 +1,33 @@
+.button {
+  cursor: pointer;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: Poppins;
+  font-weight: 16px;
+  padding: 10px 30px;
+  border-radius: 8px;
+  margin: 10px;
+  box-shadow: var(--buttonShadow);
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.confirmButton {
+  @extend .button;
+  background-color: yellowgreen;
+}
+
+.cancelButton {
+  @extend .button;
+  background-color: red;
+}
+
+.title {
+  font-family: Poppins;
+  line-height: 1.2;
+  font-size: 24px;
+}

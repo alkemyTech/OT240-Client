@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: auto auto 100px;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .title {
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 600;
+      margin: 32px 0;
+
+      @media screen and (min-width: 769px) {
+        font-size: 3rem;
+        margin: 60px 0 30px;
+      }
+    }
+
+    .titleCentered {
+      text-align: center;
+    }
+  }
+  .headerPage {
+    flex-direction: column;
+  }
+}
+
+.loader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 70px;
+  margin-top: 70px;
+}
