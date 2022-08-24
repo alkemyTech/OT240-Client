@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const ong_api = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: 'https://ong-somos-mas-client.vercel.app/',
 });
 
 const fetchApi = async ({ method = 'get', url = '/', data = {}, params = {}, headers = {} }) => {
