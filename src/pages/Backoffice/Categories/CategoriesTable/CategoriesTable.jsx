@@ -64,6 +64,14 @@ const CategoriesTable = () => {
   return (
     <div className={styles.container}>
       <h1 className='backofficeTableHeader'>Administrar Categorias</h1>
+
+      {/* { if (loading) { 
+               <div className={styles.loader}>
+               <Loader />
+             </div>
+          } else if (error ) {
+              <div className={styles.error}>{error}</div>
+          }} */}
       {loading ? (
         <div className={styles.loader}>
           <Loader />
